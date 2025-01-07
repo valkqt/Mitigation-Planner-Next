@@ -20,9 +20,9 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     props: post,
   };
 };
-const Post: React.FC<PostProps> = (props) => {
-  let title = props.title;
-  if (!props.published) {
+export default function Post({ post }: PostProps) {
+  let title = post.title;
+  if (!post.published) {
     title = `${title} (Draft)`;
   }
 
@@ -30,8 +30,8 @@ const Post: React.FC<PostProps> = (props) => {
     <Layout>
       <div>
         <h2>{title}</h2>
-        <p>By {props?.author?.name || "Unknown author"}</p>
-        <ReactMarkdown children={props.content} />
+        <p>By {post?.author?.name || "Unknown author"}</p>
+        <ReactMarkdown children={post.content} />
       </div>
       <style jsx>{`
         .page {
@@ -56,6 +56,4 @@ const Post: React.FC<PostProps> = (props) => {
       `}</style>
     </Layout>
   );
-};
-
-export default Post;
+}

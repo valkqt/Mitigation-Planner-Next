@@ -2,7 +2,7 @@ import React from "react";
 import Router from "next/router";
 import ReactMarkdown from "react-markdown";
 
-export type PostProps = {
+export interface PostEntity {
   id: string;
   title: string;
   author: {
@@ -11,9 +11,13 @@ export type PostProps = {
   } | null;
   content: string;
   published: boolean;
+}
+
+export type PostProps = {
+  post: PostEntity;
 };
 
-const Post: React.FC<{ post: PostProps }> = ({ post }) => {
+export default function Post({ post }: PostProps) {
   const authorName = post.author ? post.author.name : "Unknown author";
   return (
     <div onClick={() => Router.push("/p/[id]", `/p/${post.id}`)}>
@@ -28,6 +32,4 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
       `}</style>
     </div>
   );
-};
-
-export default Post;
+}

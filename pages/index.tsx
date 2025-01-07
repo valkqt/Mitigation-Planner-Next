@@ -1,7 +1,7 @@
 import React from "react";
 import { GetStaticProps } from "next";
 import Layout from "../components/Layout";
-import Post, { PostProps } from "../components/Post";
+import Post, { PostEntity  } from "../components/Post";
 import prisma from "../lib/prisma";
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -19,17 +19,17 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-type Props = {
-  feed: PostProps[];
+type BlogProps = {
+  feed: PostEntity[];
 };
 
-const Blog: React.FC<Props> = (props) => {
+export default function Blog({ feed }: BlogProps) {
   return (
     <Layout>
       <div className="page">
         <h1>Public Feed</h1>
         <main>
-          {props.feed.map((post) => (
+          {feed.map((post) => (
             <div key={post.id} className="post">
               <Post post={post} />
             </div>
@@ -52,6 +52,4 @@ const Blog: React.FC<Props> = (props) => {
       `}</style>
     </Layout>
   );
-};
-
-export default Blog;
+}
