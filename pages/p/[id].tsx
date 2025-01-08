@@ -58,9 +58,6 @@ export default function Post({ post }: PostProps) {
         {!post.published && userHasValidSession && postBelongsToUser && (
           <button onClick={() => publishPost(post.id)}>Publish</button>
         )}
-        {!post.published && userHasValidSession && postBelongsToUser && (
-          <button onClick={() => publishPost(post.id)}>Publish</button>
-        )}
         {userHasValidSession && postBelongsToUser && (
           <button onClick={() => deletePost(post.id)}>Delete</button>
         )}

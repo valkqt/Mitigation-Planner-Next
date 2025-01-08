@@ -8,6 +8,13 @@ const Draft: React.FC = () => {
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+    const newPost = { title: title, content: content };
+    await fetch(`/api/post`, {
+      method: "POST",
+      body: JSON.stringify(newPost),
+    });
+    await Router.push("/");
+
     // TODO
     // You will implement this next ...
   };
