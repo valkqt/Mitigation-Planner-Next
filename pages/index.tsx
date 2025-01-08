@@ -3,7 +3,6 @@ import { GetStaticProps } from "next";
 import Layout from "../components/Layout";
 import Post, { PostEntity } from "../components/Post";
 import prisma from "../lib/prisma";
-import { globalStyle } from "../components/LayoutStyles";
 
 export const getStaticProps: GetStaticProps = async () => {
   const feed = await prisma.post.findMany({
