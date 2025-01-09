@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 import Router from "next/router";
+import { api } from "../api/axios";
 
 const Draft: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -8,11 +9,9 @@ const Draft: React.FC = () => {
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const newPost = { title: title, content: content };
-    await fetch(`/api/post`, {
-      method: "POST",
-      body: JSON.stringify(newPost),
-    });
+    api
+      .post(`/post`, { title: title, content: content })
+      .then((res) => console.log(res));
     await Router.push("/");
 
     // TODO
