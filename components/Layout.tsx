@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import Header from "./Header";
+import Header from "./Header/Header";
 import { globalStyle, layoutStyle } from "./LayoutStyles";
 
 type Props = {

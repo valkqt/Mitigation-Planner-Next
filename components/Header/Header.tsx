@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
@@ -44,7 +44,7 @@ export default function Header() {
     </div>
   );
 
-  let right = null;
+  let right;
 
   if (status === "loading") {
     left = (
@@ -80,7 +80,7 @@ export default function Header() {
     );
   }
 
-  if (session) {
+  if (session?.user) {
     left = (
       <div className="left">
         <Link legacyBehavior href="/">

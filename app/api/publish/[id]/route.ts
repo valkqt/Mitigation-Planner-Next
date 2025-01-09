@@ -1,7 +1,7 @@
 import prisma from "../../../../lib/prisma";
 
 // PUT /api/publish/:id
-export default async function PUT(req, res) {
+export async function PUT(req, res) {
   const postId = req.query.id;
   const post = await prisma.post.update({
     where: { id: postId },

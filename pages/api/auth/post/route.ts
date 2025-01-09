@@ -8,11 +8,15 @@ export default async function POST(req, res) {
   const { title, content } = req.body;
   if (req.method === "POST") {
     const session = await getSession({ req });
+    if (!session?.user?.email) {
+      return;
+    }
+
     const result = await prisma.post.create({
       data: {
         title: title,
         content: content,
-        author: { connect: { email: session?.user?.email } },
+        author: { connect: { email: session.user.email } },
       },
     });
     res.json(result);
