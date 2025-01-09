@@ -19,7 +19,7 @@ export default async function POST(req, res) {
         author: { connect: { email: session.user.email } },
       },
     });
-    res.json(result);
+    return await res.json(result);
   } else {
     throw new Error(
       `The HTTP ${req.method} method is not supported at this route.`
