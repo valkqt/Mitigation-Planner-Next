@@ -4,7 +4,7 @@ import prisma from "../../../lib/prisma";
 // POST /api/post
 // Required fields in body: title
 // Optional fields in body: content
-export default async function POST(req, res) {
+export default async function handler(req, res) {
   const { title, content } = req.body;
   if (req.method === "POST") {
     const session = await getSession({ req });
