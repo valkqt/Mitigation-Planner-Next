@@ -1,0 +1,16 @@
+html {
+  width: min-content;
+}
+
+body {
+  margin: 0;
+}
+
+@font-face {
+  font-family: "Kumbh Sans";
+  src: url("/fonts/kumbh_sans/KumbhSans-VariableFont_YOPQ,wght.ttf");
+}
+
+* {
+  font-family: "Kumbh Sans";
+}

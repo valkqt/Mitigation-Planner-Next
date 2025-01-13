@@ -1,9 +1,9 @@
 import React from "react";
 import { GetServerSideProps } from "next";
-import ReactMarkdown from "react-markdown";
+// import ReactMarkdown from "react-markdown";
 import Router from "next/router";
-import Layout from "../../../components/Layout";
-import { PostProps } from "../../../components/Post";
+import Layout from "../../../components/_old/Layout";
+import { PostProps } from "../../../components/_old/Post";
 import { useSession } from "next-auth/react";
 import prisma from "../../../lib/prisma";
 import { api } from "../../../api/axios";
@@ -51,7 +51,7 @@ export default function Page({ post }: PostProps) {
       <div>
         <h2>{title}</h2>
         <p>By {post?.author?.name || "Unknown author"}</p>
-        <ReactMarkdown children={post.content} />
+        {/* <ReactMarkdown children={post.content} /> */}
         {!post.published && userHasValidSession && postBelongsToUser && (
           <button onClick={() => publishPost(post.id)}>Publish</button>
         )}

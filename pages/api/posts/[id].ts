@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { handlePut, handleDelete } from "../../../api/postsHelper";
 
-type RequestMethod = "POST" | "GET" | "DELETE" | "PUT" | "PATCH";
-
 // DELETE /api/post/:id
 export default async function handler(
   req: NextApiRequest,

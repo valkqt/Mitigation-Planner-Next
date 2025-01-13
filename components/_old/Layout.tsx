@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import Header from "./Header/Header";
-import { globalStyle, layoutStyle } from "./LayoutStyles";
+import { globalStyle } from "./LayoutStyles";
 
 type Props = {
   children: ReactNode;

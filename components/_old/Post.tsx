@@ -1,6 +1,5 @@
 import React from "react";
 import Router from "next/router";
-import ReactMarkdown from "react-markdown";
 
 export interface PostEntity {
   id: string;
@@ -23,7 +22,7 @@ export default function Post({ post }: PostProps) {
     <div onClick={() => Router.push("/posts/[id]", `/posts/${post.id}`)}>
       <h2>{post.title}</h2>
       <small>By {authorName}</small>
-      <ReactMarkdown children={post.content} />
+      {/* <ReactMarkdown children={post.content} /> */}
       <style jsx>{`
         div {
           color: inherit;

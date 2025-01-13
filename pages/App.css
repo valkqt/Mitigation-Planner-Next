@@ -1,0 +1,48 @@
+.toggleDisplay {
+  display: none !important;
+}
+
+.toggleVisibility {
+  visibility: hidden !important;
+}
+
+.smallAbilityIcon {
+  width: 28px;
+  height: auto;
+}
+.miniIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.showDraggableTracking::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  left: -1px;
+  z-index: -100;
+  height: 100vh;
+  border-left: 1px solid white;
+  pointer-events: none;
+}
+
+.mechanicsText {
+  font-size: 12px;
+  white-space: nowrap;
+  height: 100%;
+  /* transform: rotate(-39.5deg); */
+  position: absolute;
+  padding-left: 8px;
+  top: 0px;
+  left: 0;
+}
+
+:root {
+  --healer: #346624;
+  --healer-hover: #3ba318;
+  --tank: "";
+  --tank-hover: "";
+  --inactive: rgb(70, 70, 70);
+  --inactive-hover: rgb(90, 90, 90);
+}

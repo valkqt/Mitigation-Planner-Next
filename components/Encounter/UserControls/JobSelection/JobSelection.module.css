@@ -1,0 +1,45 @@
+.transparentIcon {
+  width: 20px;
+  height: auto;
+}
+
+.button {
+  border-radius: 32px;
+  font-size: 12px;
+  box-sizing: border-box;
+  border: 2px solid gray;
+  padding: 2px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.filter {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.JobName {
+  padding-right: 8px;
+}
+
+.active {
+  background-color: var(--healer);
+}
+
+.active:hover {
+  background-color: var(--healer-hover);
+}
+
+.inactive {
+  background-color: var(--inactive);
+  color: gray;
+}
+
+.inactive:hover {
+  background-color: var(--inactive-hover);
+}

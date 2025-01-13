@@ -1,55 +1,40 @@
 import React from "react";
-import { GetStaticProps } from "next";
-import Layout from "../components/Layout";
-import Post, { PostEntity } from "../components/Post";
-import prisma from "../lib/prisma";
+// import { GetStaticProps } from "next";
+// import Layout from "../components/_old/Layout";
+// import Post, { PostEntity } from "../components/_old/Post";
+// import prisma from "../lib/prisma";
+import Encounter from "../components/Encounter/Encounter";
+// import { defaultFlags, gridSize } from "../resources/globals";
+import "./index.css";
+import "./app.css";
+import { MouseContextProvider } from "../contexts/MouseContextProvider";
+import { ActivationFlagsContextProvider } from "../contexts/ActivationFlagsContextProvider";
 
-export const getStaticProps: GetStaticProps = async () => {
-  const feed = await prisma.post.findMany({
-    where: { published: true },
-    include: {
-      author: {
-        select: { name: true },
-      },
-    },
-  });
-  return {
-    props: { feed },
-    revalidate: 10,
-  };
-};
+// export const getStaticProps: GetStaticProps = asyncss () => {
+//   const feed = await prisma.post.findMany({
+//     where: { published: true },
+//     include: {
+//       author: {
+//         select: { name: true },
+//       },
+//     },
+//   });
+//   return {
+//     props: { feed },
+//     revalidate: 10,
+//   };
+// };
 
-type BlogProps = {
-  feed: PostEntity[];
-};
+// type BlogProps = {
+//   // feed: PostEntity[];
+// };
 
-export default function Blog({ feed }: BlogProps) {
+export default function Blog() {
   return (
-    <Layout>
-      <div className="page">
-        <h1>Public Feed</h1>
-        <main>
-          {feed.map((post) => (
-            <div key={post.id} className="post">
-              <Post post={post} />
-            </div>
-          ))}
-        </main>
-      </div>
-      <style jsx>{`
-        .post {
-          background: white;
-          transition: box-shadow 0.1s ease-in;
-        }
-
-        .post:hover {
-          box-shadow: 1px 1px 3px #aaa;
-        }
-
-        .post + .post {
-          margin-top: 2rem;
-        }
-      `}</style>
-    </Layout>
+    <ActivationFlagsContextProvider>
+      <MouseContextProvider>
+        <Encounter />
+      </MouseContextProvider>
+    </ActivationFlagsContextProvider>
   );
 }
