@@ -1,5 +1,6 @@
 import {
   DamageType,
+  EnemySkillTarget,
   EnemySkillType,
   PlayerSkillType,
   SkillTarget,
@@ -9,7 +10,6 @@ export interface Job {
   id: number;
   name: string;
   skills: PlayerSkill[];
-  icon: string;
 }
 
 export interface Segment {
@@ -25,17 +25,21 @@ export enum Source {
   Enemy,
 }
 
+export interface AbilityStyle {
+  icon: string;
+  color1: string;
+  color2: string;
+}
+
 export interface EnemySkill {
   id: number;
   name: string;
   source: Source;
   castTime: number;
-  target: SkillTarget;
+  targets: EnemySkillTarget[];
   type: EnemySkillType;
   damageType: DamageType;
-  icon: string;
-  color1: string;
-  color2: string;
+  description: string;
 }
 
 export interface PlayerSkill {
@@ -46,9 +50,6 @@ export interface PlayerSkill {
   duration: number;
   target: SkillTarget;
   type: PlayerSkillType;
-  icon: string;
-  color1: string;
-  color2: string;
 }
 
 export interface Timeline {
@@ -62,7 +63,7 @@ export interface Encounter {
   name: string;
   level: number;
   duration: number;
-  nodes: Timeline[];
+  mechanics: Timeline[];
 }
 
 export interface GlobalFlags {

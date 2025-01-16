@@ -3,30 +3,79 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model Job {
+  id          Int @id @default(autoincrement())
+  name        String
+  role        JobRole
+  skills      Ability[]
+}
+
+model Ability {
+  id          Int @id @default(autoincrement())
+  name        String
+  duration    Int
+  cooldown    Int
+  level       Int
+  target      PlayerTarget
+  type        AbilityType
+  jobId       Int
+  job         Job @relation(fields: [jobId], references: [id])
+}
+
+model Mechanic {
+  id           Int           @id @default(autoincrement())
+  name         String
+  source       Source
+  castTime     Int
+  targets      EnemyTarget[]
+  mechanicType MechanicType
+  damageType   DamageType
+  description  String
+  nodes        Node[]
+}
+
+model Node {
+  id          Int       @id @default(autoincrement())
+  timestamp   Int
+  duration    Int
+  mechanicId  Int
+  encounterId Int
+  encounter   Encounter @relation(fields: [encounterId], references: [id])
+  mechanic    Mechanic  @relation(fields: [mechanicId], references: [id])
+}
+
+model Encounter {
+  id        Int    @id @default(autoincrement())
+  name      String
+  level     Int
+  duration  Int
+  mechanics Node[]
 }
 
 model Post {
-  id        String     @default(cuid()) @id
+  id        String  @id @default(cuid())
   title     String
   content   String?
   published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  String?
+  authorId  String
+  author    User    @relation(fields: [authorId], references: [id])
 }
 
 model User {
   id            String    @id @default(cuid())
   name          String?
-  email         String?@unique
+  email         String?   @unique
   emailVerified DateTime?
   image         String?
-  posts         Post[]
   accounts      Account[]
+  posts         Post[]
   sessions      Session[]
-  }
+}
 
 model Account {
   id                 String  @id @default(cuid())
@@ -43,19 +92,18 @@ model Account {
   session_state      String?
   oauth_token_secret String?
   oauth_token        String?
-
-  user User @relation(fields:[userId], references:[id], onDelete: Cascade)
+  user               User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
-  }
+}
 
-  model Session {
+model Session {
   id           String   @id @default(cuid())
-  sessionToken String   @unique@map("session_token")
+  sessionToken String   @unique @map("session_token")
   userId       String   @map("user_id")
   expires      DateTime
-  user         User     @relation(fields:[userId], references:[id], onDelete: Cascade)
-  }
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
 
 model VerificationToken {
   id         Int      @id @default(autoincrement())
@@ -64,4 +112,52 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
-  }
+}
+
+enum Source {
+  ALLY
+  BOSS
+  ENEMY
+}
+
+enum PlayerTarget {
+  SELF
+  ALLY
+  RAID
+}
+
+enum JobRole {
+  DPS
+  TANK
+  HEALER
+}
+
+enum AbilityType {
+  MITIGATION
+  HEALING
+  BUFF
+  OTHER
+}
+
+enum EnemyTarget {
+  SELF
+  RAID
+  GROUND
+  MAIN_THREAT
+  SECONDARY_THREAT
+  RANDOM_PLAYER
+}
+
+enum MechanicType {
+  DAMAGE
+  ENRAGE
+  SETUP
+  OTHER
+}
+
+enum DamageType {
+  PHYSICAL
+  MAGICAL
+  DARKNESS
+  NONE
+}

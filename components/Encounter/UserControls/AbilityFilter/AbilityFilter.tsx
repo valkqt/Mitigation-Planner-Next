@@ -3,6 +3,7 @@ import css from "./AbilityFilter.module.css";
 import SingleAbility from "../SingleAbility/SingleAbility";
 import { useState } from "react";
 import classNames from "classnames";
+import { jobMap } from "../../../../resources/globals";
 
 interface AbilityFilterProps {
   abilities: PlayerSkill[];
@@ -21,7 +22,7 @@ export default function AbilityFilter({
       <div className={css.jobFilter}>
         <div onClick={() => setOpen(!open)}>
           <div className={css.label}>
-            <img src={selectedJob.icon} className="miniIcon" />
+            <img src={jobMap[selectedJob.id]} className="miniIcon" />
 
             {selectedJob.name}
           </div>
@@ -32,7 +33,7 @@ export default function AbilityFilter({
                 className={css.dropdownItem}
                 onClick={() => setSelectedJob(job)}
               >
-                <img src={job.icon} className="miniIcon" />
+                <img src={jobMap[job.id].icon} className="miniIcon" />
                 <div>{job.name}</div>
               </div>
             ))}

@@ -1,11 +1,17 @@
 import classNames from "classnames";
 import DraggableGridComponent from "../../../components/DraggableGridComponent/DraggableGridComponent";
 import { GenerateRandomString } from "../../../resources/GenerateRandomString";
-import { PlayerSkill, Job, Segment } from "../../../resources/types";
+import {
+  PlayerSkill,
+  Job,
+  Segment,
+  AbilityStyle,
+} from "../../../resources/types";
 import css from "./Row.module.css";
 import { useState } from "react";
 import { useActivationFlagsContext } from "../../../contexts/ActivationFlagsContext";
 import { useMouseContext } from "../../../contexts/MouseContext";
+import { abilityMap } from "../../../resources/globals";
 
 interface RowProps {
   jobs: Job[];
@@ -17,6 +23,7 @@ export default function Row({ jobs, ability, duration }: RowProps) {
   const [entities, setEntities] = useState<Segment[]>([]);
   const [flags] = useActivationFlagsContext();
   const mouse = useMouseContext();
+  const style: AbilityStyle = abilityMap[ability.id];
 
   function removeSegment(id: string) {
     setEntities(
@@ -89,7 +96,7 @@ export default function Row({ jobs, ability, duration }: RowProps) {
       })}
     >
       <div className={css.LaneIconContainer}>
-        <img src={ability.icon} style={{ width: "48px", height: "48px" }} />
+        <img src={style.icon} style={{ width: "48px", height: "48px" }} />
       </div>
 
       {Array.from({ length: duration + 1 }, (_, index) => {

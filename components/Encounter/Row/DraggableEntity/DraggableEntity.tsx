@@ -1,5 +1,5 @@
-import { gridSize } from "../../../../resources/globals";
-import { PlayerSkill } from "../../../../resources/types";
+import { abilityMap, gridSize } from "../../../../resources/globals";
+import { AbilityStyle, PlayerSkill } from "../../../../resources/types";
 import css from "./DraggableEntity.module.css";
 
 interface DraggableEntityProps {
@@ -7,20 +7,21 @@ interface DraggableEntityProps {
 }
 
 export default function DraggableEntity({ ability }: DraggableEntityProps) {
+  const style: AbilityStyle = abilityMap[ability.id] ?? {};
   return (
     <div
       className={css.SingleEntity}
-      style={{ backgroundColor: ability.color2, borderRadius: "0.20rem" }}
+      style={{ backgroundColor: style.color2, borderRadius: "0.20rem" }}
     >
       <div
         className={css.segment}
         style={{
           width: ability.duration * gridSize + "px",
-          backgroundColor: ability.color1,
+          backgroundColor: style.color1,
         }}
       >
         <div className={css.IconContainer}>
-          <img src={ability.icon} className={css.AbilityIcon} />
+          <img src={style.icon} className={css.AbilityIcon} />
         </div>
         <div>{ability.name}</div>
       </div>

@@ -13,6 +13,8 @@ export default function SingleFilter({
 }: SingleFilterProps) {
   const [flags] = useActivationFlagsContext();
 
+  const text = label.charAt(0) + label.substring(1).toLowerCase()
+
   function toggleCheckmark() {
     if (label in SkillTarget) {
       return flags.target[label];
@@ -22,7 +24,7 @@ export default function SingleFilter({
   }
   return (
     <div className={css.filter} onClick={() => onClickToggle(label)}>
-      {label}
+      {text}
       <div className={classNames({ toggleVisibility: !toggleCheckmark() })}>
         &#10003;
       </div>

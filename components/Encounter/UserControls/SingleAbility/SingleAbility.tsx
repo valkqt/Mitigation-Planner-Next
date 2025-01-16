@@ -1,5 +1,6 @@
 import { useActivationFlagsContext } from "../../../../contexts/ActivationFlagsContext";
-import { PlayerSkill } from "../../../../resources/types";
+import { abilityMap } from "../../../../resources/globals";
+import { AbilityStyle, PlayerSkill } from "../../../../resources/types";
 import css from "./SingleAbility.module.css";
 import classNames from "classnames";
 
@@ -12,10 +13,11 @@ export default function SingleAbility({
   onToggle,
 }: SingleAbilityProps) {
   const [flags] = useActivationFlagsContext();
+  const style: AbilityStyle = abilityMap[ability.id];
   return (
     <div className={css.SingleAbility} onClick={() => onToggle(ability.id)}>
       <div>
-        <img src={ability.icon} className={"smallAbilityIcon"} />
+        <img src={style.icon} className={"smallAbilityIcon"} />
       </div>
 
       <div className={css.AbilityLabel}>

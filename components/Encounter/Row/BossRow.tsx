@@ -10,7 +10,7 @@ interface BossRowProps {
 export default function BossRow({ encounter }: BossRowProps) {
   return (
     <div className={classNames(css.Lane, css.BossLane)}>
-      {encounter.nodes.map((mech) => {
+      {encounter.mechanics.map((mech) => {
         return <BossMechanic node={mech} key={mech.id} />;
       })}
     </div>

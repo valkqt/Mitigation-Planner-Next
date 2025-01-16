@@ -1,26 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import css from "./Encounter.module.css";
-import { PlayerSkill, Job } from "../../resources/types";
+import { PlayerSkill, Job, Encounter as Fight } from "../../resources/types";
 import Row from "./Row/Row";
 import TimeDisplay from "./TimeDisplay/BossTimeline";
-import {
-  PlayerSkillType,
-  databaseJobs,
-  encounters,
-  SkillTarget,
-} from "../../resources/globals";
+import { PlayerSkillType, SkillTarget } from "../../resources/globals";
 import UserControls from "./UserControls/UserControls";
 import { useActivationFlagsContext } from "../../contexts/ActivationFlagsContext";
 import { FlagActivationTypes } from "../../contexts/ActivationFlagsContextProvider";
 import BossRow from "./Row/BossRow";
+import { api } from "../../api/axios";
 
 export default function Encounter() {
-  const [abilities] = useState<PlayerSkill[]>(initializeAbilities);
-
-  const [jobs] = useState<Job[]>(databaseJobs);
+  const [abilities, setAbilities] = useState<PlayerSkill[]>([]);
+  const [jobs, setJobs] = useState<Job[]>([]);
   const [, setFlags] = useActivationFlagsContext();
+  const [encounter, setEncounter] = useState<Fight>();
 
-  console.log("whole tree rended lol");
+  useEffect(() => {
+    api.get("/encounters/1").then((res) => {
+      setEncounter(res.data);
+    });
+    api.get("/jobs").then((res) => {
+      setJobs(res.data);
+      console.log(res.data);
+      let skills = [];
+      res.data.forEach((job) => {
+        skills = skills.concat(job.skills);
+      });
+      setAbilities(skills);
+    });
+  }, []);
+
+  if (!encounter) {
+    return <div>bro</div>;
+  }
 
   function handleJobSelection(jobId: number) {
     setFlags({ type: FlagActivationTypes.ToggleJobFlag, payload: jobId });
@@ -54,19 +67,10 @@ export default function Encounter() {
     }
   }
 
-  function initializeAbilities(): PlayerSkill[] {
-    let result: PlayerSkill[] = [];
-    databaseJobs.forEach((job) => {
-      result = result.concat(job.skills);
-    });
-
-    return result;
-  }
-
   return (
     <div className={css.TimelineContainer}>
       <div className={css.EncounterInfo}>
-        <h1 className={css.EncounterHeader}>{encounters[0].name}</h1>
+        <h1 className={css.EncounterHeader}>{encounter.name}</h1>
       </div>
       <UserControls
         jobs={jobs}
@@ -76,14 +80,14 @@ export default function Encounter() {
         onSkillTargetToggle={handleAbilityFilter}
         onLevelFilter={handleLevelFilter}
       />
-      <TimeDisplay encounter={encounters[0]} />
+      <TimeDisplay encounter={encounter} />
       <div>
-        <BossRow encounter={encounters[0]} />
+        <BossRow encounter={encounter} />
         {abilities.map((ability) => {
           return (
             <Row
               ability={ability}
-              duration={encounters[0].duration}
+              duration={encounter.duration}
               jobs={jobs}
               key={ability.id}
             />

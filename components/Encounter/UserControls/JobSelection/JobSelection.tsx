@@ -2,6 +2,7 @@ import css from "./JobSelection.module.css";
 import { Job } from "../../../../resources/types";
 import classNames from "classnames";
 import { useActivationFlagsContext } from "../../../../contexts/ActivationFlagsContext";
+import { jobMap } from "../../../../resources/globals";
 
 interface JobSelectionProps {
   jobs: Job[];
@@ -24,7 +25,7 @@ export default function JobSelection({ jobs, onToggle }: JobSelectionProps) {
           key={index}
           onClick={() => onToggle(job.id)}
         >
-          <img src={job.icon} className={css.transparentIcon} />
+          <img src={jobMap[job.id]} className={css.transparentIcon} />
           <div className={css.JobName}>{job.name}</div>
         </div>
       ))}
