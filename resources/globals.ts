@@ -15,49 +15,6 @@ export const levelArray: number[] = Array.from(
   }
 );
 
-export enum Axis {
-  All,
-  Vertical,
-  Horizontal,
-}
-
-export enum SkillTarget {
-  SELF = "SELF",
-  ALLY = "ALLY",
-  RAID = "RAID",
-}
-
-export enum EnemySkillTarget {
-  SELF = "SELF",
-  RAID = "RAID",
-  GROUND = "GROUND",
-  MAIN_THREAT = "MAIN_THREAT",
-  SECONDARY_THREAT = "SECONDARY_THREAT",
-  RANDOM_PLAYER = "RANDOM_PLAYER",
-}
-
-export enum PlayerSkillType {
-  MITIGATION = "MITIGATION",
-  HEALING = "HEALING",
-  BUFF = "BUFF",
-  OTHER = "OTHER",
-}
-
-export enum EnemySkillType {
-  Setup,
-  Damage,
-  Enrage,
-  Other,
-}
-
-export enum DamageType {
-  Physical,
-  Magical,
-  Darkness,
-  Misc,
-  None,
-}
-
 export const snapToGridModifier = createSnapModifier(gridSize);
 export const jobMap = {
   1: "/transparent_icons/sage.png",
@@ -127,3 +84,46 @@ export const defaultFlags: GlobalFlags = {
   type: { HEALING: false, MITIGATION: true, OTHER: false },
   level: maxLevel,
 };
+
+export enum Axis {
+  All,
+  Vertical,
+  Horizontal,
+}
+
+export enum SkillTarget {
+  SELF = "SELF",
+  ALLY = "ALLY",
+  RAID = "RAID",
+}
+
+export enum EnemySkillTarget {
+  SELF = "SELF",
+  RAID = "RAID",
+  GROUND = "GROUND",
+  MAIN_THREAT = "MAIN_THREAT",
+  SECONDARY_THREAT = "SECONDARY_THREAT",
+  RANDOM_PLAYER = "RANDOM_PLAYER",
+}
+
+export enum PlayerSkillType {
+  MITIGATION = "MITIGATION",
+  HEALING = "HEALING",
+  BUFF = "BUFF",
+  OTHER = "OTHER",
+}
+
+export enum EnemySkillType {
+  Setup,
+  Damage,
+  Enrage,
+  Other,
+}
+
+export enum DamageType {
+  Physical,
+  Magical,
+  Darkness,
+  Misc,
+  None,
+}

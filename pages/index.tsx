@@ -13,7 +13,7 @@ import { Suspense } from "react";
 //     where: { published: true },
 //     include: {
 //       author: {
-//         select: { name: true },
+//         select: { name: true },  
 //       },
 //     },
 //   });
