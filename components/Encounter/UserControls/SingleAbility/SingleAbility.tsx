@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useActivationFlagsContext } from "../../../../contexts/ActivationFlagsContext";
 import { abilityMap } from "../../../../resources/globals";
 import { AbilityStyle, PlayerSkill } from "../../../../resources/types";
@@ -17,7 +18,7 @@ export default function SingleAbility({
   return (
     <div className={css.SingleAbility} onClick={() => onToggle(ability.id)}>
       <div>
-        <img src={style.icon} className={"smallAbilityIcon"} />
+        <img src={style.icon} className={"smallAbilityIcon"} alt="" />
       </div>
 
       <div className={css.AbilityLabel}>

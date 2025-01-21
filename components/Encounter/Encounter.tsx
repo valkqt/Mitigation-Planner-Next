@@ -9,16 +9,12 @@ import { useActivationFlagsContext } from "../../contexts/ActivationFlagsContext
 import { FlagActivationTypes } from "../../contexts/ActivationFlagsContextProvider";
 import BossRow from "./Row/BossRow";
 import { api } from "../../api/axios";
-import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
 
 export default function Encounter() {
   const [abilities, setAbilities] = useState<PlayerSkill[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
   const [, setFlags] = useActivationFlagsContext();
   const [encounter, setEncounter] = useState<Fight>();
-  const { data: session, status } = useSession();
-  console.log(session);
 
   useEffect(() => {
     api.get("/encounters/1").then((res) => {
@@ -76,11 +72,8 @@ export default function Encounter() {
       <div className={css.EncounterInfo}>
         <h1 className={css.EncounterHeader}>{encounter.name}</h1>
       </div>
-      <div>
-        <Link href={"api/auth/signin"}>login</Link>
-        <button onClick={() => signOut()}>Log out</button>
-      </div>
-      {session?.user && <div>hello {session.user.name}</div>}
+      <div>{/* <button onClick={() => signOut()}>Log out</button> */}</div>
+      {/* {session?.user && <div>hello {session.user.name}</div>} */}
       <UserControls
         jobs={jobs}
         onJobToggle={handleJobSelection}

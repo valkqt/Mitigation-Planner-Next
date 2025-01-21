@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useActivationFlagsContext } from "../../../contexts/ActivationFlagsContext";
 import { useMouseContext } from "../../../contexts/MouseContext";
 import { abilityMap } from "../../../resources/globals";
+import Image from "next/image";
 
 interface RowProps {
   jobs: Job[];
@@ -96,7 +97,7 @@ export default function Row({ jobs, ability, duration }: RowProps) {
       })}
     >
       <div className={css.LaneIconContainer}>
-        <img src={style.icon} style={{ width: "48px", height: "48px" }} />
+        <Image src={style.icon} alt="" width={48} height={48} />
       </div>
 
       {Array.from({ length: duration + 1 }, (_, index) => {
