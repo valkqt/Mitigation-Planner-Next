@@ -1,7 +1,7 @@
 import { PropsWithChildren, useReducer } from "react";
 import { ActivationFlagsContext } from "./ActivationFlagsContext";
 import { GlobalFlags } from "../resources/types";
-import { defaultFlags } from "../resources/globals";
+import { defaultFlags } from "../globals";
 
 export enum FlagActivationTypes {
   ToggleJobFlag = "toggleJobFlag",

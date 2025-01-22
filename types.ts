@@ -4,7 +4,7 @@ import {
   EnemySkillType,
   PlayerSkillType,
   SkillTarget,
-} from "./globals";
+} from "@/globals";
 
 export interface Job {
   id: number;

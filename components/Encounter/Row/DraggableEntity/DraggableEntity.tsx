@@ -1,6 +1,5 @@
-import Image from "next/image";
-import { abilityMap, gridSize } from "../../../../resources/globals";
-import { AbilityStyle, PlayerSkill } from "../../../../resources/types";
+import { abilityMap, gridSize } from "@/globals";
+import { AbilityStyle, PlayerSkill } from "@/types";
 import css from "./DraggableEntity.module.css";
 
 interface DraggableEntityProps {

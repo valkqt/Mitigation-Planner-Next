@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import css from "./Encounter.module.css";
-import { PlayerSkill, Job, Encounter as Fight } from "../../resources/types";
+import { PlayerSkill, Job, Encounter as Fight } from "@/resources/types";
 import Row from "./Row/Row";
 import TimeDisplay from "./TimeDisplay/BossTimeline";
-import { PlayerSkillType, SkillTarget } from "../../resources/globals";
+import { PlayerSkillType, SkillTarget } from "@/globals";
 import UserControls from "./UserControls/UserControls";
-import { useActivationFlagsContext } from "../../contexts/ActivationFlagsContext";
-import { FlagActivationTypes } from "../../contexts/ActivationFlagsContextProvider";
+import { useActivationFlagsContext } from "@/contexts/ActivationFlagsContext";
+import { FlagActivationTypes } from "@/contexts/ActivationFlagsContextProvider";
 import BossRow from "./Row/BossRow";
 import { api } from "../../api/axios";
+import SignIn from "../signin";
+import Userinfo from "../Userinfo";
+import Signout from "../signout";
 
 export default function Encounter() {
   const [abilities, setAbilities] = useState<PlayerSkill[]>([]);
@@ -71,6 +74,11 @@ export default function Encounter() {
     <div className={css.TimelineContainer}>
       <div className={css.EncounterInfo}>
         <h1 className={css.EncounterHeader}>{encounter.name}</h1>
+      </div>
+      <div>
+        <SignIn />
+        <Userinfo />
+        <Signout />
       </div>
       <div>{/* <button onClick={() => signOut()}>Log out</button> */}</div>
       {/* {session?.user && <div>hello {session.user.name}</div>} */}

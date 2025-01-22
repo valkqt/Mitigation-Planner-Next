@@ -1,13 +1,11 @@
-import { signIn } from "../auth";
+import { authenticate } from "@/actions/authenticate";
 
 export default function SignIn() {
+  async function onSubmit() {
+    await authenticate();
+  }
   return (
-    <form
-      action={async () => {
-        "use server";
-        await signIn("google");
-      }}
-    >
+    <form action={() => onSubmit()}>
       <button type="submit">Signin with Google</button>
     </form>
   );

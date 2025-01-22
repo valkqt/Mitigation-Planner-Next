@@ -1,16 +1,7 @@
-import prisma from "../../../../lib/prisma";
+import getEncounterById from "@/repositories/Encounters/getEncounterById";
 
 // GET /api/encounters/:id
 export async function GET() {
-  // const httpMethod = req.method;
-
-  const encounter = await prisma.encounter.findFirst({
-    where: {
-      id: 1,
-    },
-    include: {
-      mechanics: { include: { mechanic: true } },
-    },
-  });
+  const encounter = await getEncounterById();
   return await Response.json(encounter);
 }

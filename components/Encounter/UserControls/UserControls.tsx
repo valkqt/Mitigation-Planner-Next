@@ -3,7 +3,7 @@ import { PlayerSkill, Job } from "../../../resources/types";
 import JobSelection from "./JobSelection/JobSelection";
 import Filters from "./Filters/Filters";
 import AbilityFilter from "./AbilityFilter/AbilityFilter";
-import { PlayerSkillType, SkillTarget } from "../../../resources/globals";
+import { PlayerSkillType, SkillTarget } from "../../../globals";
 
 interface UserControlsProps {
   jobs: Job[];

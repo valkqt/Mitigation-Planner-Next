@@ -1,17 +1,11 @@
 import classNames from "classnames";
-import DraggableGridComponent from "../../../components/DraggableGridComponent/DraggableGridComponent";
-import { GenerateRandomString } from "../../../resources/GenerateRandomString";
-import {
-  PlayerSkill,
-  Job,
-  Segment,
-  AbilityStyle,
-} from "../../../resources/types";
+import DraggableGridComponent from "@/components/DraggableGridComponent/DraggableGridComponent";
+import { PlayerSkill, Job, Segment, AbilityStyle } from "@/types";
 import css from "./Row.module.css";
 import { useState } from "react";
-import { useActivationFlagsContext } from "../../../contexts/ActivationFlagsContext";
-import { useMouseContext } from "../../../contexts/MouseContext";
-import { abilityMap } from "../../../resources/globals";
+import { useActivationFlagsContext } from "@/contexts/ActivationFlagsContext";
+import { useMouseContext } from "@/contexts/MouseContext";
+import { abilityMap } from "@/globals";
 import Image from "next/image";
 
 interface RowProps {
@@ -25,6 +19,12 @@ export default function Row({ jobs, ability, duration }: RowProps) {
   const [flags] = useActivationFlagsContext();
   const mouse = useMouseContext();
   const style: AbilityStyle = abilityMap[ability.id];
+
+  function GenerateRandomString(): string {
+    return Array.from(Array(20), () =>
+      Math.floor(Math.random() * 36).toString(36)
+    ).join("");
+  }
 
   function removeSegment(id: string) {
     setEntities(

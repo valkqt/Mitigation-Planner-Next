@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import css from "./SingleFilter.module.css";
 import { useActivationFlagsContext } from "../../../../../contexts/ActivationFlagsContext";
-import { PlayerSkillType, SkillTarget } from "../../../../../resources/globals";
+import { PlayerSkillType, SkillTarget } from "../../../../../globals";
 
 interface SingleFilterProps {
   label: SkillTarget | PlayerSkillType;
@@ -13,7 +13,7 @@ export default function SingleFilter({
 }: SingleFilterProps) {
   const [flags] = useActivationFlagsContext();
 
-  const text = label.charAt(0) + label.substring(1).toLowerCase()
+  const text = label.charAt(0) + label.substring(1).toLowerCase();
 
   function toggleCheckmark() {
     if (label in SkillTarget) {

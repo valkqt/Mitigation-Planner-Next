@@ -1,7 +1,6 @@
-import Image from "next/image";
 import { useActivationFlagsContext } from "../../../../contexts/ActivationFlagsContext";
-import { abilityMap } from "../../../../resources/globals";
-import { AbilityStyle, PlayerSkill } from "../../../../resources/types";
+import { abilityMap } from "../../../../globals";
+import { AbilityStyle, PlayerSkill } from "@/types";
 import css from "./SingleAbility.module.css";
 import classNames from "classnames";
 

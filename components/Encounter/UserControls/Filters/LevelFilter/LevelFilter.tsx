@@ -1,5 +1,5 @@
 import { useActivationFlagsContext } from "../../../../../contexts/ActivationFlagsContext";
-import { levelArray } from "../../../../../resources/globals";
+import { levelArray } from "../../../../../globals";
 import css from "./LevelFilter.module.css";
 
 interface LevelFilterProps {

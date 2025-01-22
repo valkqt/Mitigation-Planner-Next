@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 import { GlobalFlags } from "../resources/types";
-import { defaultFlags } from "../resources/globals";
+import { defaultFlags } from "../globals";
 import { Dispatch } from "react";
 import { FlagActivationAction } from "./ActivationFlagsContextProvider";
 

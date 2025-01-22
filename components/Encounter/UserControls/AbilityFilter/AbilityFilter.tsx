@@ -1,10 +1,9 @@
-import { Job, PlayerSkill } from "../../../../resources/types";
+import { Job, PlayerSkill } from "@/types";
 import css from "./AbilityFilter.module.css";
 import SingleAbility from "../SingleAbility/SingleAbility";
 import { useState } from "react";
 import classNames from "classnames";
-import { jobMap } from "../../../../resources/globals";
-import Image from "next/image";
+import { jobMap } from "@/globals";
 
 interface AbilityFilterProps {
   abilities: PlayerSkill[];

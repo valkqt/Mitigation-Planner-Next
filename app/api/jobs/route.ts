@@ -1,13 +1,7 @@
-import prisma from "../../../lib/prisma";
+import getJobsAsync from "@/repositories/Jobs/getJobsAsync";
 
 // GET /api/encounters/:id
 export async function GET() {
-  // const httpMethod = req.method;
-
-  const jobs = await prisma.job.findMany({
-    include: {
-      skills: true,
-    },
-  });
+  const jobs = await getJobsAsync();
   return await Response.json(jobs);
 }
