@@ -1,4 +1,4 @@
-import { useActivationFlagsContext } from "../../../../../contexts/ActivationFlagsContext";
+import { useActivationFlagsContext } from "../../../../../contexts/ActivationFlagsContext/ActivationFlagsContext";
 import { levelArray } from "../../../../../globals";
 import css from "./LevelFilter.module.css";
 

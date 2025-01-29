@@ -7,10 +7,10 @@ import {
 import { restrictToHorizontalAxis } from "@dnd-kit/modifiers";
 import { useState } from "react";
 import DraggableItem from "./DraggableItem";
-import { PlayerSkill, Segment } from "../../resources/types";
+import { PlayerSkill, Segment } from "@/types";
 import { Coordinates } from "@dnd-kit/core/dist/types";
 import { snapToGridModifier, defaultCoordinates, Axis } from "../../globals";
-import { useMouseContext } from "../../contexts/MouseContext";
+import { useMouseContext } from "@/contexts/MouseContext/MouseContext";
 
 interface DndContextProps {
   activationConstraint?: PointerActivationConstraint;
@@ -22,8 +22,8 @@ interface DndContextProps {
   ability: PlayerSkill;
   onRightClick: () => void;
   entity: Segment;
-  nodes: Segment[];
-  setNodes: (arr: Segment[]) => void;
+  nodes: Record<number, Segment[]>;
+  setNodes: (arr: Record<number, Segment[]>) => void;
 }
 
 interface TranslateState {
@@ -31,7 +31,7 @@ interface TranslateState {
   translate: Translate;
 }
 
-export default function DraggableGridComponent({
+export function DraggableGridComponent({
   axis,
   handle,
   ability,
@@ -53,7 +53,7 @@ export default function DraggableGridComponent({
     const dragSegmentStart = coordinates / 8;
     const dragSegmentEnd = dragSegmentStart + entity.length;
 
-    const foundNode = nodes.find(
+    const foundNode = nodes[ability.id].find(
       (node) =>
         node.start < dragSegmentEnd &&
         dragSegmentStart < node.start + node.length &&
@@ -118,7 +118,7 @@ export default function DraggableGridComponent({
   }
 
   function updatePosition(): void {
-    const updatedNodes = nodes.map((node) => {
+    const updatedNodes = nodes[ability.id].map((node) => {
       if (node.segmentId == entity.segmentId) {
         return { ...node, start: translate.x / 8 };
       } else {
@@ -126,7 +126,7 @@ export default function DraggableGridComponent({
       }
     });
 
-    setNodes(updatedNodes);
+    setNodes({ ...nodes, [ability.id]: updatedNodes });
   }
 
   function handleDragEnd() {

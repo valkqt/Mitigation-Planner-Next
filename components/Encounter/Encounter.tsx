@@ -1,23 +1,30 @@
 import { useEffect, useState } from "react";
+import { PlayerSkill, Job, Encounter as Fight } from "@/types";
+import { PlayerSkillType, SkillTarget, segments } from "@/globals";
+import { api } from "@/api/axios";
+import { Row, BossRow, BossTimeline, UserControls } from "@/components/index";
+import {
+  useActivationFlagsContext,
+  FlagActivationTypes,
+} from "@/contexts/index";
 import css from "./Encounter.module.css";
-import { PlayerSkill, Job, Encounter as Fight } from "@/resources/types";
-import Row from "./Row/Row";
-import TimeDisplay from "./TimeDisplay/BossTimeline";
-import { PlayerSkillType, SkillTarget } from "@/globals";
-import UserControls from "./UserControls/UserControls";
-import { useActivationFlagsContext } from "@/contexts/ActivationFlagsContext";
-import { FlagActivationTypes } from "@/contexts/ActivationFlagsContextProvider";
-import BossRow from "./Row/BossRow";
-import { api } from "../../api/axios";
-import SignIn from "../signin";
-import Userinfo from "../Userinfo";
-import Signout from "../signout";
+
+// temporary shit
+
+import SignIn from "./Test/signin";
+import Userinfo from "./Test/Userinfo";
+import Signout from "./Test/signout";
+import RegisterForm from "./Test/RegisterForm";
+import LoginForm from "./Test/LoginForm";
+import PostPreset from "./Test/PostPreset";
+import { auth } from "@/auth";
 
 export default function Encounter() {
   const [abilities, setAbilities] = useState<PlayerSkill[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
   const [, setFlags] = useActivationFlagsContext();
   const [encounter, setEncounter] = useState<Fight>();
+  const [nodes, setNodes] = useState(segments);
 
   useEffect(() => {
     api.get("/encounters/1").then((res) => {
@@ -34,6 +41,7 @@ export default function Encounter() {
     });
   }, []);
 
+  const pepe = auth();
   if (!encounter || jobs.length < 1) {
     return <div>bro</div>;
   }
@@ -76,21 +84,26 @@ export default function Encounter() {
         <h1 className={css.EncounterHeader}>{encounter.name}</h1>
       </div>
       <div>
-        <SignIn />
+        {/* <RegisterForm /> */}
+        <LoginForm />
+        <PostPreset segments={nodes} />
+        <div>{pepe.then((res) => res?.user?.id)}</div>
+
+        {/* <SignIn />
         <Userinfo />
-        <Signout />
+        <Signout /> */}
       </div>
       <div>{/* <button onClick={() => signOut()}>Log out</button> */}</div>
       {/* {session?.user && <div>hello {session.user.name}</div>} */}
       <UserControls
         jobs={jobs}
-        onJobToggle={handleJobSelection}
         abilities={abilities}
+        onJobToggle={handleJobSelection}
         onAbilityToggle={toggleAbility}
         onSkillTargetToggle={handleAbilityFilter}
         onLevelFilter={handleLevelFilter}
       />
-      <TimeDisplay encounter={encounter} />
+      <BossTimeline encounter={encounter} />
       <div>
         <BossRow encounter={encounter} />
         {abilities.map((ability) => {
@@ -100,6 +113,8 @@ export default function Encounter() {
               duration={encounter.duration}
               jobs={jobs}
               key={ability.id}
+              nodes={nodes}
+              setNodes={setNodes}
             />
           );
         })}

@@ -1,54 +1,55 @@
 import classNames from "classnames";
-import DraggableGridComponent from "@/components/DraggableGridComponent/DraggableGridComponent";
-import { PlayerSkill, Job, Segment, AbilityStyle } from "@/types";
-import css from "./Row.module.css";
-import { useState } from "react";
-import { useActivationFlagsContext } from "@/contexts/ActivationFlagsContext";
-import { useMouseContext } from "@/contexts/MouseContext";
-import { abilityMap } from "@/globals";
 import Image from "next/image";
+import { PlayerSkill, Job, Segment, AbilityStyle } from "@/types";
+import { abilityMap } from "@/globals";
+import { DraggableGridComponent } from "@/components/index";
+import { useActivationFlagsContext, useMouseContext } from "@/contexts/index";
+import css from "./Row.module.css";
 
 interface RowProps {
   jobs: Job[];
   ability: PlayerSkill;
   duration: number;
+  setNodes: (node: Record<number, Segment[]>) => void;
+  nodes: Record<number, Segment[]>;
 }
 
-export default function Row({ jobs, ability, duration }: RowProps) {
-  const [entities, setEntities] = useState<Segment[]>([]);
+export function Row({ jobs, ability, duration, setNodes, nodes }: RowProps) {
   const [flags] = useActivationFlagsContext();
   const mouse = useMouseContext();
   const style: AbilityStyle = abilityMap[ability.id];
+  const activeSegments = nodes[ability.id];
 
   function GenerateRandomString(): string {
     return Array.from(Array(20), () =>
       Math.floor(Math.random() * 36).toString(36)
     ).join("");
   }
-
   function removeSegment(id: string) {
-    setEntities(
-      entities.toSpliced(
-        entities.findIndex((segment) => segment.segmentId === id),
+    setNodes({
+      ...nodes,
+      [ability.id]: activeSegments.toSpliced(
+        activeSegments.findIndex((segment) => segment.segmentId === id),
         1
-      )
-    );
+      ),
+    });
   }
 
   function createSegment(position: number, ability: PlayerSkill) {
+    console.log(nodes);
     while (position % 8 !== 0) {
       position -= 1;
     }
 
     position = position / 8;
-    const newSegment = entities.find(
+    const newSegment = activeSegments.find(
       (segment) =>
         position <= segment.start &&
         segment.start <= position + ability.cooldown
     );
 
     if (newSegment) {
-      const alreadyExists2 = entities.find(
+      const alreadyExists2 = activeSegments.find(
         (node) =>
           node.start < newSegment.start - newSegment.length &&
           newSegment.start - newSegment.length < node.start + node.length
@@ -58,28 +59,34 @@ export default function Row({ jobs, ability, duration }: RowProps) {
       if (alreadyExists2 || position <= 0) {
         return;
       } else {
-        setEntities([
-          ...entities,
-          {
-            abilityId: ability.id,
-            segmentId: GenerateRandomString(),
-            length: ability.cooldown,
-            start: position === 0 ? position + 1 : position,
-          },
-        ]);
+        setNodes({
+          ...nodes,
+          [ability.id]: [
+            ...activeSegments,
+            {
+              abilityId: ability.id,
+              segmentId: GenerateRandomString(),
+              length: ability.cooldown,
+              start: position === 0 ? position + 1 : position,
+            },
+          ],
+        });
       }
       return;
     }
 
-    setEntities([
-      ...entities,
-      {
-        abilityId: ability.id,
-        segmentId: GenerateRandomString(),
-        length: ability.cooldown,
-        start: position === 0 ? position + 1 : position,
-      },
-    ]);
+    setNodes({
+      ...nodes,
+      [ability.id]: [
+        ...activeSegments,
+        {
+          abilityId: ability.id,
+          segmentId: GenerateRandomString(),
+          length: ability.cooldown,
+          start: position === 0 ? position + 1 : position,
+        },
+      ],
+    });
   }
 
   return (
@@ -112,14 +119,14 @@ export default function Row({ jobs, ability, duration }: RowProps) {
         );
       })}
 
-      {entities.map((entity) => (
+      {activeSegments.map((entity) => (
         <DraggableGridComponent
           ability={ability}
           onRightClick={() => removeSegment(entity.segmentId)}
           key={entity.segmentId}
           entity={entity}
-          nodes={entities}
-          setNodes={setEntities}
+          nodes={nodes}
+          setNodes={setNodes}
         />
       ))}
     </div>

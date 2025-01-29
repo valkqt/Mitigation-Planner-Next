@@ -1,7 +1,7 @@
 import css from "./TimelineDisplay.module.css";
 import Timestamp from "../../Timestamp/Timestamp";
 import classNames from "classnames";
-import { Encounter } from "../../../../resources/types";
+import { Encounter } from "@/types";
 
 interface TimelineDisplayProps {
   encounter: Encounter;

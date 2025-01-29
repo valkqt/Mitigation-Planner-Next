@@ -1,12 +1,12 @@
 import css from "./BossTimeline.module.css";
-import { Encounter } from "../../../resources/types";
+import { Encounter } from "@/types";
 import TimelineDisplay from "./TimelineDisplay/TimelineDisplay";
 
 interface TimeDisplayProps {
   encounter: Encounter;
 }
 
-export default function BossTimeline({ encounter }: TimeDisplayProps) {
+export function BossTimeline({ encounter }: TimeDisplayProps) {
   return (
     <div className={css.timeDisplay}>
       <TimelineDisplay encounter={encounter} />

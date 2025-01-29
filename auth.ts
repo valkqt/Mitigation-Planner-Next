@@ -4,7 +4,7 @@ import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "@/lib/prisma";
 import { signInSchema } from "@/lib/zod";
-import findUserAsync from "@/repositories/Users/getUser";
+// import findUserAsync from "@/repositories/Users/getUser";
 import { User } from "@prisma/client";
 
 type UserCredentials = {
@@ -21,23 +21,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: { label: "email", type: "text" },
         password: { label: "password", type: "password" },
       },
-      authorize: async (credentials: UserCredentials) => {
-        const { email, password } = await signInSchema.parseAsync(credentials);
+      // authorize: async (credentials: UserCredentials) => {
+      //   const { email, password } = await signInSchema.parseAsync(credentials);
 
-        const user: User | null = await findUserAsync(email, password);
+      //   const user: User | null = await findUserAsync(email, password);
 
-        if (!user) {
-          throw new Error("Invalid credentials.");
-        }
+      //   if (!user) {
+      //     throw new Error("Invalid credentials.");
+      //   }
 
-        const passwordMatch = user.password == password;
+      //   const passwordMatch = user.password == password;
 
-        if (!passwordMatch) {
-          throw new Error("Incorrect password");
-        }
+      //   if (!passwordMatch) {
+      //     throw new Error("Incorrect password");
+      //   }
 
-        return user;
-      },
+      //   return user;
+      // },
     }),
   ],
 });

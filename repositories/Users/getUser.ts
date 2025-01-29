@@ -1,13 +1,13 @@
-import prisma from "@/lib/prisma";
+// import prisma from "@/lib/prisma";
 
-export default async function findUserAsync(email: string, password: string) {
-  const user = await prisma.user.findFirst({
-    where: { email: email },
-  });
+// export default async function findUserAsync(email: string, password: string) {
+//   const user = await prisma.user.findFirst({
+//     where: { email: email },
+//   });
 
-  if (password != user?.password) {
-    return null;
-  }
+//   if (password != user?.password) {
+//     return null;
+//   }
 
-  return user;
-}
+//   return user;
+// }

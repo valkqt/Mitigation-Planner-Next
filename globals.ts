@@ -1,5 +1,5 @@
 import { createSnapModifier } from "@dnd-kit/modifiers";
-import { GlobalFlags } from "./types";
+import { GlobalFlags, Segment } from "./types";
 
 export const gridSize = 8;
 export const defaultCoordinates = {
@@ -83,6 +83,22 @@ export const defaultFlags: GlobalFlags = {
   target: { ALLY: false, RAID: true, SELF: false },
   type: { HEALING: false, MITIGATION: true, OTHER: false },
   level: maxLevel,
+};
+
+export const segments: Record<number, Segment[]> = {
+  1: [],
+  2: [],
+  3: [],
+  4: [],
+  5: [],
+  6: [],
+  7: [],
+  8: [],
+  9: [],
+  10: [],
+  11: [],
+  12: [],
+  13: [],
 };
 
 export enum Axis {
