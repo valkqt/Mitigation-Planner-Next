@@ -1,4 +1,4 @@
-import { Job, PlayerSkill } from "@/types";
+import { Job, PlayerSkill } from "@/resources/types";
 import css from "./AbilityFilter.module.css";
 import SingleAbility from "../SingleAbility/SingleAbility";
 import { useState } from "react";

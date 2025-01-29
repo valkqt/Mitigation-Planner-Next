@@ -7,7 +7,7 @@ import {
 import { restrictToHorizontalAxis } from "@dnd-kit/modifiers";
 import { useState } from "react";
 import DraggableItem from "./DraggableItem";
-import { PlayerSkill, Segment } from "@/types";
+import { PlayerSkill, Segment } from "@/resources/types";
 import { Coordinates } from "@dnd-kit/core/dist/types";
 import { snapToGridModifier, defaultCoordinates, Axis } from "../../globals";
 import { useMouseContext } from "@/contexts/MouseContext/MouseContext";

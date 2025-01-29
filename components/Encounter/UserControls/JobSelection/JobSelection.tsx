@@ -1,5 +1,5 @@
 import css from "./JobSelection.module.css";
-import { Job } from "@/types";
+import { Job } from "@/resources/types";
 import classNames from "classnames";
 import { useActivationFlagsContext } from "../../../../contexts/ActivationFlagsContext/ActivationFlagsContext";
 import { jobMap } from "../../../../globals";

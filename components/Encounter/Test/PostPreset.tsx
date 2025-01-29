@@ -1,5 +1,5 @@
 import { useActivationFlagsContext } from "@/contexts";
-import { GlobalFlags, Segment } from "@/types";
+import { GlobalFlags, Segment } from "@/resources/types";
 
 interface PostPresetTypes {
   segments: Record<number, Segment[]>;

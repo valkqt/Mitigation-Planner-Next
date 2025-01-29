@@ -1,5 +1,5 @@
 import { createSnapModifier } from "@dnd-kit/modifiers";
-import { GlobalFlags, Segment } from "./types";
+import { GlobalFlags, Segment } from "./index";
 
 export const gridSize = 8;
 export const defaultCoordinates = {

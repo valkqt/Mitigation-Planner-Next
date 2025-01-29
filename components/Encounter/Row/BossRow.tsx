@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { Encounter } from "@/types";
+import { Encounter } from "@/resources/types";
 import BossMechanic from "./DraggableEntity/BossMechanic/BossMechanic";
 import css from "./Row.module.css";
 

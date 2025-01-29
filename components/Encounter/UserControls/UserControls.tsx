@@ -1,5 +1,5 @@
 import css from "./UserControls.module.css";
-import { PlayerSkill, Job } from "@/types";
+import { PlayerSkill, Job } from "@/resources/types";
 import JobSelection from "./JobSelection/JobSelection";
 import Filters from "./Filters/Filters";
 import AbilityFilter from "./AbilityFilter/AbilityFilter";

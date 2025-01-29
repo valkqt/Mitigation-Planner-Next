@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import Image from "next/image";
-import { PlayerSkill, Job, Segment, AbilityStyle } from "@/types";
+import { PlayerSkill, Job, Segment, AbilityStyle } from "@/resources/types";
 import { abilityMap } from "@/globals";
 import { DraggableGridComponent } from "@/components/index";
 import { useActivationFlagsContext, useMouseContext } from "@/contexts/index";

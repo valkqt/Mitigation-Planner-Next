@@ -1,6 +1,6 @@
 import { useActivationFlagsContext } from "../../../../contexts/ActivationFlagsContext/ActivationFlagsContext";
 import { abilityMap } from "../../../../globals";
-import { AbilityStyle, PlayerSkill } from "@/types";
+import { AbilityStyle, PlayerSkill } from "@/resources/types";
 import css from "./SingleAbility.module.css";
 import classNames from "classnames";
 

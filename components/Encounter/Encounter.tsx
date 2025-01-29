@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
-import { PlayerSkill, Job, Encounter as Fight } from "@/types";
-import { PlayerSkillType, SkillTarget, segments } from "@/globals";
-import { api } from "@/api/axios";
+import {
+  api,
+  PlayerSkillType,
+  SkillTarget,
+  segments,
+  PlayerSkill,
+  Job,
+  Encounter as Fight,
+} from "@/resources/index";
 import { Row, BossRow, BossTimeline, UserControls } from "@/components/index";
 import {
   useActivationFlagsContext,
@@ -20,6 +26,7 @@ import PostPreset from "./Test/PostPreset";
 import { auth } from "@/auth";
 
 export default function Encounter() {
+  // TODO: look into dependencies of "ability" state and possible refactors
   const [abilities, setAbilities] = useState<PlayerSkill[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
   const [, setFlags] = useActivationFlagsContext();
@@ -42,6 +49,7 @@ export default function Encounter() {
   }, []);
 
   const pepe = auth();
+  
   if (!encounter || jobs.length < 1) {
     return <div>bro</div>;
   }

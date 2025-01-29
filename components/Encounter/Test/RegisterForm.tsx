@@ -1,4 +1,4 @@
-import { api } from "@/api/axios";
+import { api } from "@/resources/axios";
 import { FormEvent, useState } from "react";
 
 export default function RegisterForm() {

@@ -1,8 +1,6 @@
-import { createContext, useContext } from "react";
-import { GlobalFlags } from "@/types";
-import { defaultFlags } from "@/globals";
-import { Dispatch } from "react";
-import { FlagActivationAction } from "./ActivationFlagsContextProvider";
+import { createContext, useContext, Dispatch } from "react";
+import { defaultFlags, GlobalFlags } from "@/resources/index";
+import { FlagActivationAction } from "@/contexts/index";
 
 type SetActivationFlagFunction = Dispatch<FlagActivationAction>;
 type ActivationFlagsContextType = [GlobalFlags, SetActivationFlagFunction];

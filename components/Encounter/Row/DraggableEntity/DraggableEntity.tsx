@@ -1,5 +1,5 @@
 import { abilityMap, gridSize } from "@/globals";
-import { AbilityStyle, PlayerSkill } from "@/types";
+import { AbilityStyle, PlayerSkill } from "@/resources/types";
 import css from "./DraggableEntity.module.css";
 
 interface DraggableEntityProps {
