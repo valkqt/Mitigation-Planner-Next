@@ -1,8 +1,7 @@
 import classNames from "classnames";
-import { Encounter } from "@/resources/types";
 import BossMechanic from "./DraggableEntity/BossMechanic/BossMechanic";
 import css from "./Row.module.css";
-
+import { Encounter } from "@/resources";
 interface BossRowProps {
   encounter: Encounter;
 }

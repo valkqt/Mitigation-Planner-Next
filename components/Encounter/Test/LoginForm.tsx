@@ -1,3 +1,4 @@
+import { credentialSignIn } from "@/actions/pepe";
 import { FormEvent } from "react";
 import { useState } from "react";
 
@@ -7,19 +8,9 @@ export default function LoginForm() {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-
     const credentials = { email: email, password: password };
-    console.log("frontend", credentials);
-    fetch("/api/auth/login", {
-      method: "POST",
-      body: JSON.stringify(credentials),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-    // await api.post("/users", user).then((res) => console.log("backend", res));
+    credentialSignIn(credentials);
   }
-
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
       <input

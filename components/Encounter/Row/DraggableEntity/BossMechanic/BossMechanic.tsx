@@ -1,7 +1,7 @@
-import { Timeline } from "../../../../../resources/types";
+import { Timeline } from "@/resources/index";
 import css from "./BossMechanic.module.css";
 
-import { gridSize } from "../../../../../globals";
+import { gridSize } from "@/resources/index";
 import { useState } from "react";
 import classNames from "classnames";
 

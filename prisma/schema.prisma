@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters", "extendedWhereUnique"]
 }
 
 datasource db {
@@ -55,15 +56,18 @@ model Encounter {
   level     Int
   duration  Int
   mechanics Node[]
+  presets   Preset[]
 }
 
 model Preset {
-  id        Int   @id @default(autoincrement())
-  flags     Json?
-  segments  Json?
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    String
-
+  id          Int         @id @default(autoincrement())
+  name        String
+  encounter   Encounter   @relation(fields: [encounterId], references: [id], onDelete: Cascade)
+  encounterId Int 
+  flags       Json?
+  segments    Json?
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
 }
 
 model User {

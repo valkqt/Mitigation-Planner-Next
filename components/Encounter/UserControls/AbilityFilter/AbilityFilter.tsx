@@ -3,7 +3,7 @@ import css from "./AbilityFilter.module.css";
 import SingleAbility from "../SingleAbility/SingleAbility";
 import { useState } from "react";
 import classNames from "classnames";
-import { jobMap } from "@/globals";
+import { jobMap } from "@/resources/index";
 
 interface AbilityFilterProps {
   abilities: PlayerSkill[];

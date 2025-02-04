@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import css from "./SingleFilter.module.css";
-import { useActivationFlagsContext } from "../../../../../contexts/ActivationFlagsContext/ActivationFlagsContext";
-import { PlayerSkillType, SkillTarget } from "../../../../../globals";
+import { useActivationFlagsContext } from "@/contexts/index";
+import { PlayerSkillType, SkillTarget } from "@/resources/index";
 
 interface SingleFilterProps {
   label: SkillTarget | PlayerSkillType;

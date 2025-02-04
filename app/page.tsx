@@ -8,15 +8,16 @@ import {
   ActivationFlagsContextProvider,
   MouseContextProvider,
 } from "@/contexts";
+import { SessionProvider } from "next-auth/react";
 
-export default function Page() {
+export default function Page({ session }) {
   return (
-    <Suspense fallback={<div>bro</div>}>
-      <ActivationFlagsContextProvider>
-        <MouseContextProvider>
+    <ActivationFlagsContextProvider>
+      <MouseContextProvider>
+        <SessionProvider session={session}>
           <Encounter />
-        </MouseContextProvider>
-      </ActivationFlagsContextProvider>
-    </Suspense>
+        </SessionProvider>
+      </MouseContextProvider>
+    </ActivationFlagsContextProvider>
   );
 }

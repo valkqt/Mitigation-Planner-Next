@@ -2,8 +2,7 @@ import React, { forwardRef } from "react";
 import classNames from "classnames";
 import type { DraggableSyntheticListeners, Translate } from "@dnd-kit/core";
 import styles from "./Draggable.module.css";
-import { PlayerSkill } from "../../../resources/types";
-import { Axis } from "../../../globals";
+import { Axis, PlayerSkill } from "@/resources/index";
 import DraggableEntity from "../../Encounter/Row/DraggableEntity/DraggableEntity";
 
 interface Props {

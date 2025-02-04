@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
   const { email, password }: Credentials = await req.json();
 
   const salt = crypto.randomBytes(16);
-  const hashedPassword = saltAndHashPassword(password, salt);
+  const hashedPassword = await saltAndHashPassword(password, salt);
 
   try {
     await createUser(email, hashedPassword.hash, salt);

@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  const hashedPassword = saltAndHashPassword(password, user.salt);
+  const hashedPassword = await saltAndHashPassword(password, user.salt);
 
   if (!crypto.timingSafeEqual(hashedPassword.hash, user.password)) {
     return NextResponse.json({
@@ -46,5 +46,5 @@ export async function POST(req: NextRequest) {
     createdAt: user.createdAt,
   };
 
-  return Response.json(secureAccount);
+  return Response.json(user);
 }

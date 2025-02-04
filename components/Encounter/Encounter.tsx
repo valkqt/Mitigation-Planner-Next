@@ -6,7 +6,6 @@ import {
   segments,
   PlayerSkill,
   Job,
-  Encounter as Fight,
 } from "@/resources/index";
 import { Row, BossRow, BossTimeline, UserControls } from "@/components/index";
 import {
@@ -24,7 +23,9 @@ import RegisterForm from "./Test/RegisterForm";
 import LoginForm from "./Test/LoginForm";
 import PostPreset from "./Test/PostPreset";
 import { auth } from "@/auth";
-
+import { Session } from "next-auth";
+import { useSession } from "next-auth/react";
+import { Encounter as Fight } from "@/resources/index";
 export default function Encounter() {
   // TODO: look into dependencies of "ability" state and possible refactors
   const [abilities, setAbilities] = useState<PlayerSkill[]>([]);
@@ -32,6 +33,9 @@ export default function Encounter() {
   const [, setFlags] = useActivationFlagsContext();
   const [encounter, setEncounter] = useState<Fight>();
   const [nodes, setNodes] = useState(segments);
+  const { data: session, status } = useSession();
+
+  console.log(session);
 
   useEffect(() => {
     api.get("/encounters/1").then((res) => {
@@ -39,7 +43,6 @@ export default function Encounter() {
     });
     api.get("/jobs").then((res) => {
       setJobs(res.data);
-      console.log(res.data);
       let skills = [];
       res.data.forEach((job) => {
         skills = skills.concat(job.skills);
@@ -48,8 +51,6 @@ export default function Encounter() {
     });
   }, []);
 
-  const pepe = auth();
-  
   if (!encounter || jobs.length < 1) {
     return <div>bro</div>;
   }
@@ -94,8 +95,9 @@ export default function Encounter() {
       <div>
         {/* <RegisterForm /> */}
         <LoginForm />
-        <PostPreset segments={nodes} />
-        <div>{pepe.then((res) => res?.user?.id)}</div>
+        {session?.user && <PostPreset segments={nodes} encounter={encounter} />}
+
+        <div>HELLO {session?.user?.email}</div>
 
         {/* <SignIn />
         <Userinfo />

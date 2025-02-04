@@ -1,7 +1,6 @@
 import css from "./Filters.module.css";
 import SingleFilter from "./SingleFilter/SingleFilter";
-import { PlayerSkill } from "../../../../resources/types";
-import { PlayerSkillType, SkillTarget } from "../../../../globals";
+import { PlayerSkill, PlayerSkillType, SkillTarget } from "@/resources/index";
 import LevelFilter from "./LevelFilter/LevelFilter";
 
 interface FiltersProps {

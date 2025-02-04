@@ -1,7 +1,6 @@
 import css from "./BossTimeline.module.css";
-import { Encounter } from "@/resources/types";
 import TimelineDisplay from "./TimelineDisplay/TimelineDisplay";
-
+import { Encounter } from "@/resources";
 interface TimeDisplayProps {
   encounter: Encounter;
 }

@@ -1,8 +1,8 @@
 import css from "./JobSelection.module.css";
 import { Job } from "@/resources/types";
 import classNames from "classnames";
-import { useActivationFlagsContext } from "../../../../contexts/ActivationFlagsContext/ActivationFlagsContext";
-import { jobMap } from "../../../../globals";
+import { useActivationFlagsContext } from "@/contexts/index";
+import { jobMap } from "@/resources/index";
 
 interface JobSelectionProps {
   jobs: Job[];

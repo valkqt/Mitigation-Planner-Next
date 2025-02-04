@@ -4,16 +4,33 @@ import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "@/lib/prisma";
 import { signInSchema } from "@/lib/zod";
-// import findUserAsync from "@/repositories/Users/getUser";
-import { User } from "@prisma/client";
+import { randomBytes, randomUUID } from "crypto";
 
-type UserCredentials = {
+type SecureAccount = {
+  id: string;
+  name: string | null;
   email: string;
-  password: string;
+  image: string | null;
+  createdAt: Date;
 };
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
+  callbacks: {
+    async session({ session, user, token }) {
+      session.userId = token.sub || "";
+
+      return session;
+    },
+  },
+  session: {
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60,
+    updateAge: 24 * 60 * 60,
+    generateSessionToken: () => {
+      return randomUUID?.() ?? randomBytes(32).toString("hex");
+    },
+  },
   providers: [
     Google,
     Credentials({
@@ -21,23 +38,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: { label: "email", type: "text" },
         password: { label: "password", type: "password" },
       },
-      // authorize: async (credentials: UserCredentials) => {
-      //   const { email, password } = await signInSchema.parseAsync(credentials);
+      authorize: async (credentials) => {
+        const { email, password } = await signInSchema.parseAsync(credentials);
 
-      //   const user: User | null = await findUserAsync(email, password);
+        const res = await fetch(process.env.AUTH_URL + "/api/auth/login", {
+          method: "POST",
+          body: JSON.stringify({ email, password }),
+          headers: { "Content-Type": "application/json" },
+        });
+        const user = await res.json();
 
-      //   if (!user) {
-      //     throw new Error("Invalid credentials.");
-      //   }
-
-      //   const passwordMatch = user.password == password;
-
-      //   if (!passwordMatch) {
-      //     throw new Error("Incorrect password");
-      //   }
-
-      //   return user;
-      // },
+        return await user;
+      },
     }),
   ],
 });

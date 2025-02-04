@@ -1,9 +1,13 @@
 import css from "./UserControls.module.css";
-import { PlayerSkill, Job } from "@/resources/types";
 import JobSelection from "./JobSelection/JobSelection";
 import Filters from "./Filters/Filters";
 import AbilityFilter from "./AbilityFilter/AbilityFilter";
-import { PlayerSkillType, SkillTarget } from "@/globals";
+import {
+  PlayerSkillType,
+  SkillTarget,
+  PlayerSkill,
+  Job,
+} from "@/resources/index";
 
 interface UserControlsProps {
   jobs: Job[];

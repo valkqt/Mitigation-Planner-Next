@@ -1,11 +1,12 @@
-import crypto from "node:crypto";
+"use server";
 
-export default function saltAndHashPassword(
+import { scryptSync } from "node:crypto";
+export default async function saltAndHashPassword(
   password: string,
   salt: Uint8Array
 ) {
   return {
-    hash: crypto.scryptSync(password, salt, 64, {
+    hash: scryptSync(password, salt, 64, {
       N: 16384,
       p: 1,
       r: 8,
