@@ -1,15 +1,19 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
+import { SessionProvider } from "next-auth/react";
+import Navbar from "@/components/Navbar/Navbar";
 
 type LayoutProps = {
   children: ReactNode;
 };
 
-export default function Layout({ children }: LayoutProps) {
+export default async function Layout({ children }: LayoutProps) {
   return (
     <html>
       <body>
-        <nav>Sono il layout</nav>
-        <main>{children}</main>
+        <SessionProvider>
+          <Navbar />
+          <main>{children}</main>
+        </SessionProvider>
       </body>
     </html>
   );

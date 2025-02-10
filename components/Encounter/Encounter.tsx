@@ -26,7 +26,12 @@ import { auth } from "@/auth";
 import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { Encounter as Fight } from "@/resources/index";
-export default function Encounter() {
+
+interface EncounterProps {
+  id: string;
+}
+
+export default function Encounter({ id }: EncounterProps) {
   // TODO: look into dependencies of "ability" state and possible refactors
   const [abilities, setAbilities] = useState<PlayerSkill[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -35,10 +40,10 @@ export default function Encounter() {
   const [nodes, setNodes] = useState(segments);
   const { data: session, status } = useSession();
 
-  console.log(session);
+  console.log(id);
 
   useEffect(() => {
-    api.get("/encounters/1").then((res) => {
+    api.get(`/encounters/${id}`).then((res) => {
       setEncounter(res.data);
     });
     api.get("/jobs").then((res) => {
@@ -94,10 +99,12 @@ export default function Encounter() {
       </div>
       <div>
         {/* <RegisterForm /> */}
-        <LoginForm />
-        {session?.user && <PostPreset segments={nodes} encounter={encounter} />}
-
-        <div>HELLO {session?.user?.email}</div>
+        {session?.user && (
+          <>
+            <div>HELLO {session?.user?.email}</div>
+            <PostPreset segments={nodes} encounter={encounter} />
+          </>
+        )}
 
         {/* <SignIn />
         <Userinfo />

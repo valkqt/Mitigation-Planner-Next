@@ -9,15 +9,8 @@ import {
   MouseContextProvider,
 } from "@/contexts";
 import { SessionProvider } from "next-auth/react";
+import Link from "next/link";
 
 export default function Page({ session }) {
-  return (
-    <ActivationFlagsContextProvider>
-      <MouseContextProvider>
-        <SessionProvider session={session}>
-          <Encounter />
-        </SessionProvider>
-      </MouseContextProvider>
-    </ActivationFlagsContextProvider>
-  );
+  return <Link href={"/encounters/1"}>Go to refulgence</Link>;
 }

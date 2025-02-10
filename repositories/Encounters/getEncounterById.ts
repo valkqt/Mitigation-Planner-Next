@@ -1,10 +1,12 @@
 import prisma from "@/lib/prisma";
 import { Encounter } from "@prisma/client";
 
-export default async function getEncounterById(): Promise<Encounter | null> {
+export default async function getEncounterById(
+  encounterId: number
+): Promise<Encounter | null> {
   const encounter = await prisma.encounter.findFirst({
     where: {
-      id: 1,
+      id: encounterId,
     },
     include: {
       mechanics: { include: { mechanic: true } },
