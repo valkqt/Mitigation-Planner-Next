@@ -26,6 +26,7 @@ import { auth } from "@/auth";
 import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { Encounter as Fight } from "@/resources/index";
+import Navbar from "../Navbar/Navbar";
 
 interface EncounterProps {
   id: string;
@@ -136,6 +137,7 @@ export default function Encounter({ id }: EncounterProps) {
           );
         })}
       </div>
+      <Navbar />
     </div>
   );
 }

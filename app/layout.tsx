@@ -11,7 +11,6 @@ export default async function Layout({ children }: LayoutProps) {
     <html>
       <body>
         <SessionProvider>
-          <Navbar />
           <main>{children}</main>
         </SessionProvider>
       </body>

@@ -3,7 +3,7 @@
   min-height: 100vh;
   position: fixed;
   top: 0;
-  left: 0;
+  left: calc(100vw - 300px);
   z-index: 1000;
   height: 2rem;
   background-color: black;
@@ -12,7 +12,7 @@
   padding: 0.5rem;
   transition: left 0.1s ease-in;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   gap: 0.5rem;
   opacity: 1;
 }
@@ -32,7 +32,7 @@
 }
 
 .pepe {
-  left: calc(-280px);
+  left: calc(100vw - 40px);
   opacity: 0.5;
 }
 
