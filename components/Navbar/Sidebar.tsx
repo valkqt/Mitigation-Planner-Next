@@ -1,15 +1,33 @@
 "use client";
 
 import { useState } from "react";
-import css from "./Navbar.module.css";
+import css from "./Sidebar.module.css";
 import classNames from "classnames";
 import { useSession } from "next-auth/react";
 import { createPortal } from "react-dom";
 import LoginForm from "../Encounter/Test/LoginForm";
 import SignIn from "../Encounter/Test/signin";
 import Signout from "../Encounter/Test/signout";
+import { UserControls } from "../Encounter/UserControls/UserControls";
+import { Job, PlayerSkill, PlayerSkillType, SkillTarget } from "@/resources";
 
-export default function Navbar() {
+interface SidebarProps {
+  jobs: Job[];
+  abilities: PlayerSkill[];
+  onJobSelection: (jobId: number) => void;
+  onAbilityFilter: (abilityId: number) => void;
+  onAbilityTypeFilter: (filter: SkillTarget | PlayerSkillType) => void;
+  onLevelFilter: (threshold: number) => void;
+}
+
+export default function Sidebar({
+  jobs,
+  abilities,
+  onJobSelection,
+  onAbilityFilter,
+  onAbilityTypeFilter,
+  onLevelFilter,
+}: SidebarProps) {
   const [show, setShow] = useState(false);
   const { data: session, status } = useSession();
   const [panelOpen, setPanelOpen] = useState(false);
@@ -22,7 +40,16 @@ export default function Navbar() {
       <div className={css.authModule}>
         {panelOpen && (
           <div>
-            <div className={css.navbarContent}>
+            <UserControls
+              jobs={jobs}
+              abilities={abilities}
+              onJobToggle={onJobSelection}
+              onAbilityToggle={onAbilityFilter}
+              onSkillTargetToggle={onAbilityTypeFilter}
+              onLevelFilter={onLevelFilter}
+            />
+
+            {/* <div className={css.navbarContent}>
               <h3>Mitigation Planner mrow</h3>
               <div>Eden's Gate: Refulgence</div>
               {!session?.user && (
@@ -48,7 +75,7 @@ export default function Navbar() {
                   </div>,
                   document.body
                 )}
-            </div>
+            </div> */}
           </div>
         )}
       </div>

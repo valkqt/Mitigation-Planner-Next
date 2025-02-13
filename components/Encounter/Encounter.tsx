@@ -26,7 +26,8 @@ import { auth } from "@/auth";
 import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { Encounter as Fight } from "@/resources/index";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../Navbar/Sidebar";
+import Sidebar from "../Navbar/Sidebar";
 
 interface EncounterProps {
   id: string;
@@ -113,14 +114,6 @@ export default function Encounter({ id }: EncounterProps) {
       </div>
       <div>{/* <button onClick={() => signOut()}>Log out</button> */}</div>
       {/* {session?.user && <div>hello {session.user.name}</div>} */}
-      <UserControls
-        jobs={jobs}
-        abilities={abilities}
-        onJobToggle={handleJobSelection}
-        onAbilityToggle={toggleAbility}
-        onSkillTargetToggle={handleAbilityFilter}
-        onLevelFilter={handleLevelFilter}
-      />
       <BossTimeline encounter={encounter} />
       <div>
         <BossRow encounter={encounter} />
@@ -137,7 +130,14 @@ export default function Encounter({ id }: EncounterProps) {
           );
         })}
       </div>
-      <Navbar />
+      <Sidebar
+        jobs={jobs}
+        abilities={abilities}
+        onAbilityFilter={toggleAbility}
+        onAbilityTypeFilter={handleAbilityFilter}
+        onJobSelection={handleJobSelection}
+        onLevelFilter={handleLevelFilter}
+      />
     </div>
   );
 }

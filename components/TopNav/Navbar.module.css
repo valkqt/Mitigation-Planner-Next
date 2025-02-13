@@ -1,0 +1,18 @@
+.navbar {
+    height: 48px;
+    width: 100vw;
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.navTitle {
+    padding: 0 1rem;
+}
+
+.navigationContainer {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+}
