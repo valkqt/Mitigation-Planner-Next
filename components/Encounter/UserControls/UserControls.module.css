@@ -1,12 +1,6 @@
 .UserControls {
   display: flex;
-  justify-content: center;
-  gap: 3rem;
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  padding: 2rem 0;
+  flex-direction: column;
   background-color: rgb(20, 19, 26);
   z-index: 10;
 }
