@@ -23,12 +23,14 @@ export default function SingleFilter({
     }
   }
   return (
-    <div className={css.filter} onClick={() => onClickToggle(label)}>
+    <div
+      className={classNames(
+        css.filter,
+        classNames({ [css.inactiveFilter]: !toggleCheckmark() })
+      )}
+      onClick={() => onClickToggle(label)}
+    >
       {text}
-      <div className={classNames({ toggleVisibility: !toggleCheckmark() })}>
-        &#10003;
-      </div>
-      {/* <input type="checkbox" /> */}
     </div>
   );
 }

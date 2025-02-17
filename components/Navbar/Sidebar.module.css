@@ -1,9 +1,9 @@
 .navbar {
-  width: 300px;
   min-height: 100vh;
+  width: 400px;
   position: fixed;
   top: 0;
-  left: calc(100vw - 300px);
+  left: calc(100vw - 400px - 8px);
   z-index: 1000;
   height: 2rem;
   background-color: black;
@@ -15,9 +15,7 @@
   flex-direction: row;
   gap: 0.5rem;
   opacity: 1;
-}
-
-.navbarContent {
+  padding: 0.5rem;
 }
 
 .navbar:hover {
@@ -34,9 +32,6 @@
 .pepe {
   left: calc(100vw - 40px);
   opacity: 0.5;
-}
-
-.authModule {
 }
 
 .modal {

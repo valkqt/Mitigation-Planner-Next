@@ -15,12 +15,13 @@ export default function LevelFilter({ onLevelFilter }: LevelFilterProps) {
         min={levelArray[0]}
         max={levelArray[levelArray.length - 1]}
         step={10}
+        defaultValue={100}
         onChange={(e) => {
           try {
             const levelCap = parseInt(e.target.value);
             onLevelFilter(levelCap);
           } catch {
-            console.log("bro")
+            console.log("bro");
           }
         }}
       />

@@ -3,6 +3,8 @@
   flex-direction: column;
   background-color: rgb(20, 19, 26);
   z-index: 10;
+  flex-grow: 1;
+  padding: 0.5rem;
 }
 
 .jobIcon {

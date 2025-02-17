@@ -2,10 +2,14 @@
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  padding: 3px 8px;
   cursor: pointer;
 }
 
 .filter:hover {
   background-color: var(--inactive-hover);
+  transition: background-color 0.1s;
+}
+
+.inactiveFilter {
+  color: gray;
 }

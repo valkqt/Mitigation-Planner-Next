@@ -3,9 +3,15 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 2rem;
+  padding: 1rem 0;
 }
 
 .header {
   margin-bottom: 1rem;
-  padding-left: 8px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
 }

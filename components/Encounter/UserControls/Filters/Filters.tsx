@@ -21,23 +21,27 @@ export default function Filters({
       </div>
       <div>
         <div className={css.header}>Target:</div>
-        {Array.from(Object.values(SkillTarget)).map((type) => (
-          <SingleFilter
-            label={type}
-            onClickToggle={onSkillTargetToggle}
-            key={type}
-          />
-        ))}
+        <div className={css.filters}>
+          {Array.from(Object.values(SkillTarget)).map((type) => (
+            <SingleFilter
+              label={type}
+              onClickToggle={onSkillTargetToggle}
+              key={type}
+            />
+          ))}
+        </div>
       </div>
       <div>
         <div className={css.header}>Type:</div>
-        {Array.from(Object.values(PlayerSkillType)).map((type) => (
-          <SingleFilter
-            label={type}
-            onClickToggle={onSkillTargetToggle}
-            key={type}
-          />
-        ))}
+        <div className={css.filters}>
+          {Array.from(Object.values(PlayerSkillType)).map((type) => (
+            <SingleFilter
+              label={type}
+              onClickToggle={onSkillTargetToggle}
+              key={type}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

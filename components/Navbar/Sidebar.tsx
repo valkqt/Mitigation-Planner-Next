@@ -37,48 +37,16 @@ export default function Sidebar({
       <div className={css.arrow} onClick={() => setPanelOpen(!panelOpen)}>
         ←
       </div>
-      <div className={css.authModule}>
-        {panelOpen && (
-          <div>
-            <UserControls
-              jobs={jobs}
-              abilities={abilities}
-              onJobToggle={onJobSelection}
-              onAbilityToggle={onAbilityFilter}
-              onSkillTargetToggle={onAbilityTypeFilter}
-              onLevelFilter={onLevelFilter}
-            />
-
-            {/* <div className={css.navbarContent}>
-              <h3>Mitigation Planner mrow</h3>
-              <div>Eden's Gate: Refulgence</div>
-              {!session?.user && (
-                <>
-                  <button
-                    className={css.loginButton}
-                    onClick={() => setShow(!show)}
-                  >
-                    Login
-                  </button>
-                </>
-              )}
-              {session?.user && <Signout />}
-              {typeof window !== undefined &&
-                createPortal(
-                  <div
-                    className={classNames(css.modal, { toggleDisplay: !show })}
-                  >
-                    <div>
-                      <LoginForm />
-                      <SignIn />
-                    </div>
-                  </div>,
-                  document.body
-                )}
-            </div> */}
-          </div>
-        )}
-      </div>
+      {panelOpen && (
+        <UserControls
+          jobs={jobs}
+          abilities={abilities}
+          onJobToggle={onJobSelection}
+          onAbilityToggle={onAbilityFilter}
+          onSkillTargetToggle={onAbilityTypeFilter}
+          onLevelFilter={onLevelFilter}
+        />
+      )}
     </nav>
   );
 }

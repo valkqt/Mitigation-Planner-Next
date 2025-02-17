@@ -17,10 +17,10 @@
 
 .filter {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
   align-items: baseline;
   gap: 1rem;
-  padding: 1rem;
+  padding: 1rem 0;
 }
 
 .JobName {
