@@ -7,7 +7,7 @@
 }
 
 .smallAbilityIcon {
-  width: 28px;
+  width: 32px;
   height: auto;
 }
 .miniIcon {
@@ -38,6 +38,10 @@
   left: 0;
 }
 
+.inactive {
+  color: gray;
+}
+
 :root {
   --healer: #346624;
   --healer-hover: #3ba318;
@@ -46,4 +50,3 @@
   --inactive: rgb(70, 70, 70);
   --inactive-hover: rgb(90, 90, 90);
 }
-

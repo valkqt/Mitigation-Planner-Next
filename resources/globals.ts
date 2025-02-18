@@ -24,7 +24,7 @@ export const jobMap = {
 };
 
 export const abilityMap = {
-  1: { icon: "/icons/SGE/holos.png", color1: "#60cdb2", color2: "#08453f" },
+  1: { icon: "/icons/SGE/kerachole.png", color1: "#60cdb2", color2: "#08453f" },
   2: { icon: "/icons/SGE/krasis.png", color1: "#60cdb2", color2: "#08453f" },
   3: { icon: "/icons/SGE/panhaima.png", color1: "#60cdb2", color2: "#08453f" },
   4: {
@@ -33,7 +33,7 @@ export const abilityMap = {
     color2: "#08453f",
   },
   5: {
-    icon: "/icons/SGE/kerachole.png",
+    icon: "/icons/SGE/holos.png",
     color1: "#60cdb2",
     color2: "#08453f",
   },

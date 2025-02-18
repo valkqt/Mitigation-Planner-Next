@@ -1,15 +1,16 @@
-.SingleAbility {
+.container {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 0.5rem;
 }
 
-.SingleAbility:hover {
+.container:hover {
   background-color: var(--inactive-hover);
   cursor: pointer;
 }
 
-.AbilityLabel {
+.label {
   display: flex;
   gap: 1rem;
   width: 100%;

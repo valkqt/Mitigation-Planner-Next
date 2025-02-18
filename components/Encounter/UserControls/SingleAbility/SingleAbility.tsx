@@ -15,20 +15,18 @@ export default function SingleAbility({
   const [flags] = useActivationFlagsContext();
   const style: AbilityStyle = abilityMap[ability.id];
   return (
-    <div className={css.SingleAbility} onClick={() => onToggle(ability.id)}>
-      <div>
-        <img src={style.icon} className={"smallAbilityIcon"} alt="" />
-      </div>
+    <div className={css.container} onClick={() => onToggle(ability.id)}>
+      <img src={style.icon} className={"smallAbilityIcon"} alt="" />
 
-      <div className={css.AbilityLabel}>
-        <div>{ability.name}</div>
-        <div
-          className={classNames({
-            toggleVisibility: !flags.abilities[ability.id],
-          })}
-        >
-          &#10003;
-        </div>
+      <div
+        className={classNames(
+          {
+            inactive: !flags.abilities[ability.id],
+          },
+          css.label
+        )}
+      >
+        {ability.name}
       </div>
     </div>
   );

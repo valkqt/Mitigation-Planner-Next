@@ -20,6 +20,8 @@ export default function AbilityFilter({
   return (
     <div className={css.container}>
       <div className={css.jobFilter}>
+        <div className={css.idk}>Filter</div>
+
         <div onClick={() => setOpen(!open)}>
           <div className={css.label}>
             <img src={jobMap[selectedJob.id]} className="miniIcon" alt="" />
@@ -33,13 +35,12 @@ export default function AbilityFilter({
                 className={css.dropdownItem}
                 onClick={() => setSelectedJob(job)}
               >
-                <img src={jobMap[job.id].icon} className="miniIcon" alt="" />
+                <img src={jobMap[job.id]} className="miniIcon" alt="" />
                 <div>{job.name}</div>
               </div>
             ))}
           </div>
         </div>
-        <div className={css.idk}>idk</div>
       </div>
       {selectedJob.skills.map((ability) => (
         <SingleAbility
