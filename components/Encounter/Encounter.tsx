@@ -28,6 +28,7 @@ import { useSession } from "next-auth/react";
 import { Encounter as Fight } from "@/resources/index";
 import Navbar from "../Navbar/Sidebar";
 import Sidebar from "../Navbar/Sidebar";
+import { Presets } from "../Presets/Presets";
 
 interface EncounterProps {
   id: string;
@@ -99,6 +100,7 @@ export default function Encounter({ id }: EncounterProps) {
       <div className={css.EncounterInfo}>
         <h1 className={css.EncounterHeader}>{encounter.name}</h1>
       </div>
+      <Presets />
       <div>
         {/* <RegisterForm /> */}
         {session?.user && (

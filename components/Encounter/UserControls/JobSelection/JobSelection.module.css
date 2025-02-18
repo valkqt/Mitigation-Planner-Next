@@ -33,6 +33,7 @@
 
 .active:hover {
   background-color: var(--healer-hover);
+  transition: background-color 0.15s;
 }
 
 .inactive {

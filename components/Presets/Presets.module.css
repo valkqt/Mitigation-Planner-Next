@@ -1,0 +1,18 @@
+.container {
+  text-align: center;
+  width: 100vw;
+  padding-bottom: 1rem;
+}
+
+.option {
+}
+
+.dropdown {
+  padding: 0.25rem 1rem;
+  background-color: black;
+  border: 1px solid white;
+  color: white;
+  border-radius: 0.33rem;
+  min-width: 200px;
+  text-align: left;
+}

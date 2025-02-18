@@ -1,18 +1,75 @@
 .navbar {
-    height: 48px;
-    width: 100vw;
-    background-color: black;
-    color: white;
-    display: flex;
-    align-items: center;
+  height: 48px;
+  width: 100vw;
+  background-color: hsl(244, 35%, 8%);
+  color: white;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.15s;
+}
+
+.navbar .link:hover {
+  color: rgb(98, 139, 228);
 }
 
 .navTitle {
-    padding: 0 1rem;
+  padding: 0 1rem;
 }
 
 .navigationContainer {
-    display: flex;
-    gap: 1rem;
-    list-style: none;
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding-left: 2rem;
+}
+
+.listItem {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 32px;
+  left: 0;
+  width: 180px;
+  background-color: hsl(244, 35%, 8%);
+  padding: 1rem;
+  border: 1px solid black;
+  z-index: 100;
+  animation: dropdown-slide 0.3s ease-out;
+}
+
+.dropdownItem {
+  list-style: none;
+  border: 1px solid black;
+}
+
+.dropdownItem a {
+  padding: 0.5rem;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.dropdownItem:hover {
+  background-color: rgb(83, 172, 207);
+}
+
+@keyframes dropdown-slide {
+  from {
+    top: -40px;
+    opacity: 0.25;
+    z-index: -100;
+  }
+  to {
+    top: 32px;
+    opacity: 1;
+    z-index: 100;
+  }
 }

@@ -1,5 +1,5 @@
 .TimelineContainer {
-  background-color: rgb(20, 19, 26);
+  background-color: hsl(240, 4%, 10%);
   color: white;
   height: 100vh;
   position: relative;
@@ -11,7 +11,7 @@
   margin: 0;
   padding: 2rem 0 1rem;
   flex-basis: 100%;
-  background-color: rgb(20, 19, 26);
+  background-color: hsl(240, 4%, 10%);
   position: relative;
 }
 

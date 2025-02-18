@@ -32,7 +32,7 @@ export default function Filters({
         </div>
       </div>
       <div>
-        <div className={css.header}>Type:</div>
+        <div className={css.header}>Abilities:</div>
         <div className={css.filters}>
           {Array.from(Object.values(PlayerSkillType)).map((type) => (
             <SingleFilter

@@ -26,4 +26,14 @@
   border-radius: 0.25rem;
   padding: 8px;
   z-index: 100;
+  animation: fadeIn 0.1s linear;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
