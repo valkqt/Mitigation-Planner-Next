@@ -23,38 +23,32 @@ export default function Navbar() {
       <div>
         <ul className={css.navigationContainer}>
           <li className={css.listItem}>
-            <Link
-              href={"/encounters/1"}
+            <div
               className={css.link}
               onClick={() => {
                 setDropdown(!dropdown);
               }}
-              onMouseOver={() => {
-                timer.current = window.setTimeout(() => {
-                  setDropdown(!dropdown);
-                }, 500);
-              }}
             >
               Current <span>&#11206;</span>
-            </Link>
+            </div>
             <div
               className={classNames(css.dropdown, { toggleDisplay: dropdown })}
             >
               <ul>
                 <li className={css.dropdownItem}>
-                  <Link href={"/encounters/meow"}>Black Cat</Link>
+                  <Link href={"/encounters/1"}>Black Cat</Link>
                 </li>
                 <li className={css.dropdownItem}>
-                  <Link href={"/encounters/meow"}>Honey B. Lovely</Link>
+                  <Link href={"/encounters/1"}>Honey B. Lovely</Link>
                 </li>
                 <li className={css.dropdownItem}>
-                  <Link href={"/encounters/meow"}>Brute Bomber</Link>
+                  <Link href={"/encounters/1"}>Brute Bomber</Link>
                 </li>
                 <li className={css.dropdownItem}>
-                  <Link href={"/encounters/meow"}>Wicked Thunder</Link>
+                  <Link href={"/encounters/1"}>Wicked Thunder</Link>
                 </li>
                 <li className={css.dropdownItem}>
-                  <Link href={"/encounters/meow"}>Futures Rewritten</Link>
+                  <Link href={"/encounters/1"}>Futures Rewritten</Link>
                 </li>
               </ul>
             </div>

@@ -5,6 +5,8 @@ import { abilityMap } from "@/resources/index";
 import { DraggableGridComponent } from "@/components/index";
 import { useActivationFlagsContext, useMouseContext } from "@/contexts/index";
 import css from "./Row.module.css";
+import { useState } from "react";
+import { AbilityIcon } from "./AbilityIcon/AbilityIcon";
 
 interface RowProps {
   jobs: Job[];
@@ -103,9 +105,7 @@ export function Row({ jobs, ability, duration, setNodes, nodes }: RowProps) {
           !(ability.level <= flags.level),
       })}
     >
-      <div className={css.LaneIconContainer}>
-        <Image src={style.icon} alt="" width={48} height={48} />
-      </div>
+      <AbilityIcon ability={ability} />
 
       {Array.from({ length: duration + 1 }, (_, index) => {
         return (

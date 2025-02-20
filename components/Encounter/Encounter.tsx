@@ -26,8 +26,8 @@ import { auth } from "@/auth";
 import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { Encounter as Fight } from "@/resources/index";
-import Navbar from "../Navbar/Sidebar";
-import Sidebar from "../Navbar/Sidebar";
+import Navbar from "../Sidebar/Sidebar";
+import Sidebar from "../Sidebar/Sidebar";
 import { Presets } from "../Presets/Presets";
 
 interface EncounterProps {

@@ -11,6 +11,9 @@
 .navbar a {
   text-decoration: none;
   color: white;
+}
+
+.navbar .link {
   transition: color 0.15s;
 }
 
@@ -31,6 +34,7 @@
 
 .listItem {
   position: relative;
+  cursor: pointer;
 }
 
 .dropdown {
@@ -42,7 +46,7 @@
   padding: 1rem;
   border: 1px solid black;
   z-index: 100;
-  animation: dropdown-slide 0.3s ease-out;
+  animation: dropdown-slide 0.2s ease-out;
 }
 
 .dropdownItem {

@@ -35,7 +35,14 @@ export default function Sidebar({
   return (
     <nav className={classNames(css.navbar, !panelOpen ? css.pepe : "")}>
       <div className={css.arrow} onClick={() => setPanelOpen(!panelOpen)}>
-        ←
+        <span
+          style={{
+            transform: panelOpen ? "rotate(180deg)" : "",
+            transition: "transform 0.2s ease-in-out",
+          }}
+        >
+          &#11207;
+        </span>
       </div>
       {panelOpen && (
         <UserControls
