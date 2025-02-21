@@ -29,6 +29,7 @@ import { Encounter as Fight } from "@/resources/index";
 import Navbar from "../Sidebar/Sidebar";
 import Sidebar from "../Sidebar/Sidebar";
 import { Presets } from "../Presets/Presets";
+import { SidebarControl } from "../SidebarControl/SidebarControl";
 
 interface EncounterProps {
   id: string;
@@ -42,6 +43,7 @@ export default function Encounter({ id }: EncounterProps) {
   const [encounter, setEncounter] = useState<Fight>();
   const [nodes, setNodes] = useState(segments);
   const { data: session, status } = useSession();
+  const [showSidebar, setShowSidebar] = useState(false);
 
   console.log(id);
 
@@ -139,7 +141,10 @@ export default function Encounter({ id }: EncounterProps) {
         onAbilityTypeFilter={handleAbilityFilter}
         onJobSelection={handleJobSelection}
         onLevelFilter={handleLevelFilter}
+        show={showSidebar}
+        setShow={setShowSidebar}
       />
+      <SidebarControl show={showSidebar} setShow={setShowSidebar} />
     </div>
   );
 }

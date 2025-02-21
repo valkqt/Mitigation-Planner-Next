@@ -18,6 +18,8 @@ interface SidebarProps {
   onAbilityFilter: (abilityId: number) => void;
   onAbilityTypeFilter: (filter: SkillTarget | PlayerSkillType) => void;
   onLevelFilter: (threshold: number) => void;
+  show: boolean;
+  setShow: (state: boolean) => void;
 }
 
 export default function Sidebar({
@@ -27,24 +29,12 @@ export default function Sidebar({
   onAbilityFilter,
   onAbilityTypeFilter,
   onLevelFilter,
+  show,
+  setShow,
 }: SidebarProps) {
-  const [show, setShow] = useState(false);
-  const { data: session, status } = useSession();
-  const [panelOpen, setPanelOpen] = useState(false);
-
   return (
-    <nav className={classNames(css.navbar, !panelOpen ? css.pepe : "")}>
-      <div className={css.arrow} onClick={() => setPanelOpen(!panelOpen)}>
-        <span
-          style={{
-            transform: panelOpen ? "rotate(180deg)" : "",
-            transition: "transform 0.2s ease-in-out",
-          }}
-        >
-          &#11207;
-        </span>
-      </div>
-      {panelOpen && (
+    <div className={classNames(css.navbar, !show ? css.navbarClosed : "")}>
+      {show && (
         <UserControls
           jobs={jobs}
           abilities={abilities}
@@ -52,8 +42,9 @@ export default function Sidebar({
           onAbilityToggle={onAbilityFilter}
           onSkillTargetToggle={onAbilityTypeFilter}
           onLevelFilter={onLevelFilter}
+          setShow={setShow}
         />
       )}
-    </nav>
+    </div>
   );
 }

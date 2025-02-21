@@ -10,28 +10,14 @@
   border-left: 1px solid black;
   color: white;
   padding: 0.5rem 0.5rem 0.5rem 0;
-  transition: left 0.12s ease-in;
+  transition: left 0.15s linear;
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
-  opacity: 1;
 }
 
-.navbar:hover {
-  opacity: 1;
-}
-
-.arrow {
-  font-size: 150%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  padding-left: 0.5rem;
-}
-
-.pepe {
-  left: calc(100vw - 40px);
-  opacity: 0.5;
+.navbarClosed {
+  left: calc(100vw + 400px);
 }
 
 .modal {

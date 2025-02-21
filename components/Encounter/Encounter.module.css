@@ -1,8 +1,8 @@
 .TimelineContainer {
   background-color: hsl(240, 4%, 10%);
   color: white;
-  height: 100vh;
   position: relative;
+  height: 100%;
   z-index: 10;
 }
 

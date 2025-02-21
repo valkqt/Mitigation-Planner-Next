@@ -1,0 +1,34 @@
+.controller {
+  position: absolute;
+  bottom: calc(50% - 32px);
+  left: calc(100vw - 64px - 2rem);
+}
+
+.roundObject {
+  width: 64px;
+  height: 64px;
+  border-radius: 100%;
+  background-color: hsl(244, 35%, 8%);
+  border: 1px solid gray;
+  box-shadow: 2px 1px 6px rgba(0, 0, 0, 0.13);
+  position: relative;
+  transition: transform 0.1s linear;
+  cursor: pointer;
+}
+
+.roundObject:hover {
+  transform: scale(1.1);
+}
+
+.gear {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  font-size: 48px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 12.5%;
+  bottom: 15%;
+}

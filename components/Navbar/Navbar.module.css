@@ -5,7 +5,19 @@
   color: white;
   border-bottom: 1px solid black;
   display: flex;
+  justify-content: space-between;
+  font-size: 110%;
+}
+
+.leftNav {
+  display: flex;
   align-items: center;
+}
+
+.rightNav {
+  display: flex;
+  align-items: center;
+  padding-right: 1rem;
 }
 
 .navbar a {

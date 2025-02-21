@@ -16,6 +16,7 @@ interface UserControlsProps {
   onAbilityToggle: (abilityId: number) => void;
   onSkillTargetToggle: (filter: SkillTarget | PlayerSkillType) => void;
   onLevelFilter: (threshold: number) => void;
+  setShow: (state: boolean) => void
 }
 
 export function UserControls({
@@ -25,9 +26,16 @@ export function UserControls({
   onAbilityToggle,
   onSkillTargetToggle,
   onLevelFilter,
+  setShow
 }: UserControlsProps) {
   return (
     <div className={css.UserControls}>
+      <div className={css.controlHeader}>
+        <div>Filters</div>
+        <div className={css.closeButton} onClick={() => setShow(false)}>
+          &#10006;
+        </div>
+      </div>
       <Filters
         onSkillTargetToggle={onSkillTargetToggle}
         abilities={abilities}
