@@ -25,7 +25,7 @@ model Ability {
   target   PlayerTarget
   type     AbilityType
   jobId    Int
-  job      Job          @relation(fields: [jobId], references: [id])
+  job      Job          @relation(fields: [jobId], references: [id], onDelete: Cascade)
 }
 
 model Mechanic {
@@ -46,8 +46,8 @@ model Node {
   duration    Int
   mechanicId  Int
   encounterId Int
-  encounter   Encounter @relation(fields: [encounterId], references: [id])
-  mechanic    Mechanic  @relation(fields: [mechanicId], references: [id])
+  encounter   Encounter @relation(fields: [encounterId], references: [id], onDelete: Cascade)
+  mechanic    Mechanic  @relation(fields: [mechanicId], references: [id], onDelete: Cascade)
 }
 
 model Encounter {

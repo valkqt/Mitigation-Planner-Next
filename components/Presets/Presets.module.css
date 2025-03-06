@@ -2,9 +2,12 @@
   text-align: center;
   width: 100vw;
   padding-bottom: 1rem;
-}
-
-.option {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  background-color: hsl(240, 4%, 10%);
 }
 
 .dropdown {

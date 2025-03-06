@@ -1,11 +1,15 @@
+import { useState } from "react";
+import { Select } from "../CustomSelect/CustomSelect";
 import css from "./Presets.module.css";
 
 export function Presets() {
+  const [preset, setPreset] = useState();
   return (
     <div className={css.container}>
-      <select className={css.dropdown}>
-        <option className={css.option}>LPDU</option>
-      </select>
+      <Select src="">
+        <div className={css.option}>LPDU</div>
+      </Select>
+      <button>Save</button>
     </div>
   );
 }

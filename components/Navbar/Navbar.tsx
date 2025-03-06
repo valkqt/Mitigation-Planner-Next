@@ -4,6 +4,7 @@ import Link from "next/link";
 import css from "./Navbar.module.css";
 import { useRef, useState } from "react";
 import classNames from "classnames";
+import { LoginComponent } from "./LoginComponent/LoginComponent";
 
 export default function Navbar() {
   const [dropdown, setDropdown] = useState(false);
@@ -63,7 +64,9 @@ export default function Navbar() {
         </div>
       </div>
       <div className={css.rightNav}>
-        <div>Plofi</div>
+        <div>
+          <LoginComponent />
+        </div>
       </div>
     </nav>
   );

@@ -60,6 +60,7 @@ export interface Timeline {
 }
 
 export interface Encounter {
+  id: number;
   name: string;
   level: number;
   duration: number;

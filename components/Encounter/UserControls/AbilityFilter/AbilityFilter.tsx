@@ -4,6 +4,7 @@ import SingleAbility from "../SingleAbility/SingleAbility";
 import { useState } from "react";
 import classNames from "classnames";
 import { jobMap } from "@/resources/index";
+import { Select } from "@/components/CustomSelect/CustomSelect";
 
 interface AbilityFilterProps {
   abilities: PlayerSkill[];
@@ -23,11 +24,7 @@ export default function AbilityFilter({
         <div className={css.idk}>Filter</div>
 
         <div onClick={() => setOpen(!open)}>
-          <div className={css.label}>
-            <img src={jobMap[selectedJob.id]} className="miniIcon" alt="" />
-
-            {selectedJob.name}
-          </div>
+          <Select src={jobMap[selectedJob.id]}>{selectedJob.name}</Select>
           <div className={classNames({ toggleDisplay: !open }, css.dropdown)}>
             {jobs.map((job) => (
               <div

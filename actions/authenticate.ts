@@ -3,7 +3,7 @@
 import { signIn } from "@/auth";
 
 export const authenticate = async () => {
-  const res = await signIn();
+  const res = await signIn("google");
   console.log(res);
 
   return {

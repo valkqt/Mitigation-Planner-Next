@@ -7,6 +7,10 @@
   display: flex;
   justify-content: space-between;
   font-size: 110%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 150;
 }
 
 .leftNav {
@@ -57,7 +61,7 @@
   background-color: hsl(244, 35%, 8%);
   padding: 1rem;
   border: 1px solid black;
-  z-index: 100;
+  z-index: 200;
   animation: dropdown-slide 0.2s ease-out;
 }
 

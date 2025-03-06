@@ -1,5 +1,5 @@
 .controller {
-  position: absolute;
+  position: fixed;
   bottom: calc(50% - 32px);
   left: calc(100vw - 64px - 2rem);
 }
