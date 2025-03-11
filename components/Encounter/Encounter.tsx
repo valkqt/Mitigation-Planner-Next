@@ -39,11 +39,8 @@ export default function Encounter({ id }: EncounterProps) {
   // TODO: look into dependencies of "ability" state and possible refactors
   const [abilities, setAbilities] = useState<PlayerSkill[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
-  const [, setFlags] = useActivationFlagsContext();
   const [encounter, setEncounter] = useState<Fight>();
   const { data: session, status } = useSession();
-
-  console.log(id);
 
   useEffect(() => {
     api.get(`/encounters/${id}`).then((res) => {
@@ -63,51 +60,12 @@ export default function Encounter({ id }: EncounterProps) {
     return <div>bro</div>;
   }
 
-  function handleJobSelection(jobId: number) {
-    setFlags({ type: FlagActivationTypes.ToggleJobFlag, payload: jobId });
-  }
-
-  function toggleAbility(abilityId: number) {
-    setFlags({
-      type: FlagActivationTypes.ToggleAbilityFlag,
-      payload: abilityId,
-    });
-  }
-
-  function handleLevelFilter(threshold: number) {
-    setFlags({
-      type: FlagActivationTypes.LevelFilterFlag,
-      payload: threshold,
-    });
-  }
-
-  function handleAbilityFilter(filter: SkillTarget | PlayerSkillType) {
-    if (filter in SkillTarget) {
-      setFlags({
-        type: FlagActivationTypes.ToggleSkillTargetFlag,
-        payload: filter,
-      });
-    } else {
-      setFlags({
-        type: FlagActivationTypes.TogglePlayerSkillTypeFlag,
-        payload: filter,
-      });
-    }
-  }
-
   return (
     <div className={css.container}>
       <EncounterHeader encounter={encounter} />
       <Presets />
       <Timeline encounter={encounter} jobs={jobs} abilities={abilities} />
-      <SidebarComponent
-        jobs={jobs}
-        abilities={abilities}
-        onAbilityFilter={toggleAbility}
-        onAbilityTypeFilter={handleAbilityFilter}
-        onJobSelection={handleJobSelection}
-        onLevelFilter={handleLevelFilter}
-      />
+      <SidebarComponent jobs={jobs} abilities={abilities} />
     </div>
   );
 }

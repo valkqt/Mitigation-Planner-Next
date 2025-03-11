@@ -2,25 +2,48 @@ import { Job, PlayerSkill, PlayerSkillType, SkillTarget } from "@/resources";
 import Sidebar from "./Sidebar/Sidebar";
 import { SidebarControl } from "./SidebarControl/SidebarControl";
 import { useState } from "react";
+import { FlagActivationTypes, useActivationFlagsContext } from "@/contexts";
 
 interface SidebarProps {
   jobs: Job[];
   abilities: PlayerSkill[];
-  onJobSelection: (jobId: number) => void;
-  onAbilityFilter: (abilityId: number) => void;
-  onAbilityTypeFilter: (filter: SkillTarget | PlayerSkillType) => void;
-  onLevelFilter: (threshold: number) => void;
 }
 
-export function SidebarComponent({
-  jobs,
-  abilities,
-  onJobSelection,
-  onAbilityFilter,
-  onAbilityTypeFilter,
-  onLevelFilter,
-}: SidebarProps) {
+export function SidebarComponent({ jobs, abilities }: SidebarProps) {
   const [showSidebar, setShowSidebar] = useState(false);
+  const [, setFlags] = useActivationFlagsContext();
+
+  function handleJobSelection(jobId: number) {
+    setFlags({ type: FlagActivationTypes.ToggleJobFlag, payload: jobId });
+  }
+
+  function toggleAbility(abilityId: number) {
+    setFlags({
+      type: FlagActivationTypes.ToggleAbilityFlag,
+      payload: abilityId,
+    });
+  }
+
+  function handleLevelFilter(threshold: number) {
+    setFlags({
+      type: FlagActivationTypes.LevelFilterFlag,
+      payload: threshold,
+    });
+  }
+
+  function handleAbilityFilter(filter: SkillTarget | PlayerSkillType) {
+    if (filter in SkillTarget) {
+      setFlags({
+        type: FlagActivationTypes.ToggleSkillTargetFlag,
+        payload: filter,
+      });
+    } else {
+      setFlags({
+        type: FlagActivationTypes.TogglePlayerSkillTypeFlag,
+        payload: filter,
+      });
+    }
+  }
 
   return (
     <div>
@@ -29,10 +52,10 @@ export function SidebarComponent({
       <Sidebar
         jobs={jobs}
         abilities={abilities}
-        onAbilityFilter={onAbilityFilter}
-        onAbilityTypeFilter={onAbilityTypeFilter}
-        onJobSelection={onJobSelection}
-        onLevelFilter={onLevelFilter}
+        onAbilityFilter={toggleAbility}
+        onAbilityTypeFilter={handleAbilityFilter}
+        onJobSelection={handleJobSelection}
+        onLevelFilter={handleLevelFilter}
         show={showSidebar}
         setShow={setShowSidebar}
       />
