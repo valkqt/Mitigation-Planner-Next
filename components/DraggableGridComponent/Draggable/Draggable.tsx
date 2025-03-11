@@ -3,7 +3,7 @@ import classNames from "classnames";
 import type { DraggableSyntheticListeners, Translate } from "@dnd-kit/core";
 import styles from "./Draggable.module.css";
 import { Axis, PlayerSkill } from "@/resources/index";
-import DraggableEntity from "../../Encounter/Row/DraggableEntity/DraggableEntity";
+import DraggableEntity from "../../Encounter/Timeline/Row/DraggableEntity/DraggableEntity";
 
 interface Props {
   axis?: Axis;

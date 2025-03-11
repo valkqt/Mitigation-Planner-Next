@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Select } from "../CustomSelect/CustomSelect";
+import { Select } from "@/components/CustomSelect/CustomSelect";
 import css from "./Presets.module.css";
 
 export function Presets() {

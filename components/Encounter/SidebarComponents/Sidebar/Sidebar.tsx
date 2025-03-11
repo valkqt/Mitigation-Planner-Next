@@ -5,11 +5,8 @@ import css from "./Sidebar.module.css";
 import classNames from "classnames";
 import { useSession } from "next-auth/react";
 import { createPortal } from "react-dom";
-import LoginForm from "../Encounter/Test/LoginForm";
-import SignIn from "../Encounter/Test/signin";
-import Signout from "../Encounter/Test/signout";
-import { UserControls } from "../Encounter/UserControls/UserControls";
 import { Job, PlayerSkill, PlayerSkillType, SkillTarget } from "@/resources";
+import { UserControls } from "./UserControls/UserControls";
 
 interface SidebarProps {
   jobs: Job[];

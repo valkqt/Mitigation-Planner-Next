@@ -1,3 +1,11 @@
+.timeDisplay {
+  background-color: black;
+  min-height: 24px;
+  padding-left: 64px;
+  position: relative;
+  z-index: 100;
+}
+
 .timelineNumbers {
   display: flex;
   margin-left: -18px;

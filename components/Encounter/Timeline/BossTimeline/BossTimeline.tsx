@@ -1,15 +1,14 @@
-import css from "./TimelineDisplay.module.css";
-import Timestamp from "../../Timestamp/Timestamp";
+import css from "./BossTimeline.module.css";
+import Timestamp from "./Timestamp/Timestamp";
 import classNames from "classnames";
 import { Encounter } from "@/resources";
-
-interface TimelineDisplayProps {
+interface TimeDisplayProps {
   encounter: Encounter;
 }
 
-export default function TimelineDisplay({ encounter }: TimelineDisplayProps) {
+export function BossTimeline({ encounter }: TimeDisplayProps) {
   return (
-    <div>
+    <div className={css.timeDisplay}>
       <div className={css.timelineNumbers}>
         {Array.from({ length: encounter.duration + 1 }, (_, index) => {
           const hours = Math.floor(index / 3600);

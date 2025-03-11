@@ -3,7 +3,6 @@ import {
   api,
   PlayerSkillType,
   SkillTarget,
-  segments,
   PlayerSkill,
   Job,
 } from "@/resources/index";
@@ -16,20 +15,21 @@ import css from "./Encounter.module.css";
 
 // temporary shit
 
-import SignIn from "./Test/signin";
-import Userinfo from "./Test/Userinfo";
-import Signout from "./Test/signout";
-import RegisterForm from "./Test/RegisterForm";
-import LoginForm from "./Test/LoginForm";
-import PostPreset from "./Test/PostPreset";
+import SignIn from "../Test/signin";
+import Userinfo from "../Test/Userinfo";
+import Signout from "../Test/signout";
+import RegisterForm from "../Test/RegisterForm";
+import LoginForm from "../Test/LoginForm";
+import PostPreset from "../Test/PostPreset";
 import { auth } from "@/auth";
 import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { Encounter as Fight } from "@/resources/index";
-import Navbar from "../Sidebar/Sidebar";
-import Sidebar from "../Sidebar/Sidebar";
-import { Presets } from "../Presets/Presets";
-import { SidebarControl } from "../SidebarControl/SidebarControl";
+import { Presets } from "./Presets/Presets";
+import { SidebarControl } from "./SidebarComponents/SidebarControl/SidebarControl";
+import { SidebarComponent } from "./SidebarComponents/SidebarComponent";
+import { Timeline } from "./Timeline/Timeline";
+import { EncounterHeader } from "./EncounterHeader/EncounterHeader";
 
 interface EncounterProps {
   id: string;
@@ -41,9 +41,7 @@ export default function Encounter({ id }: EncounterProps) {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [, setFlags] = useActivationFlagsContext();
   const [encounter, setEncounter] = useState<Fight>();
-  const [nodes, setNodes] = useState(segments);
   const { data: session, status } = useSession();
-  const [showSidebar, setShowSidebar] = useState(false);
 
   console.log(id);
 
@@ -98,53 +96,18 @@ export default function Encounter({ id }: EncounterProps) {
   }
 
   return (
-    <div className={css.TimelineContainer}>
-      <div className={css.EncounterInfo}>
-        <h1 className={css.EncounterHeader}>{encounter.name}</h1>
-      </div>
+    <div className={css.container}>
+      <EncounterHeader encounter={encounter} />
       <Presets />
-      <div>
-        {/* <RegisterForm /> */}
-        {session?.user && (
-          <>
-            <div>HELLO {session?.user?.email}</div>
-            <PostPreset segments={nodes} encounter={encounter} />
-          </>
-        )}
-
-        {/* <SignIn />
-        <Userinfo />
-        <Signout /> */}
-      </div>
-      <div>{/* <button onClick={() => signOut()}>Log out</button> */}</div>
-      {/* {session?.user && <div>hello {session.user.name}</div>} */}
-      <BossTimeline encounter={encounter} />
-      <div>
-        <BossRow encounter={encounter} />
-        {abilities.map((ability) => {
-          return (
-            <Row
-              ability={ability}
-              duration={encounter.duration}
-              jobs={jobs}
-              key={ability.id}
-              nodes={nodes}
-              setNodes={setNodes}
-            />
-          );
-        })}
-      </div>
-      <Sidebar
+      <Timeline encounter={encounter} jobs={jobs} abilities={abilities} />
+      <SidebarComponent
         jobs={jobs}
         abilities={abilities}
         onAbilityFilter={toggleAbility}
         onAbilityTypeFilter={handleAbilityFilter}
         onJobSelection={handleJobSelection}
         onLevelFilter={handleLevelFilter}
-        show={showSidebar}
-        setShow={setShowSidebar}
       />
-      <SidebarControl show={showSidebar} setShow={setShowSidebar} />
     </div>
   );
 }

@@ -1,25 +1,7 @@
-.TimelineContainer {
+.container {
   background-color: hsl(240, 4%, 10%);
   color: white;
   /* position: relative; */
   height: 100%;
   z-index: 100;
-}
-
-.EncounterHeader {
-  text-align: center;
-  margin: 0;
-  padding: 2rem 0 1rem;
-  flex-basis: 100%;
-  background-color: hsl(240, 4%, 10%);
-  position: relative;
-}
-
-.EncounterInfo {
-  position: sticky;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  top: 0;
-  width: 100vw;
 }
