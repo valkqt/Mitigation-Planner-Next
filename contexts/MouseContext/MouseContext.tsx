@@ -1,4 +1,4 @@
-import { createContext, RefObject, useContext } from "react";
+import { createContext, useContext } from "react";
 
 export const MouseContext = createContext({ current: 0 });
 

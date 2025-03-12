@@ -1,6 +1,6 @@
 "use client";
 
-import { PropsWithChildren, useEffect, useRef, useState } from "react";
+import { PropsWithChildren, useEffect, useRef } from "react";
 import { MouseContext } from "./MouseContext";
 
 export const MouseContextProvider = ({ children }: PropsWithChildren) => {

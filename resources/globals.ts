@@ -16,6 +16,7 @@ export const levelArray: number[] = Array.from(
 );
 
 export const snapToGridModifier = createSnapModifier(gridSize);
+
 export const jobMap = {
   1: "/transparent_icons/sage.png",
   2: "/transparent_icons/whitemage.png",

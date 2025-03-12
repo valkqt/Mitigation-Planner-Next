@@ -1,3 +1,4 @@
+import { Expansion } from "@prisma/client";
 import {
   DamageType,
   EnemySkillTarget,
@@ -62,9 +63,15 @@ export interface Timeline {
 export interface Encounter {
   id: number;
   name: string;
+  expansion: Expansion;
   level: number;
   duration: number;
   mechanics: Timeline[];
+}
+
+export interface Preset {
+  id: string;
+  name: string;
 }
 
 export interface GlobalFlags {

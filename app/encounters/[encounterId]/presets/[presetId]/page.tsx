@@ -10,14 +10,17 @@ import { useParams } from "next/navigation";
 import { Suspense } from "react";
 
 export default function Page({ session }) {
-  const params = useParams<{ id: string }>();
+  const params = useParams<{ encounterId; presetId }>();
 
   return (
     <ActivationFlagsContextProvider>
       <MouseContextProvider>
         <SessionProvider session={session}>
           <Suspense fallback={<div>cant load encounter</div>}>
-            <Encounter id={params.id} />
+            <Encounter
+              encounterId={params.encounterId}
+              presetId={params.presetId ?? "new"}
+            />
           </Suspense>
         </SessionProvider>
       </MouseContextProvider>

@@ -1,49 +1,31 @@
 import { useEffect, useState } from "react";
-import {
-  api,
-  PlayerSkillType,
-  SkillTarget,
-  PlayerSkill,
-  Job,
-} from "@/resources/index";
-import { Row, BossRow, BossTimeline, UserControls } from "@/components/index";
-import {
-  useActivationFlagsContext,
-  FlagActivationTypes,
-} from "@/contexts/index";
+import { api, PlayerSkill, Job, Preset } from "@/resources/index";
 import css from "./Encounter.module.css";
 
 // temporary shit
 
-import SignIn from "../Test/signin";
-import Userinfo from "../Test/Userinfo";
-import Signout from "../Test/signout";
-import RegisterForm from "../Test/RegisterForm";
-import LoginForm from "../Test/LoginForm";
-import PostPreset from "../Test/PostPreset";
-import { auth } from "@/auth";
-import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { Encounter as Fight } from "@/resources/index";
 import { Presets } from "./Presets/Presets";
-import { SidebarControl } from "./SidebarComponents/SidebarControl/SidebarControl";
 import { SidebarComponent } from "./SidebarComponents/SidebarComponent";
 import { Timeline } from "./Timeline/Timeline";
 import { EncounterHeader } from "./EncounterHeader/EncounterHeader";
 
 interface EncounterProps {
-  id: string;
+  encounterId: string;
+  presetId: string;
 }
 
-export default function Encounter({ id }: EncounterProps) {
+export default function Encounter({ encounterId, presetId }: EncounterProps) {
   // TODO: look into dependencies of "ability" state and possible refactors
   const [abilities, setAbilities] = useState<PlayerSkill[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
   const [encounter, setEncounter] = useState<Fight>();
+  const [presets, setPresets] = useState<Preset[]>([]);
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    api.get(`/encounters/${id}`).then((res) => {
+    api.get(`/encounters/${encounterId}`).then((res) => {
       setEncounter(res.data);
     });
     api.get("/jobs").then((res) => {
@@ -54,6 +36,9 @@ export default function Encounter({ id }: EncounterProps) {
       });
       setAbilities(skills);
     });
+    api.get(`/presets/${presetId}`).then((res) => {
+      setPresets(res.data);
+    });
   }, []);
 
   if (!encounter || jobs.length < 1) {
@@ -63,7 +48,7 @@ export default function Encounter({ id }: EncounterProps) {
   return (
     <div className={css.container}>
       <EncounterHeader encounter={encounter} />
-      <Presets />
+      <Presets id={presetId} presets={presets} />
       <Timeline encounter={encounter} jobs={jobs} abilities={abilities} />
       <SidebarComponent jobs={jobs} abilities={abilities} />
     </div>
