@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import css from "./LoginComponent.module.css";
 import { authenticate } from "@/actions/authenticate";
-import { RefObject, useRef, useState } from "react";
+import { useState } from "react";
 import useClickOutside from "@/hooks/useClickOutside";
 
 export function LoginComponent() {
@@ -14,7 +14,7 @@ export function LoginComponent() {
   const ref = useClickOutside<HTMLDivElement>(handleClickOutside);
 
   async function onSubmit() {
-    await authenticate();
+    await authenticate("google");
   }
 
   return (

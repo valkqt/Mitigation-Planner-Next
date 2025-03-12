@@ -10,4 +10,5 @@ INSERT INTO "Ability" (name, duration, cooldown, level, target, type, jobId) VAL
 ('Kerachole', 15, 30, 50, 'RAID', 'MITIGATION', 1), 
 ('Holos', 20, 120, 76, 'RAID', 'MITIGATION', 1);
 
-INSERT INTO "Preset" ()
+INSERT INTO "Preset" (name, "encounterId", flags, segments, "userId") 
+VALUES ('e8s test 1', 1, '', '', 1), ('e8s test 2', 1, '', '', 1), ('e8s test 3', 1, '', '', 1);

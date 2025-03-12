@@ -5,6 +5,16 @@ import css from "./Navbar.module.css";
 import { useRef, useState } from "react";
 import classNames from "classnames";
 import { LoginComponent } from "./LoginComponent/LoginComponent";
+import { useSession } from "next-auth/react";
+import { Session } from "next-auth";
+import { LogoutComponent } from "./LogoutComponent/LogoutComponent";
+
+function UserArea() {
+  const { data: session, status } = useSession();
+  console.log(session);
+
+  return session ? <LogoutComponent /> : <LoginComponent />;
+}
 
 export default function Navbar() {
   const [dropdown, setDropdown] = useState(false);
@@ -40,19 +50,25 @@ export default function Navbar() {
               >
                 <ul>
                   <li className={css.dropdownItem}>
-                    <Link href={"/encounters/1"}>Black Cat</Link>
+                    <Link href={"/encounters/1/presets/new"}>Black Cat</Link>
                   </li>
                   <li className={css.dropdownItem}>
-                    <Link href={"/encounters/1"}>Honey B. Lovely</Link>
+                    <Link href={"/encounters/1/presets/new"}>
+                      Honey B. Lovely
+                    </Link>
                   </li>
                   <li className={css.dropdownItem}>
-                    <Link href={"/encounters/1"}>Brute Bomber</Link>
+                    <Link href={"/encounters/1/presets/new"}>Brute Bomber</Link>
                   </li>
                   <li className={css.dropdownItem}>
-                    <Link href={"/encounters/1"}>Wicked Thunder</Link>
+                    <Link href={"/encounters/1/presets/new"}>
+                      Wicked Thunder
+                    </Link>
                   </li>
                   <li className={css.dropdownItem}>
-                    <Link href={"/encounters/1"}>Futures Rewritten</Link>
+                    <Link href={"/encounters/1/presets/new"}>
+                      Futures Rewritten
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -64,9 +80,7 @@ export default function Navbar() {
         </div>
       </div>
       <div className={css.rightNav}>
-        <div>
-          <LoginComponent />
-        </div>
+        <UserArea />
       </div>
     </nav>
   );

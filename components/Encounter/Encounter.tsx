@@ -36,9 +36,9 @@ export default function Encounter({ encounterId, presetId }: EncounterProps) {
       });
       setAbilities(skills);
     });
-    api.get(`/presets/${presetId}`).then((res) => {
-      setPresets(res.data);
-    });
+    // api.get(`/presets/${presetId}`).then((res) => {
+    //   setPresets(res.data);
+    // });
   }, []);
 
   if (!encounter || jobs.length < 1) {

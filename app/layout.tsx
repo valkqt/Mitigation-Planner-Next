@@ -13,8 +13,8 @@ export default async function Layout({ children }: LayoutProps) {
     <html>
       <body>
         <div className="wrapper">
-          <Navbar />
           <SessionProvider>
+            <Navbar />
             <main>{children}</main>
           </SessionProvider>
         </div>
