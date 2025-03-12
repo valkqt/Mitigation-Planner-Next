@@ -2,12 +2,19 @@
 
 import { signIn } from "@/auth";
 
-export const authenticate = async () => {
-  const res = await signIn("google");
-  console.log(res);
-
-  return {
-    success: true,
-    message: "Sign in successfully",
-  };
-};
+export async function authenticate(
+  provider: string,
+  credentials?: {
+    email: string;
+    password: string;
+  }
+) {
+  await signIn(
+    provider,
+    credentials && {
+      email: credentials.email,
+      password: credentials.password,
+      redirect: false,
+    }
+  );
+}
