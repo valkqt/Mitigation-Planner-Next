@@ -11,7 +11,7 @@
 
 .SingleEntity {
   display: flex;
-  height: 48px;
+  /* height: 48px; */
 }
 
 .segment {

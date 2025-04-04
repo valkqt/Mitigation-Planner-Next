@@ -1,4 +1,4 @@
-import getUserInfo from "@/actions/getUserInfo";
+import getUserInfo from "@/resources/serverActions/getUserInfo";
 import { Session } from "next-auth";
 import { useEffect, useState } from "react";
 

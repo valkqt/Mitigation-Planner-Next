@@ -1,5 +1,14 @@
-import { useEffect, useState } from "react";
-import { api, PlayerSkill, Job, Preset } from "@/resources/index";
+import { Suspense, useEffect, useState } from "react";
+import {
+  api,
+  PlayerSkill,
+  Job,
+  Preset,
+  Segment,
+  defaultSegments,
+  defaultFlags,
+  GlobalFlags,
+} from "@/resources/index";
 import css from "./Encounter.module.css";
 
 // temporary shit
@@ -9,7 +18,10 @@ import { Encounter as Fight } from "@/resources/index";
 import { Presets } from "./Presets/Presets";
 import { SidebarComponent } from "./SidebarComponents/SidebarComponent";
 import { Timeline } from "./Timeline/Timeline";
-import { EncounterHeader } from "./EncounterHeader/EncounterHeader";
+import { CustomHeader } from "../CustomHeader/CustomHeader";
+import { useParams } from "next/navigation";
+import { UserTimeline } from "./UserTimeline/UserTimeline";
+import { useCurrentPreset } from "@/hooks/useCurrentPreset";
 
 interface EncounterProps {
   encounterId: string;
@@ -21,8 +33,25 @@ export default function Encounter({ encounterId, presetId }: EncounterProps) {
   const [abilities, setAbilities] = useState<PlayerSkill[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
   const [encounter, setEncounter] = useState<Fight>();
-  const [presets, setPresets] = useState<Preset[]>([]);
+  const [userPresets, setUserPresets] = useState<Preset[]>([]);
+  const preset = useCurrentPreset();
+  const [currentPreset, setCurrentPreset] = useState<Preset>({
+    id: "new",
+    name: "New Preset",
+    flags: defaultFlags,
+    segments: defaultSegments,
+  });
   const { data: session, status } = useSession();
+  const params = useParams();
+
+  useEffect(() => {
+    if (session && userPresets.length === 0) {
+      console.log("fetch presets");
+      api.get(`/users/${session.userId}/presets`).then((res) => {
+        setUserPresets([...userPresets, ...res.data]);
+      });
+    }
+  }, [session]);
 
   useEffect(() => {
     api.get(`/encounters/${encounterId}`).then((res) => {
@@ -36,9 +65,13 @@ export default function Encounter({ encounterId, presetId }: EncounterProps) {
       });
       setAbilities(skills);
     });
-    // api.get(`/presets/${presetId}`).then((res) => {
-    //   setPresets(res.data);
-    // });
+    if (params.presetId !== "new") {
+      api.get(`/presets/${params.presetId}`).then((res) => {
+        if (res.data) {
+          setCurrentPreset(res.data);
+        }
+      });
+    }
   }, []);
 
   if (!encounter || jobs.length < 1) {
@@ -47,9 +80,21 @@ export default function Encounter({ encounterId, presetId }: EncounterProps) {
 
   return (
     <div className={css.container}>
-      <EncounterHeader encounter={encounter} />
-      <Presets id={presetId} presets={presets} />
-      <Timeline encounter={encounter} jobs={jobs} abilities={abilities} />
+      <CustomHeader content={encounter.name} />
+      <Presets
+        nodes={preset.segments}
+        encounterId={encounter.id}
+        selectedPreset={currentPreset}
+        setSelectedPreset={setCurrentPreset}
+        userPresets={userPresets}
+      />
+      <Timeline encounter={encounter} />
+      <UserTimeline
+        abilities={abilities}
+        nodes={preset.segments}
+        setNodes={preset.setSegments}
+        jobs={jobs}
+      />
       <SidebarComponent jobs={jobs} abilities={abilities} />
     </div>
   );

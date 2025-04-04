@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma";
 import { Preset } from "@prisma/client";
 
 export default async function getPresetById(
-  presetId: number
+  presetId: string
 ): Promise<Preset | null> {
   const preset = await prisma.preset.findFirst({
     where: {

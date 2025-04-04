@@ -2,19 +2,19 @@ import prisma from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 
 export async function savePreset(
-  userId: string,
   name: string,
-  encounterId: number,
   filters: Prisma.JsonObject,
-  nodes: Prisma.JsonObject
+  nodes: Prisma.JsonObject,
+  encounterId: number,
+  userId: string
 ) {
   const preset = await prisma.preset.create({
     data: {
       name: name,
-      encounterId: encounterId,
-      userId: userId,
       flags: filters,
       segments: nodes,
+      encounterId: encounterId,
+      userId: userId,
     },
   });
   return preset;

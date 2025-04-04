@@ -22,9 +22,14 @@ export default function AbilityFilter({
     <div className={css.container}>
       <div className={css.jobFilter}>
         <div className={css.idk}>Filter</div>
+        <Select
+          options={jobs}
+          iconMap={jobMap}
+          externalState={selectedJob}
+          externalStateSetter={setSelectedJob}
+        />
 
-        <div onClick={() => setOpen(!open)}>
-          <Select src={jobMap[selectedJob.id]}>{selectedJob.name}</Select>
+        {/* <div onClick={() => setOpen(!open)}>
           <div className={classNames({ toggleDisplay: !open }, css.dropdown)}>
             {jobs.map((job) => (
               <div
@@ -37,7 +42,7 @@ export default function AbilityFilter({
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
       {selectedJob.skills.map((ability) => (
         <SingleAbility

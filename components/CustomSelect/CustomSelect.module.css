@@ -12,3 +12,36 @@
 .label:hover {
   background-color: rgb(129, 129, 129);
 }
+
+.dropdown {
+  position: absolute;
+  border: 1px solid gray;
+  right: 0;
+  top: 100%;
+  z-index: 200;
+  background-color: black;
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 0.25rem;
+  animation: dropdown-slide 0.3s linear;
+}
+
+.dropdownItem {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background-color: var(--inactive-hover);
+}
+
+@keyframes dropdown-slide {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

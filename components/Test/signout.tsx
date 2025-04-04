@@ -1,4 +1,4 @@
-import serverSignOut from "@/actions/serverSignOut";
+import serverSignOut from "@/resources/serverActions/serverSignOut";
 
 export default function Signout() {
   async function onSubmit() {

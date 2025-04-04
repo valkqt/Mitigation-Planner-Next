@@ -1,25 +1,20 @@
 import classNames from "classnames";
-import Image from "next/image";
 import { PlayerSkill, Job, Segment, AbilityStyle } from "@/resources/types";
 import { abilityMap } from "@/resources/index";
 import { DraggableGridComponent } from "@/components/index";
 import { useActivationFlagsContext, useMouseContext } from "@/contexts/index";
 import css from "./Row.module.css";
-import { useState } from "react";
 import { AbilityIcon } from "./AbilityIcon/AbilityIcon";
 
 interface RowProps {
-  jobs: Job[];
   ability: PlayerSkill;
-  duration: number;
   setNodes: (node: Record<number, Segment[]>) => void;
   nodes: Record<number, Segment[]>;
+  isActive: boolean;
 }
 
-export function Row({ jobs, ability, duration, setNodes, nodes }: RowProps) {
-  const [flags] = useActivationFlagsContext();
+export function Row({ ability, setNodes, nodes, isActive }: RowProps) {
   const mouse = useMouseContext();
-  const style: AbilityStyle = abilityMap[ability.id];
   const activeSegments = nodes[ability.id];
 
   function GenerateRandomString(): string {
@@ -38,7 +33,6 @@ export function Row({ jobs, ability, duration, setNodes, nodes }: RowProps) {
   }
 
   function createSegment(position: number, ability: PlayerSkill) {
-    console.log(nodes);
     while (position % 8 !== 0) {
       position -= 1;
     }
@@ -46,10 +40,14 @@ export function Row({ jobs, ability, duration, setNodes, nodes }: RowProps) {
     position = position / 8;
     const newSegment = activeSegments.find(
       (segment) =>
-        position <= segment.start &&
-        segment.start <= position + ability.cooldown
+        // position <= segment.start &&
+        // position + ability.cooldown >= segment.start
+        (position > segment.start &&
+          position < segment.start + segment.length) ||
+        (position + ability.cooldown > segment.start &&
+          position + ability.cooldown < segment.start + segment.length)
     );
-
+    console.log(newSegment);
     if (newSegment) {
       const alreadyExists2 = activeSegments.find(
         (node) =>
@@ -94,30 +92,14 @@ export function Row({ jobs, ability, duration, setNodes, nodes }: RowProps) {
   return (
     <div
       className={classNames(css.Lane, {
-        toggleDisplay:
-          !flags.abilities[ability.id] ||
-          !jobs.some(
-            (job) =>
-              flags.jobs[job.id] && job.skills.some((a) => a.id == ability.id)
-          ) ||
-          !flags.target[ability.target] ||
-          !flags.type[ability.type] ||
-          !(ability.level <= flags.level),
+        toggleDisplay: isActive,
       })}
     >
       <AbilityIcon ability={ability} />
-
-      {Array.from({ length: duration + 1 }, (_, index) => {
-        return (
-          <div
-            key={index}
-            className={css.filler}
-            style={{ left: 64 + index * 8 }}
-            id={index.toString()}
-            onClick={() => createSegment(mouse.current, ability)}
-          ></div>
-        );
-      })}
+      <div
+        className={css.segmentContainer}
+        onClick={() => createSegment(mouse.current, ability)}
+      ></div>
 
       {activeSegments.map((entity) => (
         <DraggableGridComponent

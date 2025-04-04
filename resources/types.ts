@@ -72,6 +72,8 @@ export interface Encounter {
 export interface Preset {
   id: string;
   name: string;
+  flags: GlobalFlags;
+  segments: Record<number, Segment[]>;
 }
 
 export interface GlobalFlags {

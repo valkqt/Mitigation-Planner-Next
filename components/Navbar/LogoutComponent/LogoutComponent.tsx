@@ -1,4 +1,4 @@
-import serverSignOut from "@/actions/serverSignOut";
+import serverSignOut from "@/resources/serverActions/serverSignOut";
 import css from "./LogoutComponent.module.css";
 import { FormEvent } from "react";
 

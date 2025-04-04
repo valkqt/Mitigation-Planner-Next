@@ -15,6 +15,7 @@ import {
   Axis,
 } from "@/resources/index";
 import { useMouseContext } from "@/contexts/MouseContext/MouseContext";
+import { init } from "@paralleldrive/cuid2";
 
 interface DndContextProps {
   activationConstraint?: PointerActivationConstraint;
@@ -98,7 +99,9 @@ export function DraggableGridComponent({
   }
 
   function handleDragMove(delta: Coordinates) {
-    const translateResult = initialTranslate.x + delta.x;
+    const translateResult = initialTranslate.x + Math.round(delta.x);
+
+    console.log(initialTranslate.x, Math.round(delta.x));
 
     const newPosition = checkCollision(translateResult);
 
@@ -134,6 +137,10 @@ export function DraggableGridComponent({
   }
 
   function handleDragEnd() {
+    while (translate.x % 8 !== 0) {
+      translate.x -= 1;
+    }
+
     if (translate.x >= 0) {
       setTranslate(({ translate }) => {
         return {

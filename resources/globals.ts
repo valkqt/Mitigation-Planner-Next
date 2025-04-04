@@ -86,7 +86,7 @@ export const defaultFlags: GlobalFlags = {
   level: maxLevel,
 };
 
-export const segments: Record<number, Segment[]> = {
+export const defaultSegments: Record<number, Segment[]> = {
   1: [],
   2: [],
   3: [],

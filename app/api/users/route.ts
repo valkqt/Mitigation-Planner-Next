@@ -1,4 +1,4 @@
-import saltAndHashPassword from "@/actions/saltAndHashPassword";
+import saltAndHashPassword from "@/resources/serverActions/saltAndHashPassword";
 import createUser from "@/repositories/Users/createUser";
 import { NextRequest } from "next/server";
 import crypto from "node:crypto";

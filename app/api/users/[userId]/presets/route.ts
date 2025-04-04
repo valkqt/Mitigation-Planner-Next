@@ -1,17 +1,15 @@
+import getPresetsByUser from "@/repositories/Presets/getPresetsByUser";
 import { savePreset } from "@/repositories/Users/savePreset";
 import { Prisma } from "@prisma/client";
 import { NextRequest } from "next/server";
 
-export async function POST(req: NextRequest) {
-  const { userId, name, encounter, filters, nodes } = await req.json();
+export async function GET(
+  request: Request,
+  { params }: { params: { userId: string } }
+) {
+  const { userId } = await params;
+  const presets = await getPresetsByUser(userId);
 
-  const pepe = filters as Prisma.JsonObject;
-  const plofi = nodes as Prisma.JsonObject;
-
-  try {
-    const preset = await savePreset(name, encounter, userId, pepe, plofi);
-    return Response.json(preset);
-  } catch {
-    return Response.json("bro");
-  }
+  return Response.json(presets);
 }
+

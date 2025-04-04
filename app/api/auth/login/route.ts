@@ -1,4 +1,4 @@
-import saltAndHashPassword from "@/actions/saltAndHashPassword";
+import saltAndHashPassword from "@/resources/serverActions/saltAndHashPassword";
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "node:crypto";

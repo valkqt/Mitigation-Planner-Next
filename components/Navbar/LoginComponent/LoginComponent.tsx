@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import css from "./LoginComponent.module.css";
-import { authenticate } from "@/actions/authenticate";
+import { authenticate } from "@/resources/serverActions/authenticate";
 import { useState } from "react";
 import useClickOutside from "@/hooks/useClickOutside";
 

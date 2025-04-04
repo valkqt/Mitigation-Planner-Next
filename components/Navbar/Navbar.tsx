@@ -6,12 +6,10 @@ import { useRef, useState } from "react";
 import classNames from "classnames";
 import { LoginComponent } from "./LoginComponent/LoginComponent";
 import { useSession } from "next-auth/react";
-import { Session } from "next-auth";
 import { LogoutComponent } from "./LogoutComponent/LogoutComponent";
 
 function UserArea() {
   const { data: session, status } = useSession();
-  console.log(session);
 
   return session ? <LogoutComponent /> : <LoginComponent />;
 }
@@ -25,7 +23,7 @@ export default function Navbar() {
       className={css.navbar}
       onMouseLeave={() => {
         window.clearTimeout(timer.current);
-        setDropdown(true);
+        setDropdown(false);
       }}
     >
       <div className={css.leftNav}>
@@ -45,7 +43,7 @@ export default function Navbar() {
               </div>
               <div
                 className={classNames(css.dropdown, {
-                  toggleDisplay: dropdown,
+                  toggleDisplay: !dropdown,
                 })}
               >
                 <ul>

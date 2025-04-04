@@ -13,13 +13,12 @@
   height: 32px;
 }
 
-.filler {
-  min-width: 8px;
-  height: 48px;
+.segmentContainer {
+  /* padding: 4px 0; */
   position: absolute;
-  top: 8px;
+  width: 100%;
+  height: calc(100%);
 }
-
 
 .SingleEntity {
   display: flex;
