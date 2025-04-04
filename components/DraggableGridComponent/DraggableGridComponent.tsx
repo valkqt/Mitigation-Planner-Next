@@ -26,7 +26,7 @@ interface DndContextProps {
   label?: string;
   ability: PlayerSkill;
   onRightClick: () => void;
-  entity: Segment;
+  segment: Segment;
   nodes: Record<number, Segment[]>;
   setNodes: (arr: Record<number, Segment[]>) => void;
 }
@@ -42,27 +42,27 @@ export function DraggableGridComponent({
   ability,
   style,
   onRightClick,
-  entity,
+  segment,
   nodes,
   setNodes,
 }: DndContextProps) {
   const [{ translate, initialTranslate }, setTranslate] =
     useState<TranslateState>({
-      initialTranslate: { ...defaultCoordinates, x: entity.start * 8 },
-      translate: { ...defaultCoordinates, x: entity.start * 8 },
+      initialTranslate: { ...defaultCoordinates, x: segment.start * 8 },
+      translate: { ...defaultCoordinates, x: segment.start * 8 },
     });
   const [isDragging, setIsDragging] = useState(false);
   const mouse = useMouseContext();
 
   function checkCollision(coordinates: number): Segment | undefined {
     const dragSegmentStart = coordinates / 8;
-    const dragSegmentEnd = dragSegmentStart + entity.length;
+    const dragSegmentEnd = dragSegmentStart + segment.length;
 
     const foundNode = nodes[ability.id].find(
       (node) =>
         node.start < dragSegmentEnd &&
         dragSegmentStart < node.start + node.length &&
-        node.segmentId !== entity.segmentId
+        node.segmentId !== segment.segmentId
     );
 
     return foundNode;
@@ -99,11 +99,16 @@ export function DraggableGridComponent({
   }
 
   function handleDragMove(delta: Coordinates) {
-    const translateResult = initialTranslate.x + Math.round(delta.x);
+    let translateResult = initialTranslate.x + Math.round(delta.x);
 
     console.log(initialTranslate.x, Math.round(delta.x));
 
     const newPosition = checkCollision(translateResult);
+
+    if (translateResult > 838 * 8 - segment.length * 8) {
+      translateResult = 838 * 8;
+      return;
+    }
 
     if (newPosition) {
       moveToEdge(newPosition);
@@ -126,7 +131,7 @@ export function DraggableGridComponent({
 
   function updatePosition(): void {
     const updatedNodes = nodes[ability.id].map((node) => {
-      if (node.segmentId == entity.segmentId) {
+      if (node.segmentId == segment.segmentId) {
         return { ...node, start: translate.x / 8 };
       } else {
         return node;

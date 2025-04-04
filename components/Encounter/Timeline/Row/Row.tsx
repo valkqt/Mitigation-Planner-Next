@@ -106,7 +106,7 @@ export function Row({ ability, setNodes, nodes, isActive }: RowProps) {
           ability={ability}
           onRightClick={() => removeSegment(entity.segmentId)}
           key={entity.segmentId}
-          entity={entity}
+          segment={entity}
           nodes={nodes}
           setNodes={setNodes}
         />
