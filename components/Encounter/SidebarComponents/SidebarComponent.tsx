@@ -6,10 +6,9 @@ import { FlagActivationTypes, useActivationFlagsContext } from "@/contexts";
 
 interface SidebarProps {
   jobs: Job[];
-  abilities: PlayerSkill[];
 }
 
-export function SidebarComponent({ jobs, abilities }: SidebarProps) {
+export function SidebarComponent({ jobs }: SidebarProps) {
   const [showSidebar, setShowSidebar] = useState(false);
   const [, setFlags] = useActivationFlagsContext();
 
@@ -51,7 +50,6 @@ export function SidebarComponent({ jobs, abilities }: SidebarProps) {
 
       <Sidebar
         jobs={jobs}
-        abilities={abilities}
         onAbilityFilter={toggleAbility}
         onAbilityTypeFilter={handleAbilityFilter}
         onJobSelection={handleJobSelection}

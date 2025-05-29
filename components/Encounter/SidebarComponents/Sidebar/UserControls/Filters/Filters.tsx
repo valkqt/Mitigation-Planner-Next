@@ -1,10 +1,9 @@
 import css from "./Filters.module.css";
 import SingleFilter from "./SingleFilter/SingleFilter";
-import { PlayerSkill, PlayerSkillType, SkillTarget } from "@/resources/index";
+import { PlayerSkillType, SkillTarget } from "@/resources/index";
 import LevelFilter from "./LevelFilter/LevelFilter";
 
 interface FiltersProps {
-  abilities: PlayerSkill[];
   onSkillTargetToggle: (filter: SkillTarget | PlayerSkillType) => void;
   onLevelFilter: (threshold: number) => void;
 }

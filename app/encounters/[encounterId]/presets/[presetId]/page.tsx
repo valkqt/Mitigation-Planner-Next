@@ -1,23 +1,25 @@
 "use client";
 
-import Encounter from "@/components/Encounter/Encounter";
+import { Encounter } from "@/components/Encounter/";
 import {
   ActivationFlagsContextProvider,
   MouseContextProvider,
 } from "@/contexts";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
-import { Suspense } from "react";
 
 export default function Page() {
   const params = useParams<{ encounterId; presetId }>();
-
+  const queryClient = new QueryClient();
   return (
     <ActivationFlagsContextProvider>
       <MouseContextProvider>
-        <Encounter
-          encounterId={params.encounterId}
-          presetId={params.presetId ?? "new"}
-        />
+        <QueryClientProvider client={queryClient}>
+          <Encounter
+            encounterId={params.encounterId}
+            presetId={params.presetId ?? "new"}
+          />
+        </QueryClientProvider>
       </MouseContextProvider>
     </ActivationFlagsContextProvider>
   );

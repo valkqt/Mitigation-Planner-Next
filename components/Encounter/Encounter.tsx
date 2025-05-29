@@ -1,14 +1,6 @@
 import { useEffect, useState } from "react";
-import {
-  api,
-  PlayerSkill,
-  Job,
-  Preset,
-  defaultPreset,
-} from "@/resources/index";
+import { api, PlayerSkill, Job, Preset } from "@/resources/index";
 import css from "./Encounter.module.css";
-
-// temporary shit
 
 import { useSession } from "next-auth/react";
 import { Encounter as Fight } from "@/resources/index";
@@ -19,36 +11,33 @@ import { CustomHeader } from "../CustomHeader/CustomHeader";
 import { useParams } from "next/navigation";
 import { UserTimeline } from "./UserTimeline/UserTimeline";
 import { useCurrentPreset } from "@/hooks/useCurrentPreset";
-import { getPresetById } from "@/resources/methods/api/getEncounterById";
-
+import { useQuery } from "@tanstack/react-query";
+import { encounterQueryOptions } from "@/resources/query/encounter";
 interface EncounterProps {
   encounterId: string;
   presetId: string;
 }
 
-export default function Encounter({ encounterId, presetId }: EncounterProps) {
+export function Encounter({ encounterId, presetId }: EncounterProps) {
   // TODO: look into dependencies of "ability" state and possible refactors
+  const params = useParams();
   const [abilities, setAbilities] = useState<PlayerSkill[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
-  const [encounter, setEncounter] = useState<Fight>();
-  const [userPresets, setUserPresets] = useState<Preset[]>([]);
   const preset = useCurrentPreset();
   const [currentPreset, setCurrentPreset] = useState<Preset>(preset);
   const { data: session, status } = useSession();
-  const params = useParams();
+  const {
+    data: encounter,
+    isLoading,
+    isError,
+  } = useQuery(
+    encounterQueryOptions({
+      encounterId: encounterId,
+      enabled: encounterId !== null,
+    })
+  );
 
   useEffect(() => {
-    if (session && userPresets.length === 0) {
-      api.get(`/users/${session.userId}/presets`).then((res) => {
-        setUserPresets([...userPresets, ...res.data]);
-      });
-    }
-  }, [session]);
-
-  useEffect(() => {
-    api.get(`/encounters/${encounterId}`).then((res) => {
-      setEncounter(res.data);
-    });
     api.get("/jobs").then((res) => {
       setJobs(res.data);
       let skills = [];
@@ -84,7 +73,6 @@ export default function Encounter({ encounterId, presetId }: EncounterProps) {
           encounterId={encounter.id}
           selectedPreset={currentPreset}
           setSelectedPreset={setCurrentPreset}
-          userPresets={userPresets}
         />
       </div>
       <Timeline encounter={encounter} />
@@ -94,7 +82,7 @@ export default function Encounter({ encounterId, presetId }: EncounterProps) {
         setNodes={preset.setSegments}
         jobs={jobs}
       />
-      <SidebarComponent jobs={jobs} abilities={abilities} />
+      <SidebarComponent jobs={jobs} />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Job, PlayerSkill } from "@/resources/types";
+import { Job } from "@/resources/types";
 import css from "./AbilityFilter.module.css";
 import SingleAbility from "../SingleAbility/SingleAbility";
 import { useState } from "react";
@@ -7,7 +7,6 @@ import { jobMap } from "@/resources/index";
 import { Select } from "@/components/CustomSelect/CustomSelect";
 
 interface AbilityFilterProps {
-  abilities: PlayerSkill[];
   onAbilityToggle: (abilityId: number) => void;
   jobs: Job[];
 }
@@ -29,7 +28,7 @@ export default function AbilityFilter({
           externalStateSetter={setSelectedJob}
         />
 
-        {/* <div onClick={() => setOpen(!open)}>
+        <div onClick={() => setOpen(!open)}>
           <div className={classNames({ toggleDisplay: !open }, css.dropdown)}>
             {jobs.map((job) => (
               <div
@@ -42,7 +41,7 @@ export default function AbilityFilter({
               </div>
             ))}
           </div>
-        </div> */}
+        </div>
       </div>
       {selectedJob.skills.map((ability) => (
         <SingleAbility

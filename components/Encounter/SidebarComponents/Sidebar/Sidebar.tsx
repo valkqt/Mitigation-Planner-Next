@@ -1,16 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import css from "./Sidebar.module.css";
 import classNames from "classnames";
-import { useSession } from "next-auth/react";
-import { createPortal } from "react-dom";
 import { Job, PlayerSkill, PlayerSkillType, SkillTarget } from "@/resources";
 import { UserControls } from "./UserControls/UserControls";
 
 interface SidebarProps {
   jobs: Job[];
-  abilities: PlayerSkill[];
   onJobSelection: (jobId: number) => void;
   onAbilityFilter: (abilityId: number) => void;
   onAbilityTypeFilter: (filter: SkillTarget | PlayerSkillType) => void;
@@ -21,7 +17,6 @@ interface SidebarProps {
 
 export default function Sidebar({
   jobs,
-  abilities,
   onJobSelection,
   onAbilityFilter,
   onAbilityTypeFilter,
@@ -34,7 +29,6 @@ export default function Sidebar({
       {show && (
         <UserControls
           jobs={jobs}
-          abilities={abilities}
           onJobToggle={onJobSelection}
           onAbilityToggle={onAbilityFilter}
           onSkillTargetToggle={onAbilityTypeFilter}
