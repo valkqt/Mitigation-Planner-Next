@@ -80,6 +80,6 @@ export interface GlobalFlags {
   jobs: Record<number, boolean>;
   abilities: Record<number, boolean>;
   target: Record<string, boolean>;
-  type: Record<string, boolean>;
+  skillType: Record<string, boolean>;
   level: number;
 }

@@ -25,9 +25,22 @@ interface ActionWithString {
   payload: string;
 }
 
-export type FlagActivationAction = ActionWithNumber | ActionWithString;
+interface ReplaceFlagsAction {
+  type: string;
+  payload: GlobalFlags;
+}
+
+export type FlagActivationAction =
+  | ActionWithNumber
+  | ActionWithString
+  | ReplaceFlagsAction;
 
 function reducer(state: GlobalFlags, action: FlagActivationAction) {
+  
+  if (typeof(action.payload) === "object") {
+    return action.payload;
+  }
+
   if (action.type === "toggleJobFlag") {
     return {
       ...state,
@@ -58,9 +71,9 @@ function reducer(state: GlobalFlags, action: FlagActivationAction) {
   if (action.type === "togglePlayerSkillTypeFlag") {
     return {
       ...state,
-      type: {
-        ...state.type,
-        [action.payload]: !state.type[action.payload],
+      skillType: {
+        ...state.skillType,
+        [action.payload]: !state.skillType[action.payload],
       },
     };
   }
@@ -76,7 +89,6 @@ function reducer(state: GlobalFlags, action: FlagActivationAction) {
 export const ActivationFlagsContextProvider = ({
   children,
 }: PropsWithChildren) => {
-  // const [flags, setFlags] = useState<GlobalFlags>(defaultFlags);
   const [state, dispatch] = useReducer(reducer, defaultFlags);
 
   return (

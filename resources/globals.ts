@@ -1,5 +1,5 @@
 import { createSnapModifier } from "@dnd-kit/modifiers";
-import { GlobalFlags, Segment } from "./index";
+import { GlobalFlags, Preset, Segment } from "./index";
 
 export const gridSize = 8;
 export const defaultCoordinates = {
@@ -82,7 +82,7 @@ export const defaultFlags: GlobalFlags = {
     13: true,
   },
   target: { ALLY: false, RAID: true, SELF: false },
-  type: { HEALING: false, MITIGATION: true, OTHER: false },
+  skillType: { HEALING: false, MITIGATION: true, OTHER: false },
   level: maxLevel,
 };
 
@@ -100,6 +100,13 @@ export const defaultSegments: Record<number, Segment[]> = {
   11: [],
   12: [],
   13: [],
+};
+
+export const defaultPreset: Preset = {
+  id: "new",
+  name: "New Preset",
+  flags: defaultFlags,
+  segments: defaultSegments,
 };
 
 export enum Axis {

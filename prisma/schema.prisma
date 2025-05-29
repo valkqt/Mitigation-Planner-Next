@@ -53,7 +53,6 @@ model Node {
 model Encounter {
   id        Int    @id @default(autoincrement())
   name      String
-  expansion Expansion
   level     Int
   duration  Int
   mechanics Node[]

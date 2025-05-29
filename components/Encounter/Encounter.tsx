@@ -1,13 +1,10 @@
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   api,
   PlayerSkill,
   Job,
   Preset,
-  Segment,
-  defaultSegments,
-  defaultFlags,
-  GlobalFlags,
+  defaultPreset,
 } from "@/resources/index";
 import css from "./Encounter.module.css";
 
@@ -22,6 +19,7 @@ import { CustomHeader } from "../CustomHeader/CustomHeader";
 import { useParams } from "next/navigation";
 import { UserTimeline } from "./UserTimeline/UserTimeline";
 import { useCurrentPreset } from "@/hooks/useCurrentPreset";
+import { getPresetById } from "@/resources/methods/api/getEncounterById";
 
 interface EncounterProps {
   encounterId: string;
@@ -35,18 +33,12 @@ export default function Encounter({ encounterId, presetId }: EncounterProps) {
   const [encounter, setEncounter] = useState<Fight>();
   const [userPresets, setUserPresets] = useState<Preset[]>([]);
   const preset = useCurrentPreset();
-  const [currentPreset, setCurrentPreset] = useState<Preset>({
-    id: "new",
-    name: "New Preset",
-    flags: defaultFlags,
-    segments: defaultSegments,
-  });
+  const [currentPreset, setCurrentPreset] = useState<Preset>(preset);
   const { data: session, status } = useSession();
   const params = useParams();
 
   useEffect(() => {
     if (session && userPresets.length === 0) {
-      console.log("fetch presets");
       api.get(`/users/${session.userId}/presets`).then((res) => {
         setUserPresets([...userPresets, ...res.data]);
       });
@@ -67,8 +59,13 @@ export default function Encounter({ encounterId, presetId }: EncounterProps) {
     });
     if (params.presetId !== "new") {
       api.get(`/presets/${params.presetId}`).then((res) => {
-        if (res.data) {
-          setCurrentPreset(res.data);
+        const result: Preset = res.data;
+        if (result) {
+          preset.setId(result.id);
+          preset.setName(result.name);
+          preset.setSegments(result.segments);
+          preset.setFlags({ type: "replace", payload: result.flags });
+          setCurrentPreset(result);
         }
       });
     }
@@ -80,14 +77,16 @@ export default function Encounter({ encounterId, presetId }: EncounterProps) {
 
   return (
     <div className={css.container}>
-      <CustomHeader content={encounter.name} />
-      <Presets
-        nodes={preset.segments}
-        encounterId={encounter.id}
-        selectedPreset={currentPreset}
-        setSelectedPreset={setCurrentPreset}
-        userPresets={userPresets}
-      />
+      <div className="headerFiller">
+        <CustomHeader content={encounter.name} />
+        <Presets
+          nodes={preset.segments}
+          encounterId={encounter.id}
+          selectedPreset={currentPreset}
+          setSelectedPreset={setCurrentPreset}
+          userPresets={userPresets}
+        />
+      </div>
       <Timeline encounter={encounter} />
       <UserTimeline
         abilities={abilities}

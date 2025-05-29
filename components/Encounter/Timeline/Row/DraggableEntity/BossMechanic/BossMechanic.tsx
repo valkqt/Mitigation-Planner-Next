@@ -15,7 +15,7 @@ export default function BossMechanic({ node }: BossMechanicRowProps) {
     <div
       className={css.container}
       style={{
-        width: node.duration * gridSize + "px",
+        // width: node.duration * gridSize + "px",
         left: 64 + node.timestamp * gridSize,
       }}
       onMouseOver={() => setIsHover(true)}

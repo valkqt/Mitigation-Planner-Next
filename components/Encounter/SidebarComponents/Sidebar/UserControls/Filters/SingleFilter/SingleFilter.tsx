@@ -19,7 +19,7 @@ export default function SingleFilter({
     if (label in SkillTarget) {
       return flags.target[label];
     } else {
-      return flags.type[label];
+      return flags.skillType[label];
     }
   }
   return (

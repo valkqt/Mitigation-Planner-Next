@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { Prisma } from "@prisma/client";
+import { Preset, Prisma } from "@prisma/client";
 
 export async function savePreset(
   name: string,
@@ -7,7 +7,7 @@ export async function savePreset(
   nodes: Prisma.JsonObject,
   encounterId: number,
   userId: string
-) {
+): Promise<Preset> {
   const preset = await prisma.preset.create({
     data: {
       name: name,

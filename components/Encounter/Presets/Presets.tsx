@@ -12,6 +12,7 @@ import classNames from "classnames";
 import { useSession } from "next-auth/react";
 import { useActivationFlagsContext } from "@/contexts";
 import { useParams, useRouter } from "next/navigation";
+import { useCurrentPreset } from "@/hooks/useCurrentPreset";
 
 interface PresetProps {
   nodes: Record<number, Segment[]>;
@@ -31,8 +32,10 @@ export function Presets({
   const { data: session, status } = useSession();
   const [flags, _] = useActivationFlagsContext();
   const router = useRouter();
+  const preset = useCurrentPreset();
 
   useEffect(() => {
+    console.log(selectedPreset);
     router.push(`/encounters/${encounterId}/presets/${selectedPreset.id}`);
   }, [selectedPreset]);
 
@@ -44,12 +47,14 @@ export function Presets({
       encounterId: encounterId,
       userId: session?.userId,
     });
+
+    console.log(session?.userId);
   }
 
   return (
     <div className={css.container}>
       <Select
-        options={userPresets}
+        options={[...userPresets, preset.object]}
         externalState={selectedPreset}
         externalStateSetter={setSelectedPreset}
       />

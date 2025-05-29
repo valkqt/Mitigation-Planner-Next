@@ -18,6 +18,7 @@ export function UserTimeline({
 }: UserTimelineProps) {
   const [flags, _] = useActivationFlagsContext();
 
+
   function isActive(ability: PlayerSkill): boolean {
     return (
       !flags.abilities[ability.id] ||
@@ -26,7 +27,7 @@ export function UserTimeline({
           flags.jobs[job.id] && job.skills.some((a) => a.id == ability.id)
       ) ||
       !flags.target[ability.target] ||
-      !flags.type[ability.type] ||
+      !flags.skillType[ability.type] ||
       !(ability.level <= flags.level)
     );
   }

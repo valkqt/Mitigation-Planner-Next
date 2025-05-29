@@ -31,7 +31,6 @@
   font-size: 12px;
   white-space: nowrap;
   height: 100%;
-  /* transform: rotate(-39.5deg); */
   position: absolute;
   padding-left: 8px;
   top: 0px;
@@ -49,4 +48,10 @@
   --tank-hover: "";
   --inactive: rgb(70, 70, 70);
   --inactive-hover: rgb(90, 90, 90);
+}
+
+.headerFiller {
+  position: relative;
+  z-index: 300;
+  background-color: hsl(240, 4%, 10%);
 }

@@ -14,12 +14,10 @@ export default function Page() {
   return (
     <ActivationFlagsContextProvider>
       <MouseContextProvider>
-        <Suspense fallback={<div>cant load encounter</div>}>
-          <Encounter
-            encounterId={params.encounterId}
-            presetId={params.presetId ?? "new"}
-          />
-        </Suspense>
+        <Encounter
+          encounterId={params.encounterId}
+          presetId={params.presetId ?? "new"}
+        />
       </MouseContextProvider>
     </ActivationFlagsContextProvider>
   );
