@@ -1,17 +1,10 @@
-import { Suspense, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Select } from "@/components/CustomSelect/CustomSelect";
 import css from "./Presets.module.css";
-import {
-  api,
-  GlobalFlags,
-  Preset,
-  Segment,
-  defaultSegments,
-} from "@/resources";
-import classNames from "classnames";
+import { api, Preset, Segment } from "@/resources";
 import { useSession } from "next-auth/react";
 import { useActivationFlagsContext } from "@/contexts";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useCurrentPreset } from "@/hooks/useCurrentPreset";
 
 interface PresetProps {
@@ -35,7 +28,6 @@ export function Presets({
   const preset = useCurrentPreset();
 
   useEffect(() => {
-    console.log(selectedPreset);
     router.push(`/encounters/${encounterId}/presets/${selectedPreset.id}`);
   }, [selectedPreset]);
 
@@ -47,18 +39,15 @@ export function Presets({
       encounterId: encounterId,
       userId: session?.userId,
     });
-
-    console.log(session?.userId);
   }
 
   return (
     <div className={css.container}>
       <Select
-        options={[...userPresets, preset.object]}
+        options={userPresets}
         externalState={selectedPreset}
         externalStateSetter={setSelectedPreset}
       />
-
       {session?.user && (
         <>
           <button onClick={() => createPreset()}>Save</button>
