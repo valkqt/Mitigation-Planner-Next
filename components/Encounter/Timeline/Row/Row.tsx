@@ -47,7 +47,6 @@ export function Row({ ability, setNodes, nodes, isActive }: RowProps) {
         (position + ability.cooldown > segment.start &&
           position + ability.cooldown < segment.start + segment.length)
     );
-    console.log(newSegment);
     if (newSegment) {
       const alreadyExists2 = activeSegments.find(
         (node) =>

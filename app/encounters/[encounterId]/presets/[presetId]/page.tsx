@@ -17,7 +17,7 @@ export default function Page() {
         <QueryClientProvider client={queryClient}>
           <Encounter
             encounterId={params.encounterId}
-            presetId={params.presetId ?? "new"}
+            presetId={params.presetId}
           />
         </QueryClientProvider>
       </MouseContextProvider>

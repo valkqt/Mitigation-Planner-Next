@@ -10,7 +10,6 @@ export const encounterQueryOptions = ({ encounterId, enabled }) =>
 
 async function getEncounter({ queryKey }) {
   const [_, encounterId] = queryKey;
-  console.log(`/encounters/${encounterId}`);
   const { data } = await api.get(`/encounters/${encounterId}`);
   return data;
 }

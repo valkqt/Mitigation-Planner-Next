@@ -8,12 +8,12 @@ export function useCurrentPreset() {
   const [flags, setFlags] = useActivationFlagsContext();
   const [name, setName] = useState<string>("New Preset");
   const [id, setId] = useState<string>("new");
-  const object = {
+  const [object, setObject] = useState<Preset>({
     id: id,
     name: name,
     flags: flags,
     segments: segments,
-  };
+  });
 
   return {
     id,
@@ -25,5 +25,6 @@ export function useCurrentPreset() {
     flags,
     setFlags,
     object,
+    setObject,
   };
 }

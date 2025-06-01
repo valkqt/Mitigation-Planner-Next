@@ -39,8 +39,10 @@ export function Presets({
   );
 
   useEffect(() => {
-    router.push(`/encounters/${encounterId}/presets/${selectedPreset.id}`);
-  }, [selectedPreset]);
+    router.push(`/encounters/${encounterId}/presets/axvznk086b2rky8p7kb3freh`);
+
+    // router.push(`/encounters/${encounterId}/presets/${selectedPreset.id}`);
+  }, []);
 
   function createPreset() {
     api.post("/presets", {

@@ -6,21 +6,10 @@ import { PlayerSkillType, SkillTarget, Job } from "@/resources/index";
 
 interface UserControlsProps {
   jobs: Job[];
-  onJobToggle: (jobId: number) => void;
-  onAbilityToggle: (abilityId: number) => void;
-  onSkillTargetToggle: (filter: SkillTarget | PlayerSkillType) => void;
-  onLevelFilter: (threshold: number) => void;
   setShow: (state: boolean) => void;
 }
 
-export function UserControls({
-  jobs,
-  onJobToggle,
-  onAbilityToggle,
-  onSkillTargetToggle,
-  onLevelFilter,
-  setShow,
-}: UserControlsProps) {
+export function UserControls({ jobs, setShow }: UserControlsProps) {
   return (
     <div className={css.UserControls}>
       <div className={css.controlHeader}>
@@ -29,12 +18,9 @@ export function UserControls({
           &#10006;
         </div>
       </div>
-      <Filters
-        onSkillTargetToggle={onSkillTargetToggle}
-        onLevelFilter={onLevelFilter}
-      />
-      <JobSelection jobs={jobs} onToggle={onJobToggle} />
-      <AbilityFilter onAbilityToggle={onAbilityToggle} jobs={jobs} />
+      <Filters />
+      <JobSelection jobs={jobs} />
+      <AbilityFilter jobs={jobs} />
     </div>
   );
 }

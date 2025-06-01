@@ -1,25 +1,30 @@
 import classNames from "classnames";
 import css from "./SingleFilter.module.css";
-import { useActivationFlagsContext } from "@/contexts/index";
 import { PlayerSkillType, SkillTarget } from "@/resources/index";
+import { usePresetStore } from "@/resources/store/presetStore";
+import { FlagsHelper } from "@/resources/store/presetStoreHelpers";
 
 interface SingleFilterProps {
   label: SkillTarget | PlayerSkillType;
-  onClickToggle: (lbl: SkillTarget | PlayerSkillType) => void;
 }
-export default function SingleFilter({
-  label,
-  onClickToggle,
-}: SingleFilterProps) {
-  const [flags] = useActivationFlagsContext();
-
+export default function SingleFilter({ label }: SingleFilterProps) {
+  const presetStore = usePresetStore();
+  const preset = presetStore.preset;
   const text = label.charAt(0) + label.substring(1).toLowerCase();
+
+  function toggleFilter(label: string) {
+    if (label in SkillTarget) {
+      presetStore.setFlags(FlagsHelper.targetType(label, preset.flags));
+    } else {
+      presetStore.setFlags(FlagsHelper.abilityType(label, preset.flags));
+    }
+  }
 
   function toggleCheckmark() {
     if (label in SkillTarget) {
-      return flags.target[label];
+      return preset.flags.target[label];
     } else {
-      return flags.skillType[label];
+      return preset.flags.skillType[label];
     }
   }
   return (
@@ -28,7 +33,7 @@ export default function SingleFilter({
         css.filter,
         classNames({ [css.inactiveFilter]: !toggleCheckmark() })
       )}
-      onClick={() => onClickToggle(label)}
+      onClick={() => toggleFilter(label)}
     >
       {text}
     </div>

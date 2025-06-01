@@ -7,14 +7,10 @@ import { jobMap } from "@/resources/index";
 import { Select } from "@/components/CustomSelect/CustomSelect";
 
 interface AbilityFilterProps {
-  onAbilityToggle: (abilityId: number) => void;
   jobs: Job[];
 }
 
-export default function AbilityFilter({
-  onAbilityToggle,
-  jobs,
-}: AbilityFilterProps) {
+export default function AbilityFilter({ jobs }: AbilityFilterProps) {
   const [open, setOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState<Job>(jobs[0]);
   return (
@@ -44,11 +40,7 @@ export default function AbilityFilter({
         </div>
       </div>
       {selectedJob.skills.map((ability) => (
-        <SingleAbility
-          ability={ability}
-          onToggle={onAbilityToggle}
-          key={ability.id}
-        />
+        <SingleAbility ability={ability} key={ability.id} />
       ))}
     </div>
   );

@@ -1,13 +1,16 @@
-import { useActivationFlagsContext } from "@/contexts/index";
 import { levelArray } from "@/resources/index";
-import css from "./LevelFilter.module.css";
+import { usePresetStore } from "@/resources/store/presetStore";
+import { FlagsHelper } from "@/resources/store/presetStoreHelpers";
 
-interface LevelFilterProps {
-  onLevelFilter: (threshold: number) => void;
-}
+export default function LevelFilter() {
+  // const [flags] = useActivationFlagsContext();
+  const presetStore = usePresetStore();
+  const preset = presetStore.preset;
 
-export default function LevelFilter({ onLevelFilter }: LevelFilterProps) {
-  const [flags] = useActivationFlagsContext();
+  function filterByLevel(threshold: number): void {
+    presetStore.setFlags(FlagsHelper.level(threshold, preset.flags));
+  }
+
   return (
     <div>
       <input
@@ -19,35 +22,13 @@ export default function LevelFilter({ onLevelFilter }: LevelFilterProps) {
         onChange={(e) => {
           try {
             const levelCap = parseInt(e.target.value);
-            onLevelFilter(levelCap);
+            filterByLevel(levelCap);
           } catch {
             console.log("bro");
           }
         }}
       />
-      <label htmlFor="level">{flags.level}</label>
+      <label htmlFor="level">{preset.flags.level}</label>
     </div>
-    // <select
-    //   className={css.dropdown}
-    //   onChange={(e) => {
-    //     try {
-    //       const levelCap = parseInt(e.target.value);
-    //       onLevelFilter(levelCap);
-    //     } catch {
-    //       console.error("bro");
-    //     }
-    //   }}
-    // >
-    //   {levelArray.map((level) => (
-    //     <option
-    //       value={level}
-    //       key={level}
-    //       defaultValue={flags.level}
-    //       className={css.option}
-    //     >
-    //       {level}
-    //     </option>
-    //   ))}
-    // </select>
   );
 }

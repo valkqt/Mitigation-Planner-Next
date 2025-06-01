@@ -1,34 +1,39 @@
 import { Row } from "@/components";
 import { useActivationFlagsContext } from "@/contexts";
+import { usePresetStore } from "@/resources/store/presetStore";
 import { Job, PlayerSkill, Segment } from "@/resources/types";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface UserTimelineProps {
-  abilities: PlayerSkill[];
   nodes: Record<number, Segment[]>;
   setNodes: Dispatch<SetStateAction<Record<number, Segment[]>>>;
   jobs: Job[];
 }
 
-export function UserTimeline({
-  abilities,
-  nodes,
-  setNodes,
-  jobs,
-}: UserTimelineProps) {
-  const [flags, _] = useActivationFlagsContext();
+export function UserTimeline({ nodes, setNodes, jobs }: UserTimelineProps) {
+  // const [flags, _] = useActivationFlagsContext();
+  const [abilities, setAbilities] = useState<PlayerSkill[]>([]);
+  const preset = usePresetStore().preset;
 
+  useEffect(() => {
+    let skills: PlayerSkill[] = [];
+    jobs.forEach((job) => {
+      skills = skills.concat(job.skills);
+    });
+    setAbilities(skills);
+  }, []);
 
   function isActive(ability: PlayerSkill): boolean {
     return (
-      !flags.abilities[ability.id] ||
+      !preset.flags.abilities[ability.id] ||
       !jobs.some(
         (job) =>
-          flags.jobs[job.id] && job.skills.some((a) => a.id == ability.id)
+          preset.flags.jobs[job.id] &&
+          job.skills.some((a) => a.id == ability.id)
       ) ||
-      !flags.target[ability.target] ||
-      !flags.skillType[ability.type] ||
-      !(ability.level <= flags.level)
+      !preset.flags.target[ability.target] ||
+      !preset.flags.skillType[ability.type] ||
+      !(ability.level <= preset.flags.level)
     );
   }
   return (

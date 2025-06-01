@@ -8,6 +8,7 @@ export async function GET(
   const { presetId } = await params;
 
   try {
+    console.log(presetId, "mrow");
     const encounter = await getPresetById(presetId);
     return await Response.json(encounter);
   } catch {
