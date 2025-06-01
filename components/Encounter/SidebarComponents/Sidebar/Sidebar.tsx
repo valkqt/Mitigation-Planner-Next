@@ -2,7 +2,7 @@
 
 import css from "./Sidebar.module.css";
 import classNames from "classnames";
-import { Job, PlayerSkillType, SkillTarget } from "@/resources";
+import { Job } from "@/resources";
 import { UserControls } from "./UserControls/UserControls";
 
 interface SidebarProps {

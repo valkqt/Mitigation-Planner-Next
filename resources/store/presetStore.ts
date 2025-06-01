@@ -23,10 +23,10 @@ export const usePresetStore = create<PresetStore>((set) => ({
     segments: defaultSegments,
   },
   replace: (preset) => set(() => ({ preset: preset })),
-  setFlags: (flags) =>
-    set((state) => ({ preset: { ...state.preset, flags: flags } })),
   setName: (name) =>
     set((state) => ({ preset: { ...state.preset, name: name } })),
+  setFlags: (flags) =>
+    set((state) => ({ preset: { ...state.preset, flags: flags } })),
   setSegments: (segments) =>
     set((state) => ({ preset: { ...state.preset, segments: segments } })),
 }));

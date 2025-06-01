@@ -3,7 +3,6 @@ import { usePresetStore } from "@/resources/store/presetStore";
 import { FlagsHelper } from "@/resources/store/presetStoreHelpers";
 
 export default function LevelFilter() {
-  // const [flags] = useActivationFlagsContext();
   const presetStore = usePresetStore();
   const preset = presetStore.preset;
 

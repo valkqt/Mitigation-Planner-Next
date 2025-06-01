@@ -21,10 +21,10 @@ interface EncounterProps {
 export function Encounter({ encounterId, presetId }: EncounterProps) {
   // TODO: look into dependencies of "ability" state and possible refactors
   const params = useParams();
-  const preset = useCurrentPreset();
   // const [currentPreset, setCurrentPreset] = useState<Preset>(preset);
   const { data: session, status } = useSession();
   const presetStore = usePresetStore();
+  const preset = presetStore.preset;
 
   // not adding isLoading and isError for now due to naming conflicts
   const [encounterQuery, jobsQuery, presetQuery] = useQueries({
@@ -39,7 +39,9 @@ export function Encounter({ encounterId, presetId }: EncounterProps) {
         queryFn: async ({ queryKey }) => {
           const [, presetId] = queryKey;
           const { data } = await api.get(`/presets/${presetId}`);
-          presetStore.setName(data.name);
+          if (data) {
+            presetStore.replace(data);
+          }
           return data;
         },
       },
@@ -69,14 +71,14 @@ export function Encounter({ encounterId, presetId }: EncounterProps) {
         <Presets
           nodes={preset.segments}
           encounterId={encounterQuery.data.id}
-          selectedPreset={preset.object}
-          setSelectedPreset={preset.setObject}
+          selectedPreset={preset}
+          setSelectedPreset={presetStore.replace}
         />
       </div>
       <Timeline encounter={encounterQuery.data} />
       <UserTimeline
         nodes={preset.segments}
-        setNodes={preset.setSegments}
+        setNodes={presetStore.setSegments}
         jobs={jobsQuery.data}
       />
       <SidebarComponent jobs={jobsQuery.data} />

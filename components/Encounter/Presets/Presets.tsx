@@ -25,7 +25,8 @@ export function Presets({
   const { data: session, status } = useSession();
   const [flags, _] = useActivationFlagsContext();
   const router = useRouter();
-  const preset = useCurrentPreset();
+
+  console.log(selectedPreset);
 
   const {
     data: userPresets,
@@ -39,10 +40,10 @@ export function Presets({
   );
 
   useEffect(() => {
-    router.push(`/encounters/${encounterId}/presets/axvznk086b2rky8p7kb3freh`);
+    // router.push(`/encounters/${encounterId}/presets/axvznk086b2rky8p7kb3freh`);
 
-    // router.push(`/encounters/${encounterId}/presets/${selectedPreset.id}`);
-  }, []);
+    router.push(`/encounters/${encounterId}/presets/${selectedPreset.id}`);
+  }, [selectedPreset]);
 
   function createPreset() {
     api.post("/presets", {

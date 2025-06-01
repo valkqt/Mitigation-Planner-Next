@@ -40,6 +40,7 @@ export class FlagsHelper {
       },
     };
   }
+
   static level(threshold: number, flags: GlobalFlags): GlobalFlags {
     return {
       ...flags,
