@@ -1,16 +1,13 @@
 import { Row } from "@/components";
 import { usePresetStore } from "@/resources/store/presetStore";
-import { Job, PlayerSkill, Segment } from "@/resources/types";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Job, PlayerSkill } from "@/resources/types";
+import { useEffect, useState } from "react";
 
 interface UserTimelineProps {
-  nodes: Record<number, Segment[]>;
-  setNodes: Dispatch<SetStateAction<Record<number, Segment[]>>>;
   jobs: Job[];
 }
 
-export function UserTimeline({ nodes, setNodes, jobs }: UserTimelineProps) {
-  // const [flags, _] = useActivationFlagsContext();
+export function UserTimeline({ jobs }: UserTimelineProps) {
   const [abilities, setAbilities] = useState<PlayerSkill[]>([]);
   const preset = usePresetStore().preset;
 
@@ -43,8 +40,6 @@ export function UserTimeline({ nodes, setNodes, jobs }: UserTimelineProps) {
             key={ability.id}
             ability={ability}
             isActive={isActive(ability)}
-            nodes={nodes}
-            setNodes={setNodes}
           />
         );
       })}

@@ -5,17 +5,19 @@ import { DraggableGridComponent } from "@/components/index";
 import { useActivationFlagsContext, useMouseContext } from "@/contexts/index";
 import css from "./Row.module.css";
 import { AbilityIcon } from "./AbilityIcon/AbilityIcon";
+import { usePresetStore } from "@/resources/store/presetStore";
 
 interface RowProps {
   ability: PlayerSkill;
-  setNodes: (node: Record<number, Segment[]>) => void;
-  nodes: Record<number, Segment[]>;
   isActive: boolean;
 }
 
-export function Row({ ability, setNodes, nodes, isActive }: RowProps) {
+export function Row({ ability, isActive }: RowProps) {
   const mouse = useMouseContext();
-  const activeSegments = nodes[ability.id];
+  const presetStore = usePresetStore();
+  const preset = presetStore.preset;
+
+  const activeSegments = preset.segments[ability.id];
 
   function GenerateRandomString(): string {
     return Array.from(Array(20), () =>
@@ -23,8 +25,8 @@ export function Row({ ability, setNodes, nodes, isActive }: RowProps) {
     ).join("");
   }
   function removeSegment(id: string) {
-    setNodes({
-      ...nodes,
+    presetStore.setSegments({
+      ...preset.segments,
       [ability.id]: activeSegments.toSpliced(
         activeSegments.findIndex((segment) => segment.segmentId === id),
         1
@@ -58,8 +60,8 @@ export function Row({ ability, setNodes, nodes, isActive }: RowProps) {
       if (alreadyExists2 || position <= 0) {
         return;
       } else {
-        setNodes({
-          ...nodes,
+        presetStore.setSegments({
+          ...preset.segments,
           [ability.id]: [
             ...activeSegments,
             {
@@ -74,8 +76,8 @@ export function Row({ ability, setNodes, nodes, isActive }: RowProps) {
       return;
     }
 
-    setNodes({
-      ...nodes,
+    presetStore.setSegments({
+      ...preset.segments,
       [ability.id]: [
         ...activeSegments,
         {
@@ -106,8 +108,6 @@ export function Row({ ability, setNodes, nodes, isActive }: RowProps) {
           onRightClick={() => removeSegment(entity.segmentId)}
           key={entity.segmentId}
           segment={entity}
-          nodes={nodes}
-          setNodes={setNodes}
         />
       ))}
     </div>

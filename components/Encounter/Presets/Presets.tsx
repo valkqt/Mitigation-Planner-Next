@@ -1,32 +1,22 @@
 import { useEffect } from "react";
 import { Select } from "@/components/CustomSelect/CustomSelect";
 import css from "./Presets.module.css";
-import { api, Preset, Segment } from "@/resources";
+import { api } from "@/resources";
 import { useSession } from "next-auth/react";
-import { useActivationFlagsContext } from "@/contexts";
 import { useRouter } from "next/navigation";
-import { useCurrentPreset } from "@/hooks/useCurrentPreset";
 import { useQuery } from "@tanstack/react-query";
 import { userPresetsQueryOptions } from "@/resources/query/user";
+import { usePresetStore } from "@/resources/store/presetStore";
 
 interface PresetProps {
-  nodes: Record<number, Segment[]>;
   encounterId: number;
-  selectedPreset: Preset;
-  setSelectedPreset: (state: Preset) => void;
 }
 
-export function Presets({
-  nodes,
-  encounterId,
-  selectedPreset,
-  setSelectedPreset,
-}: PresetProps) {
+export function Presets({ encounterId }: PresetProps) {
   const { data: session, status } = useSession();
-  const [flags, _] = useActivationFlagsContext();
   const router = useRouter();
-
-  console.log(selectedPreset);
+  const presetStore = usePresetStore();
+  const preset = presetStore.preset;
 
   const {
     data: userPresets,
@@ -40,16 +30,14 @@ export function Presets({
   );
 
   useEffect(() => {
-    // router.push(`/encounters/${encounterId}/presets/axvznk086b2rky8p7kb3freh`);
-
-    router.push(`/encounters/${encounterId}/presets/${selectedPreset.id}`);
-  }, [selectedPreset]);
+    router.push(`/encounters/${encounterId}/presets/${preset.id}`);
+  }, [preset]);
 
   function createPreset() {
     api.post("/presets", {
       name: "pepe",
-      filters: flags,
-      nodes: nodes,
+      filters: preset.flags,
+      nodes: preset.segments,
       encounterId: encounterId,
       userId: session?.userId,
     });
@@ -59,8 +47,8 @@ export function Presets({
     <div className={css.container}>
       <Select
         options={userPresets ?? []}
-        externalState={selectedPreset}
-        externalStateSetter={setSelectedPreset}
+        externalState={preset}
+        externalStateSetter={presetStore.replace}
       />
       {session?.user && (
         <>

@@ -16,6 +16,7 @@ import {
 } from "@/resources/index";
 import { useMouseContext } from "@/contexts/MouseContext/MouseContext";
 import { init } from "@paralleldrive/cuid2";
+import { usePresetStore } from "@/resources/store/presetStore";
 
 interface DndContextProps {
   activationConstraint?: PointerActivationConstraint;
@@ -27,8 +28,6 @@ interface DndContextProps {
   ability: PlayerSkill;
   onRightClick: () => void;
   segment: Segment;
-  nodes: Record<number, Segment[]>;
-  setNodes: (arr: Record<number, Segment[]>) => void;
 }
 
 interface TranslateState {
@@ -43,8 +42,6 @@ export function DraggableGridComponent({
   style,
   onRightClick,
   segment,
-  nodes,
-  setNodes,
 }: DndContextProps) {
   const [{ translate, initialTranslate }, setTranslate] =
     useState<TranslateState>({
@@ -53,12 +50,14 @@ export function DraggableGridComponent({
     });
   const [isDragging, setIsDragging] = useState(false);
   const mouse = useMouseContext();
+  const presetStore = usePresetStore();
+  const preset = presetStore.preset;
 
   function checkCollision(coordinates: number): Segment | undefined {
     const dragSegmentStart = coordinates / 8;
     const dragSegmentEnd = dragSegmentStart + segment.length;
 
-    const foundNode = nodes[ability.id].find(
+    const foundNode = preset.segments[ability.id].find(
       (node) =>
         node.start < dragSegmentEnd &&
         dragSegmentStart < node.start + node.length &&
@@ -101,8 +100,6 @@ export function DraggableGridComponent({
   function handleDragMove(delta: Coordinates) {
     let translateResult = initialTranslate.x + Math.round(delta.x);
 
-    console.log(initialTranslate.x, Math.round(delta.x));
-
     const newPosition = checkCollision(translateResult);
 
     if (translateResult > 838 * 8 - segment.length * 8) {
@@ -130,7 +127,7 @@ export function DraggableGridComponent({
   }
 
   function updatePosition(): void {
-    const updatedNodes = nodes[ability.id].map((node) => {
+    const updatedNodes = preset.segments[ability.id].map((node) => {
       if (node.segmentId == segment.segmentId) {
         return { ...node, start: translate.x / 8 };
       } else {
@@ -138,7 +135,7 @@ export function DraggableGridComponent({
       }
     });
 
-    setNodes({ ...nodes, [ability.id]: updatedNodes });
+    presetStore.setSegments({ ...preset.segments, [ability.id]: updatedNodes });
   }
 
   function handleDragEnd() {
