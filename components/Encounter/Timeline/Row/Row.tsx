@@ -1,8 +1,7 @@
 import classNames from "classnames";
-import { PlayerSkill, Job, Segment, AbilityStyle } from "@/resources/types";
-import { abilityMap } from "@/resources/index";
+import { PlayerSkill } from "@/resources/types";
 import { DraggableGridComponent } from "@/components/index";
-import { useActivationFlagsContext, useMouseContext } from "@/contexts/index";
+import { useMouseContext } from "@/contexts/index";
 import css from "./Row.module.css";
 import { AbilityIcon } from "./AbilityIcon/AbilityIcon";
 import { usePresetStore } from "@/resources/store/presetStore";

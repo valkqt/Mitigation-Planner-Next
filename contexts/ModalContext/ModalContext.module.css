@@ -1,0 +1,15 @@
+.modalWrapper {
+  background-color: rgba(0, 0, 0, 0.644);
+  position: fixed;
+  width: 100vw;
+  height: 100vw;
+}
+
+.modal {
+  position: absolute;
+  left: 25%;
+  top: 25%;
+  width: 800px;
+  height: 600px;
+  z-index: 1001;
+}

@@ -1,0 +1,19 @@
+.modal {
+  width: 325px;
+  position: fixed;
+  top: 25%;
+  left: calc(50% - 162.5px);
+  padding: 8px;
+  background-color: hsl(240, 4%, 10%);
+  border: 1px solid gray;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: white;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: space-between;
+}

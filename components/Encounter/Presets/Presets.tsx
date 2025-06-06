@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import { Select } from "@/components/CustomSelect/CustomSelect";
 import css from "./Presets.module.css";
-import { api } from "@/resources";
+import { api, defaultFlags, defaultSegments, Preset } from "@/resources";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { userPresetsQueryOptions } from "@/resources/query/user";
 import { usePresetStore } from "@/resources/store/presetStore";
+import { PresetSelect } from "./PresetSelect";
+import { PresetMenu } from "./PresetMenu";
 
 interface PresetProps {
   encounterId: number;
@@ -14,47 +16,30 @@ interface PresetProps {
 
 export function Presets({ encounterId }: PresetProps) {
   const { data: session, status } = useSession();
-  const router = useRouter();
   const presetStore = usePresetStore();
-  const preset = presetStore.preset;
+
+  if (!session?.userId) {
+    return;
+  }
 
   const {
     data: userPresets,
     isLoading,
     isError,
-  } = useQuery(
-    userPresetsQueryOptions({
-      userId: session?.userId,
-      enabled: session !== null,
-    })
-  );
-
-  useEffect(() => {
-    router.push(`/encounters/${encounterId}/presets/${preset.id}`);
-  }, [preset]);
-
-  function createPreset() {
-    api.post("/presets", {
-      name: "pepe",
-      filters: preset.flags,
-      nodes: preset.segments,
-      encounterId: encounterId,
-      userId: session?.userId,
-    });
-  }
+  } = useQuery({
+    queryKey: ["userPresets", session?.userId],
+    queryFn: async () => {
+      const { data } = await api.get(`/users/${session.userId}/presets`);
+      return data;
+    },
+  });
 
   return (
     <div className={css.container}>
-      <Select
-        options={userPresets ?? []}
-        externalState={preset}
-        externalStateSetter={presetStore.replace}
-      />
-      {session?.user && (
-        <>
-          <button onClick={() => createPreset()}>Save</button>
-        </>
+      {userPresets && (
+        <PresetSelect collection={userPresets} encounterId={encounterId} />
       )}
+      {session?.user && <PresetMenu />}
     </div>
   );
 }

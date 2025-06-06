@@ -22,7 +22,7 @@ export function Encounter({ encounterId, presetId }: EncounterProps) {
   const presetStore = usePresetStore();
 
   // not adding isLoading and isError for now due to naming conflicts
-  const [encounterQuery, jobsQuery, presetQuery] = useQueries({
+  const [encounterQuery, jobsQuery] = useQueries({
     queries: [
       encounterQueryOptions({
         encounterId: encounterId,

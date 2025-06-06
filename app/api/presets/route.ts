@@ -3,18 +3,12 @@ import { Prisma } from "@prisma/client";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
-  const { name, filters, nodes, encounterId, userId } = await req.json();
+  const { name, flags, segments, encounterId, userId } = await req.json();
 
-  const flags = filters as Prisma.JsonObject;
-  const segments = nodes as Prisma.JsonObject;
+  const filters = flags as Prisma.JsonObject;
+  const nodes = segments as Prisma.JsonObject;
 
-  // try {
-  const preset = await savePreset(name, flags, segments, encounterId, userId);
-  console.log(preset);
+  const preset = await savePreset(name, filters, nodes, encounterId, userId);
 
   return Response.json(preset);
-  // } catch {
-  //   console.log("brother");
-  //   return Response.json("bro");
-  // }
 }
