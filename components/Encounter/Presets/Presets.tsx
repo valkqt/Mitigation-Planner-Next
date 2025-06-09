@@ -39,7 +39,7 @@ export function Presets({ encounterId }: PresetProps) {
       {userPresets && (
         <PresetSelect collection={userPresets} encounterId={encounterId} />
       )}
-      {session?.user && <PresetMenu />}
+      {session?.user && <PresetMenu encounterId={encounterId} />}
     </div>
   );
 }

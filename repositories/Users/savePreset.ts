@@ -19,3 +19,29 @@ export async function savePreset(
   });
   return preset;
 }
+
+export async function editPreset(
+  id: string,
+  name: string,
+  filters: Prisma.JsonObject,
+  nodes: Prisma.JsonObject,
+  encounterId: number,
+  userId: string
+): Promise<Preset> {
+  const preset = await prisma.preset.update({
+    where: { id: id },
+    data: {
+      name,
+      flags: filters,
+      segments: nodes,
+      encounterId: encounterId,
+      userId,
+    },
+  });
+
+  return preset;
+}
+
+export async function deletePreset(presetId: string): Promise<void> {
+  await prisma.preset.delete({ where: { id: presetId } });
+}

@@ -2,37 +2,86 @@ import { useState } from "react";
 import css from "./PresetMenu.module.css";
 import classNames from "classnames";
 import useClickOutside from "@/hooks/useClickOutside";
-import { useMutation } from "@tanstack/react-query";
-import { api } from "@/resources";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { api, Preset } from "@/resources";
 import { usePresetStore } from "@/resources/store/presetStore";
+import { useSession } from "next-auth/react";
+
+interface PresetMenuProps {
+  encounterId: number;
+}
 
 type MenuAction = {
   name: string;
   action: () => void;
 };
 
-export function PresetMenu() {
+export function PresetMenu({ encounterId }: PresetMenuProps) {
   const [open, setOpen] = useState(false);
   const presetStore = usePresetStore();
   const preset = presetStore.preset;
+  const queryClient = useQueryClient();
+  const { data: session, status } = useSession();
   const options: MenuAction[] = [
     { name: "Save", action: save },
-    { name: "Delete", action: () => {} },
-    { name: "Clone", action: () => {} },
+    { name: "Delete", action: deletePreset },
+    { name: "Clone", action: clonePreset },
     { name: "Favourite", action: () => {} },
   ];
-  const mutation = useMutation({
+  const saveMutation = useMutation({
     mutationFn: () => {
+      if (preset.id !== "new") {
+        return api.put(`/presets/${preset.id}`, { ...preset });
+      }
       return api.post("/presets", { ...preset });
     },
-    onSuccess: (data) => {
-      console.log(data.data);
+    onSuccess: (res) => {
+      console.log(res);
+    },
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: () => {
+      return api.delete(`/presets/${preset.id}`);
+    },
+    onSuccess: (res) => {
+      console.log(res);
     },
   });
 
   function save() {
-    console.log(preset)
-    mutation.mutate();
+    saveMutation.mutate();
+  }
+
+  function deletePreset() {
+    deleteMutation.mutate();
+  }
+
+  function clonePreset() {
+    const newPreset = {
+      id: "new",
+      name: preset.name + " " + "Copy",
+      flags: preset.flags,
+      segments: preset.segments,
+      encounterId: encounterId,
+      userId: session?.userId,
+    };
+
+    queryClient.setQueryData(
+      ["userPresets", session?.userId],
+      (oldData: Preset[]) => {
+        if (!oldData) {
+          return;
+        }
+
+        if (oldData.some((p) => p.id === "new")) {
+          return;
+        }
+        return [...oldData, newPreset];
+      }
+    );
+
+    presetStore.replace(newPreset);
   }
 
   const ref = useClickOutside<HTMLDivElement>(handleClickOutside);
