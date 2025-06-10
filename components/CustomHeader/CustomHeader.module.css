@@ -3,7 +3,7 @@
   margin: 0;
   padding: 2rem 0 1rem;
   flex-basis: 100%;
-  background-color: hsl(240, 4%, 10%);
+  background-color: var(--bg-primary);
   position: relative;
 }
 

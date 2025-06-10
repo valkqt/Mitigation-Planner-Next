@@ -7,5 +7,5 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
-  background-color: hsl(240, 4%, 10%);
+  background-color: var(--bg-primary);
 }

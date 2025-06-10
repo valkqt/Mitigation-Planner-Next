@@ -1,7 +1,7 @@
 .UserControls {
   display: flex;
   flex-direction: column;
-  background-color: hsl(244, 35%, 8%);
+  background-color: var(--bg-secondary);
   flex-grow: 1;
   padding: 0.5rem;
 }

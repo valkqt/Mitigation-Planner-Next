@@ -16,7 +16,7 @@
   position: absolute;
   top: 0;
   left: 100%;
-  background-color: hsl(244, 35%, 8%);
+  background-color: var(--bg-secondary);
   animation: fadeIn 0.2s linear;
   display: flex;
   flex-direction: row;
