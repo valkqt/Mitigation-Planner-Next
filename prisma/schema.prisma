@@ -68,8 +68,8 @@ model Preset {
   encounterId Int 
   flags       Json?
   segments    Json?
-  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      String
+  user        User?        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String?
 }
 
 model User {

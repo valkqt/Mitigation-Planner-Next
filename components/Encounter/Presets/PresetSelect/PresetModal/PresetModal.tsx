@@ -1,7 +1,13 @@
 import { usePresetStore } from "@/resources/store/presetStore";
 import css from "./PresetModal.module.css";
 import { useModal } from "@/contexts/ModalContext/ModalContext";
-import { defaultFlags, defaultSegments, Preset } from "@/resources";
+import {
+  defaultFlags,
+  defaultSegments,
+  defaultUser,
+  Preset,
+  tempUrl,
+} from "@/resources";
 import { useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import {
@@ -29,12 +35,14 @@ export function PresetModal({ encounterId }: PresetModalProps) {
   const router = useRouter();
 
   function createPreset(name: string) {
-    if (!session?.userId) {
-      return;
-    }
+    // if (!session?.userId) {
+    //   return;
+    // }
+
+    const user = session?.userId ?? defaultUser;
 
     const newPreset = {
-      id: "new",
+      id: ``,
       name: name,
       flags: defaultFlags,
       segments: defaultSegments,
@@ -42,19 +50,16 @@ export function PresetModal({ encounterId }: PresetModalProps) {
       userId: session?.userId,
     };
 
-    queryClient.setQueryData(
-      ["userPresets", session.userId],
-      (oldData: Preset[]) => {
-        if (!oldData) {
-          return;
-        }
-
-        if (oldData.some((p) => p.id === "new")) {
-          return;
-        }
-        return [...oldData, newPreset];
+    queryClient.setQueryData(["userPresets", user], (oldData: Preset[]) => {
+      if (!oldData) {
+        return;
       }
-    );
+
+      if (oldData.some((p) => p.id.startsWith(tempUrl))) {
+        return;
+      }
+      return [...oldData, newPreset];
+    });
 
     presetStore.replace(newPreset);
   }

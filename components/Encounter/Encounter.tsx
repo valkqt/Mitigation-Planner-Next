@@ -43,6 +43,8 @@ export function Encounter({ encounterId, presetId }: EncounterProps) {
     ],
   });
 
+  console.log(presetStore.preset.id);
+
   if (!encounterQuery.data || jobsQuery?.data?.length < 1) {
     return <div>Loading...</div>;
   }

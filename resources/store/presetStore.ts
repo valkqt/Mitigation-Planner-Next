@@ -5,6 +5,7 @@ import {
   GlobalFlags,
   Preset,
   Segment,
+  tempUrl,
 } from "..";
 
 type PresetStore = {
@@ -15,9 +16,15 @@ type PresetStore = {
   setSegments: (segments: Record<number, Segment[]>) => void;
 };
 
+function GenerateRandomString(): string {
+  return Array.from(Array(20), () =>
+    Math.floor(Math.random() * 36).toString(36)
+  ).join("");
+}
+
 export const usePresetStore = create<PresetStore>((set) => ({
   preset: {
-    id: "new",
+    id: `${tempUrl + GenerateRandomString()}`,
     name: "New Preset",
     flags: defaultFlags,
     segments: defaultSegments,

@@ -17,6 +17,9 @@ export const levelArray: number[] = Array.from(
 
 export const snapToGridModifier = createSnapModifier(gridSize);
 
+export const tempUrl = "tempUrl=";
+export const defaultUser = "guest";
+
 export const jobMap = {
   1: "/transparent_icons/sage.png",
   2: "/transparent_icons/whitemage.png",
@@ -26,7 +29,7 @@ export const jobMap = {
 
 export const abilityMap = {
   1: { icon: "/icons/SGE/kerachole.png", color1: "#60cdb2", color2: "#08453f" },
-  2: { icon: "/icons/SGE/krasis.png", color1: "#60cdb2", color2: "#08453f" },
+  2: { icon: "/icons/SGE/holos.png", color1: "#60cdb2", color2: "#08453f" },
   3: { icon: "/icons/SGE/panhaima.png", color1: "#60cdb2", color2: "#08453f" },
   4: {
     icon: "/icons/SGE/physis_II.png",
@@ -34,7 +37,7 @@ export const abilityMap = {
     color2: "#08453f",
   },
   5: {
-    icon: "/icons/SGE/holos.png",
+    icon: "/icons/SGE/krasis.png",
     color1: "#60cdb2",
     color2: "#08453f",
   },
@@ -100,13 +103,6 @@ export const defaultSegments: Record<number, Segment[]> = {
   11: [],
   12: [],
   13: [],
-};
-
-export const defaultPreset: Preset = {
-  id: "new",
-  name: "New Preset",
-  flags: defaultFlags,
-  segments: defaultSegments,
 };
 
 export enum Axis {

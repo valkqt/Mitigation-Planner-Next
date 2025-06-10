@@ -17,19 +17,24 @@ interface PresetProps {
 export function Presets({ encounterId }: PresetProps) {
   const { data: session, status } = useSession();
   const presetStore = usePresetStore();
+  const preset = presetStore.preset;
 
-  if (!session?.userId) {
-    return;
-  }
+  const defaultCollection = [preset];
+
+  const defaultUser = session?.userId ?? "mrow";
 
   const {
     data: userPresets,
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["userPresets", session?.userId],
+    queryKey: ["userPresets", defaultUser],
     queryFn: async () => {
-      const { data } = await api.get(`/users/${session.userId}/presets`);
+      if (!session?.userId) {
+        return defaultCollection;
+      }
+
+      const { data } = await api.get(`/users/${session?.userId}/presets`);
       return data;
     },
   });

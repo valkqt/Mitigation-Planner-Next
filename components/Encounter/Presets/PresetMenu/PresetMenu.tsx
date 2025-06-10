@@ -3,7 +3,7 @@ import css from "./PresetMenu.module.css";
 import classNames from "classnames";
 import useClickOutside from "@/hooks/useClickOutside";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { api, Preset } from "@/resources";
+import { api, Preset, tempUrl } from "@/resources";
 import { usePresetStore } from "@/resources/store/presetStore";
 import { useSession } from "next-auth/react";
 
@@ -28,9 +28,16 @@ export function PresetMenu({ encounterId }: PresetMenuProps) {
     { name: "Clone", action: clonePreset },
     { name: "Favourite", action: () => {} },
   ];
+
+  function GenerateRandomString(): string {
+    return Array.from(Array(20), () =>
+      Math.floor(Math.random() * 36).toString(36)
+    ).join("");
+  }
+
   const saveMutation = useMutation({
     mutationFn: () => {
-      if (preset.id !== "new") {
+      if (!preset.id.startsWith(tempUrl)) {
         return api.put(`/presets/${preset.id}`, { ...preset });
       }
       return api.post("/presets", { ...preset });
@@ -38,7 +45,7 @@ export function PresetMenu({ encounterId }: PresetMenuProps) {
     onSuccess: (res) => {
       console.log(res);
     },
-  });
+  });  
 
   const deleteMutation = useMutation({
     mutationFn: () => {
@@ -59,7 +66,7 @@ export function PresetMenu({ encounterId }: PresetMenuProps) {
 
   function clonePreset() {
     const newPreset = {
-      id: "new",
+      id: `${tempUrl + GenerateRandomString()}`,
       name: preset.name + " " + "Copy",
       flags: preset.flags,
       segments: preset.segments,
