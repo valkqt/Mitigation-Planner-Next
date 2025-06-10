@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import css from "./CustomSelect.module.css";
 import classNames from "classnames";
+import useClickOutside from "@/hooks/useClickOutside";
 
 interface Item {
   name: string;
@@ -29,8 +30,18 @@ export function Select<TItem extends Item>({
     externalStateSetter ? externalStateSetter(item) : setSelected(item);
   }
 
+  function handleClickOutside() {
+    setOpen(false);
+  }
+
+  const ref = useClickOutside<HTMLDivElement>(handleClickOutside);
+
   return (
-    <div onClick={() => setOpen(!open)} style={{ position: "relative" }}>
+    <div
+      onClick={() => setOpen(!open)}
+      style={{ position: "relative" }}
+      ref={ref}
+    >
       <div className={css.label}>
         {iconMap && (
           <img
