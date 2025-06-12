@@ -1,15 +1,16 @@
 .timeDisplay {
-  background-color: black;
+  background-color: var(--bg-darker);
   min-height: 24px;
   padding-left: 64px;
   position: relative;
   z-index: 100;
+  margin-top: 144px;
 }
 
 .timelineNumbers {
   display: flex;
   margin-left: -18px;
-  gap: 44px;
+  /* gap: 44px; */
 }
 
 .tickContainer {
@@ -20,7 +21,6 @@
 .tick {
   box-sizing: border-box;
   border-left: 1px solid gray;
-  width: 8px;
 }
 
 .tenSeconds {

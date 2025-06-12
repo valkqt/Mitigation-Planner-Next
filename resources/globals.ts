@@ -20,6 +20,13 @@ export const snapToGridModifier = createSnapModifier(gridSize);
 export const tempUrl = "tempUrl=";
 export const defaultUser = "guest";
 
+export const currentRaids = [
+  { label: "Dancing Green", link: "/encounters/1/presets/new" },
+  { label: "Sugar Riot", link: "/encounters/1/presets/new" },
+  { label: "Brute Abombinator", link: "/encounters/1/presets/new" },
+  { label: "Howling Blade", link: "/encounters/1/presets/new" },
+];
+
 export const jobMap = {
   1: "/transparent_icons/sage.png",
   2: "/transparent_icons/whitemage.png",

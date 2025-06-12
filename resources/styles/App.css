@@ -51,10 +51,6 @@
   --bg-primary: hsl(0, 0%, 15%);
   --bg-secondary: hsl(240, 4%, 10%);
   --bg-dark: hsl(0, 0%, 7%);
+  --bg-darker: hsl(0, 0%, 3%);
 }
 
-.headerFiller {
-  position: relative;
-  z-index: 300;
-  background-color: var(--bg-secondary);
-}

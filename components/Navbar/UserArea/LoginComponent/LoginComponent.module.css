@@ -1,0 +1,38 @@
+.modal {
+  position: absolute;
+  top: 48px;
+  left: calc(100vw - 200px);
+  padding: 0.5rem;
+  background-color: var(--bg-dark);
+  border: 1px solid gray;
+  border-radius: 0.25rem;
+  z-index: 200;
+}
+
+.button {
+  border: 0;
+  font-size: 110%;
+  color: white;
+  background-color: var(--bg-secondary);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: color 0.1s linear;
+}
+
+.signin {
+  background-color: var(--bg-dark);
+  font-size: 90%;
+
+  color: white;
+  border: 0;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.signin:hover {
+  background-color: gray;
+}
+
+.button:hover {
+  color: cyan;
+}

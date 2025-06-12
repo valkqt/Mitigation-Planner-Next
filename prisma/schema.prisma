@@ -31,8 +31,8 @@ model Ability {
 model Mechanic {
   id           Int           @id @default(autoincrement())
   name         String
-  source       Source
-  castTime     Int
+  sources      Source[]
+  castTime     Int @default(0)
   targets      EnemyTarget[]
   mechanicType MechanicType
   damageType   DamageType
@@ -43,7 +43,6 @@ model Mechanic {
 model Node {
   id          Int       @id @default(autoincrement())
   timestamp   Int
-  duration    Int
   mechanicId  Int
   encounterId Int
   encounter   Encounter @relation(fields: [encounterId], references: [id], onDelete: Cascade)
@@ -177,6 +176,7 @@ enum EnemyTarget {
   MAIN_THREAT
   SECONDARY_THREAT
   RANDOM_PLAYER
+  ROLE
 }
 
 enum MechanicType {

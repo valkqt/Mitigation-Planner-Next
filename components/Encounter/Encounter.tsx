@@ -11,17 +11,20 @@ import { useQueries } from "@tanstack/react-query";
 import { encounterQueryOptions } from "@/resources/query/encounter";
 import { jobsQueryOptions } from "@/resources/query/jobs";
 import { usePresetStore } from "@/resources/store/presetStore";
+import { useEffect } from "react";
+import {
+  getCurrentLocalPreset,
+  saveCurrentLocalPreset,
+} from "@/resources/methods/api/localStorage/presets";
 interface EncounterProps {
   encounterId: string;
   presetId: string;
 }
 
 export function Encounter({ encounterId, presetId }: EncounterProps) {
-  // TODO: look into dependencies of "ability" state and possible refactors
   const { data: session, status } = useSession();
   const presetStore = usePresetStore();
 
-  // not adding isLoading and isError for now due to naming conflicts
   const [encounterQuery, jobsQuery] = useQueries({
     queries: [
       encounterQueryOptions({
@@ -33,17 +36,33 @@ export function Encounter({ encounterId, presetId }: EncounterProps) {
         queryKey: ["preset", presetId],
         queryFn: async ({ queryKey }) => {
           const [, presetId] = queryKey;
+
           const { data } = await api.get(`/presets/${presetId}`);
           if (data) {
             presetStore.replace(data);
+          } 
+          
+          
+          
+          else {
+            if (!session?.userId) {
+              const localPreset = getCurrentLocalPreset();
+              if (!localPreset) {
+                saveCurrentLocalPreset(presetStore.preset);
+                return data;
+              }
+              presetStore.replace(localPreset);
+            }
           }
+
+
+
+          
           return data;
         },
       },
     ],
   });
-
-  console.log(presetStore.preset.id);
 
   if (!encounterQuery.data || jobsQuery?.data?.length < 1) {
     return <div>Loading...</div>;
@@ -51,7 +70,7 @@ export function Encounter({ encounterId, presetId }: EncounterProps) {
 
   return (
     <div className={css.container}>
-      <div className="headerFiller">
+      <div className={css.headerFiller}>
         <CustomHeader content={encounterQuery.data.name} />
         <Presets encounterId={encounterQuery.data.id} />
       </div>

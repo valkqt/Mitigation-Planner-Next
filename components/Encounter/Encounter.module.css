@@ -4,3 +4,10 @@
   height: 100%;
   z-index: 100;
 }
+
+.headerFiller {
+  position: fixed;
+  top: 49px;
+  z-index: 300;
+  background-color: var(--bg-secondary);
+}

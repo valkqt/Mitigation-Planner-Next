@@ -56,7 +56,6 @@ export interface PlayerSkill {
 export interface Timeline {
   id: number;
   timestamp: number;
-  duration: number;
   mechanic: EnemySkill;
 }
 

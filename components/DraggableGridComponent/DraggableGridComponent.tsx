@@ -13,6 +13,7 @@ import {
   snapToGridModifier,
   defaultCoordinates,
   Axis,
+  gridSize,
 } from "@/resources/index";
 import { useMouseContext } from "@/contexts/MouseContext/MouseContext";
 import { init } from "@paralleldrive/cuid2";
@@ -45,8 +46,8 @@ export function DraggableGridComponent({
 }: DndContextProps) {
   const [{ translate, initialTranslate }, setTranslate] =
     useState<TranslateState>({
-      initialTranslate: { ...defaultCoordinates, x: segment.start * 8 },
-      translate: { ...defaultCoordinates, x: segment.start * 8 },
+      initialTranslate: { ...defaultCoordinates, x: segment.start * gridSize },
+      translate: { ...defaultCoordinates, x: segment.start * gridSize },
     });
   const [isDragging, setIsDragging] = useState(false);
   const mouse = useMouseContext();
@@ -54,7 +55,7 @@ export function DraggableGridComponent({
   const preset = presetStore.preset;
 
   function checkCollision(coordinates: number): Segment | undefined {
-    const dragSegmentStart = coordinates / 8;
+    const dragSegmentStart = coordinates / gridSize;
     const dragSegmentEnd = dragSegmentStart + segment.length;
 
     const foundNode = preset.segments[ability.id].find(
@@ -71,8 +72,8 @@ export function DraggableGridComponent({
     let collisionResult;
     const segmentEnd = segment.start + segment.length;
 
-    if (mouse.current >= segmentEnd * 8) {
-      collisionResult = segmentEnd * 8;
+    if (mouse.current >= segmentEnd * gridSize) {
+      collisionResult = segmentEnd * gridSize;
       const newSegment = checkCollision(collisionResult);
 
       if (!newSegment) {
@@ -81,10 +82,10 @@ export function DraggableGridComponent({
           translate: { ...translate, x: collisionResult },
         });
       }
-    } else if (mouse.current < segment.start * 8) {
-      collisionResult = (segment.start - segment.length) * 8;
+    } else if (mouse.current < segment.start * gridSize) {
+      collisionResult = (segment.start - segment.length) * gridSize;
       const newSegment = checkCollision(collisionResult);
-      if (collisionResult <= 8) {
+      if (collisionResult <= gridSize) {
         return;
       }
       if (!newSegment) {
@@ -102,20 +103,23 @@ export function DraggableGridComponent({
 
     const newPosition = checkCollision(translateResult);
 
-    if (translateResult > 838 * 8 - segment.length * 8) {
-      translateResult = 838 * 8;
+    if (translateResult > 838 * gridSize - segment.length * gridSize) {
+      translateResult = 838 * gridSize;
       return;
     }
 
     if (newPosition) {
       moveToEdge(newPosition);
     } else {
-      if (translateResult <= 8) {
-        const zeroPosition = checkCollision(8);
+      if (translateResult <= gridSize) {
+        const zeroPosition = checkCollision(gridSize);
         if (zeroPosition) {
           return;
         }
-        setTranslate({ initialTranslate, translate: { ...translate, x: 8 } });
+        setTranslate({
+          initialTranslate,
+          translate: { ...translate, x: gridSize },
+        });
         return;
       }
 
@@ -129,7 +133,7 @@ export function DraggableGridComponent({
   function updatePosition(): void {
     const updatedNodes = preset.segments[ability.id].map((node) => {
       if (node.segmentId == segment.segmentId) {
-        return { ...node, start: translate.x / 8 };
+        return { ...node, start: translate.x / gridSize };
       } else {
         return node;
       }
@@ -139,7 +143,7 @@ export function DraggableGridComponent({
   }
 
   function handleDragEnd() {
-    while (translate.x % 8 !== 0) {
+    while (translate.x % gridSize !== 0) {
       translate.x -= 1;
     }
 

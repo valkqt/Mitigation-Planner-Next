@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import css from "./PresetSelect.module.css";
 import classNames from "classnames";
 import { api, Preset } from "@/resources";

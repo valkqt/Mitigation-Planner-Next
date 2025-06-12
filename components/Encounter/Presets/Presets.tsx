@@ -1,11 +1,7 @@
-import { useEffect } from "react";
-import { Select } from "@/components/CustomSelect/CustomSelect";
 import css from "./Presets.module.css";
-import { api, defaultFlags, defaultSegments, Preset } from "@/resources";
+import { api } from "@/resources";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { userPresetsQueryOptions } from "@/resources/query/user";
+import { useQuery } from "@tanstack/react-query";
 import { usePresetStore } from "@/resources/store/presetStore";
 import { PresetSelect } from "./PresetSelect";
 import { PresetMenu } from "./PresetMenu";
@@ -21,7 +17,7 @@ export function Presets({ encounterId }: PresetProps) {
 
   const defaultCollection = [preset];
 
-  const defaultUser = session?.userId ?? "mrow";
+  const defaultUser = session?.userId ?? "guest";
 
   const {
     data: userPresets,
@@ -33,7 +29,6 @@ export function Presets({ encounterId }: PresetProps) {
       if (!session?.userId) {
         return defaultCollection;
       }
-
       const { data } = await api.get(`/users/${session?.userId}/presets`);
       return data;
     },

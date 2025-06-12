@@ -19,13 +19,17 @@ export function LoginComponent() {
 
   return (
     <div className={css.container}>
-      <button onClick={() => setShow(true)}>Login</button>
+      <button onClick={() => setShow(true)} className={css.button}>
+        Login
+      </button>
       <div
         className={classNames({ toggleDisplay: !show }, css.modal)}
         ref={ref}
       >
         <form action={() => onSubmit()}>
-          <button type="submit">Signin with Google</button>
+          <button type="submit" className={css.signin}>
+            Signin with Google
+          </button>
         </form>
       </div>
     </div>
