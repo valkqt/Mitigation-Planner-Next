@@ -1,0 +1,8 @@
+.signout {
+  background-color: var(--bg-secondary);
+  font-size: 100%;
+  color: white;
+  border: 0;
+  padding: 8px;
+  cursor: pointer;
+}
