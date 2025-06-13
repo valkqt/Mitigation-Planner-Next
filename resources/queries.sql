@@ -128,7 +128,49 @@ INSERT INTO "Job" (name, role) VALUES ('Sage', 'HEALER'), ('Astrologian', 'HEALE
 
 INSERT INTO "Ability" (name, duration, cooldown, level, target, type, "jobId") VALUES 
 ('Kerachole', 15, 30, 50, 'RAID', 'MITIGATION', 1), 
-('Holos', 20, 120, 76, 'RAID', 'MITIGATION', 1);
+('Holos', 20, 120, 76, 'RAID', 'MITIGATION', 1),
+('Philosophia', 20, 180, 100, 'RAID', 'HEALING', 1),
+('Pneuma', 0, 120, 90, 'RAID', 'HEALING', 1),
+('Krasis', 10, 60, 86, 'ALLY', 'HEALING', 1),
+('Panhaima', 15, 120, 80, 'RAID', 'MITIGATION', 1),
+('Haima', 15, 120, 70, 'ALLY', 'MITIGATION', 1),
+('Physis', 15, 60, 20, 'RAID', 'HEALING', 1),
+('Zoe', 30, 90, 56, 'SELF', 'BUFF', 1),
+('Pepsis', 0, 30, 58, 'RAID', 'HEALING', 1),
+('Soteria', 15, 60, 35, 'SELF', 'BUFF', 1),
+('Eukrasian Prognosis', 30, 3, 10, 'RAID', 'MITIGATION', 1),
+
+('Liturgy of the Bell', 20, 180, 90, 'RAID', 'HEALING', 4),
+('Aquaveil', 8, 60, 86, 'ALLY', 'MITIGATION', 4),
+('Temperance', 20, 120, 80, 'RAID', 'MITIGATION', 4),
+('Plenary Indulgence', 15, 60, 70, 'SELF', 'BUFF', 4),
+('Divine Benison', 15, 30, 66, 'ALLY', 'MITIGATION', 4),
+('Asylum', 24, 90, 52, 'RAID', 'HEALING', 4),
+('Benediction', 0, 180, 50, 'ALLY', 'HEALING', 4),
+
+('Sun Sign', 15, 120, 100, 'RAID', 'MITIGATION', 2),
+('Macrocosmos', 15, 180, 90, 'RAID', 'HEALING', 2),
+('Exaltation', 8, 60, 86, 'RAID', 'MITIGATION', 2),
+('Neutral Sect', 20, 120, 80, 'RAID', 'HEALING', 2),
+('Celestial Intersection', 30, 30, 74, 'RAID', 'HEALING', 2),
+('Earthly Star', 20, 60, 62, 'RAID', 'HEALING', 2),
+('Celestial Opposition', 15, 60, 60, 'RAID', 'HEALING', 2),
+('Collective Unconscious', 15, 60, 58, 'RAID', 'MITIGATION', 2),
+('Synastry', 15, 120, 50, 'ALLY', 'HEALING', 2),
+('Essential Dignity', 0, 40, 15, 'ALLY', 'HEALING', 2),
+
+('Seraphism', 20, 180, 100, 'RAID', 'HEALING', 3),
+('Expedient', 20, 120, 90, 'RAID', 'MITIGATION', 3),
+('Protraction', 10, 60, 86, 'RAID', 'HEALING', 3),
+('Summon Seraph', 22, 120, 80, 'RAID', 'MITIGATION', 3),
+('Fey Blessing', 0, 60, 76, 'RAID', 'HEALING', 3),
+('Recitation', 15, 60, 74, 'SELF', 'BUFF', 3),
+('Dissipation', 30, 180, 60, 'RAID', 'HEALING', 3),
+('Deployment Tactics', 0, 90, 56, 'RAID', 'MITIGATION', 3),
+('Sacred Soil', 15, 30, 50, 'RAID', 'MITIGATION', 3),
+('Fey Illumination', 20, 120, 40, 'RAID', 'MITIGATION', 3),
+('Whispering Dawn', 21, 60, 20, 'RAID', 'HEALING', 3),
+;
 
 INSERT INTO "Preset" (name, "encounterId", flags, segments, "userId") 
 VALUES ('e8s test 1', 1, '', '', 1), ('e8s test 2', 1, '', '', 1), ('e8s test 3', 1, '', '', 1);
