@@ -1,17 +1,19 @@
 import classNames from "classnames";
-import { PlayerSkill } from "@/resources/types";
+import { Encounter, PlayerSkill } from "@/resources/types";
 import { DraggableGridComponent } from "@/components/index";
 import { useMouseContext } from "@/contexts/index";
 import css from "./Row.module.css";
 import { AbilityIcon } from "./AbilityIcon/AbilityIcon";
 import { usePresetStore } from "@/resources/store/presetStore";
+import { gridSize } from "@/resources";
 
 interface RowProps {
   ability: PlayerSkill;
   isActive: boolean;
+  encounter: Encounter;
 }
 
-export function Row({ ability, isActive }: RowProps) {
+export function Row({ ability, isActive, encounter }: RowProps) {
   const mouse = useMouseContext();
   const presetStore = usePresetStore();
   const preset = presetStore.preset;
@@ -34,15 +36,13 @@ export function Row({ ability, isActive }: RowProps) {
   }
 
   function createSegment(position: number, ability: PlayerSkill) {
-    while (position % 8 !== 0) {
+    while (position % gridSize !== 0) {
       position -= 1;
     }
 
-    position = position / 8;
+    position = position / gridSize;
     const newSegment = activeSegments.find(
       (segment) =>
-        // position <= segment.start &&
-        // position + ability.cooldown >= segment.start
         (position > segment.start &&
           position < segment.start + segment.length) ||
         (position + ability.cooldown > segment.start &&
@@ -107,6 +107,7 @@ export function Row({ ability, isActive }: RowProps) {
           onRightClick={() => removeSegment(entity.segmentId)}
           key={entity.segmentId}
           segment={entity}
+          encounter={encounter}
         />
       ))}
     </div>

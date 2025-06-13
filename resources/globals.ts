@@ -1,7 +1,7 @@
 import { createSnapModifier } from "@dnd-kit/modifiers";
-import { GlobalFlags, Preset, Segment } from "./index";
+import { GlobalFlags, Segment } from "./index";
 
-export const gridSize = 8;
+export const gridSize = 16;
 export const defaultCoordinates = {
   x: 0,
   y: 0,

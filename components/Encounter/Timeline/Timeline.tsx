@@ -1,8 +1,6 @@
-import { Encounter, Job, PlayerSkill, Segment } from "@/resources";
+import { Encounter } from "@/resources";
 import { BossTimeline } from "./BossTimeline/BossTimeline";
 import { BossRow } from "./Row/BossRow";
-import { Row } from "./Row/Row";
-import { ReactNode } from "react";
 
 interface TimelineProps {
   encounter: Encounter;

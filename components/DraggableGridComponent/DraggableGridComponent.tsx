@@ -14,9 +14,9 @@ import {
   defaultCoordinates,
   Axis,
   gridSize,
+  Encounter,
 } from "@/resources/index";
 import { useMouseContext } from "@/contexts/MouseContext/MouseContext";
-import { init } from "@paralleldrive/cuid2";
 import { usePresetStore } from "@/resources/store/presetStore";
 
 interface DndContextProps {
@@ -29,6 +29,7 @@ interface DndContextProps {
   ability: PlayerSkill;
   onRightClick: () => void;
   segment: Segment;
+  encounter: Encounter;
 }
 
 interface TranslateState {
@@ -43,6 +44,7 @@ export function DraggableGridComponent({
   style,
   onRightClick,
   segment,
+  encounter,
 }: DndContextProps) {
   const [{ translate, initialTranslate }, setTranslate] =
     useState<TranslateState>({
@@ -103,8 +105,11 @@ export function DraggableGridComponent({
 
     const newPosition = checkCollision(translateResult);
 
-    if (translateResult > 838 * gridSize - segment.length * gridSize) {
-      translateResult = 838 * gridSize;
+    if (
+      translateResult >
+      encounter.duration * gridSize - segment.length * gridSize
+    ) {
+      translateResult = encounter.duration * gridSize;
       return;
     }
 

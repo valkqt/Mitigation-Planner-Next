@@ -9,7 +9,7 @@ interface TimeDisplayProps {
 export function BossTimeline({ encounter }: TimeDisplayProps) {
   return (
     <div className={css.timeDisplay}>
-      <div className={css.timelineNumbers} style={{ gap: gridSize * 6 - 4 }}>
+      <div className={css.timelineNumbers} style={{ gap: gridSize * 8 - 4 }}>
         {Array.from({ length: encounter.duration + 1 }, (_, index) => {
           const hours = Math.floor(index / 3600);
           const minutes = Math.floor((index - hours * 3600) / 60);

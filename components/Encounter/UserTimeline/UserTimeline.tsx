@@ -1,15 +1,20 @@
 import { Row } from "@/components";
 import { usePresetStore } from "@/resources/store/presetStore";
-import { Job, PlayerSkill } from "@/resources/types";
+import { Encounter, Job, PlayerSkill } from "@/resources/types";
 import { useEffect, useState } from "react";
 
 interface UserTimelineProps {
   jobs: Job[];
+  encounter: Encounter;
 }
 
-export function UserTimeline({ jobs }: UserTimelineProps) {
+export function UserTimeline({ jobs, encounter }: UserTimelineProps) {
   const [abilities, setAbilities] = useState<PlayerSkill[]>([]);
   const preset = usePresetStore().preset;
+
+  if (!jobs) {
+    return;
+  }
 
   useEffect(() => {
     let skills: PlayerSkill[] = [];
@@ -40,6 +45,7 @@ export function UserTimeline({ jobs }: UserTimelineProps) {
             key={ability.id}
             ability={ability}
             isActive={isActive(ability)}
+            encounter={encounter}
           />
         );
       })}

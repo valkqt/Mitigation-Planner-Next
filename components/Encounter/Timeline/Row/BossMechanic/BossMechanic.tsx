@@ -19,16 +19,16 @@ export default function BossMechanic({ node }: BossMechanicRowProps) {
           left: 64 + node.timestamp * gridSize,
           zIndex: node.id,
         }}
-        onMouseEnter={() => setIsHover(true)}
-        onMouseLeave={() => setIsHover(false)}
+        onMouseOver={() => setIsHover(true)}
       >
-        <div className={css.label}>{node.mechanic.name}</div>
+        {node.mechanic.name}
       </div>
       <div
         className={classNames({ toggleDisplay: !isHover }, css.tooltip)}
         style={{
           left: 64 + node.timestamp * gridSize,
         }}
+        onMouseOut={() => setIsHover(false)}
       >
         {node.mechanic.name}
       </div>

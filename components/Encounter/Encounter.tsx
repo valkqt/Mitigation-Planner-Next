@@ -11,11 +11,6 @@ import { useQueries } from "@tanstack/react-query";
 import { encounterQueryOptions } from "@/resources/query/encounter";
 import { jobsQueryOptions } from "@/resources/query/jobs";
 import { usePresetStore } from "@/resources/store/presetStore";
-import { useEffect } from "react";
-import {
-  getCurrentLocalPreset,
-  saveCurrentLocalPreset,
-} from "@/resources/methods/api/localStorage/presets";
 interface EncounterProps {
   encounterId: string;
   presetId: string;
@@ -40,24 +35,8 @@ export function Encounter({ encounterId, presetId }: EncounterProps) {
           const { data } = await api.get(`/presets/${presetId}`);
           if (data) {
             presetStore.replace(data);
-          } 
-          
-          
-          
-          else {
-            if (!session?.userId) {
-              const localPreset = getCurrentLocalPreset();
-              if (!localPreset) {
-                saveCurrentLocalPreset(presetStore.preset);
-                return data;
-              }
-              presetStore.replace(localPreset);
-            }
           }
 
-
-
-          
           return data;
         },
       },
@@ -75,7 +54,7 @@ export function Encounter({ encounterId, presetId }: EncounterProps) {
         <Presets encounterId={encounterQuery.data.id} />
       </div>
       <Timeline encounter={encounterQuery.data} />
-      <UserTimeline jobs={jobsQuery.data} />
+      <UserTimeline jobs={jobsQuery.data} encounter={encounterQuery.data} />
       <SidebarComponent jobs={jobsQuery.data} />
     </div>
   );
