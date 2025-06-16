@@ -3,6 +3,7 @@ import { SessionProvider } from "next-auth/react";
 import "@/resources/styles/App.css";
 import "@/resources/styles/index.css";
 import Navbar from "@/components/Navbar/Navbar";
+import { Footer } from "@/components/Footer";
 
 type LayoutProps = {
   children: ReactNode;
@@ -15,8 +16,9 @@ export default async function Layout({ children }: LayoutProps) {
         <div className="wrapper">
           <SessionProvider>
             <Navbar />
-            <main>{children}</main>
+            {children}
           </SessionProvider>
+          <Footer />
         </div>
       </body>
     </html>

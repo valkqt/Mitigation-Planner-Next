@@ -10,7 +10,7 @@ import {
 export interface Job {
   id: number;
   name: string;
-  skills: PlayerSkill[];
+  skills: any[];
 }
 
 export interface Segment {

@@ -3,7 +3,6 @@
   text-align: left;
   margin-left: -1px;
   font-size: 13px;
-  padding: 4px;
   border-left: 1px solid white;
   position: absolute;
   background-color: var(--bg-primary);
@@ -13,6 +12,17 @@
   overflow: hidden;
   text-overflow: "..";
   padding: 4px;
+}
+
+.mechanicLabel {
+  padding: 4px;
+}
+
+.castbar {
+  height: 5px;
+  background-color: #ffffe1;
+  border: 1px solid #8a5c29;
+  box-sizing: border-box;
 }
 
 .tooltip {

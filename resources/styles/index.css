@@ -21,8 +21,10 @@ ul {
 }
 
 .wrapper {
-  height: 100vh;
   box-sizing: border-box;
+  background-color: var(--bg-primary);
+  min-height: 100vh;
+  height: 100%;
 }
 
 main {

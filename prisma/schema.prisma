@@ -13,7 +13,7 @@ model Job {
   id     Int       @id @default(autoincrement())
   name   String
   role   JobRole
-  skills Ability[]
+  skills AbilitiesOnJobs[]
 }
 
 model Ability {
@@ -24,8 +24,15 @@ model Ability {
   level    Int
   target   PlayerTarget
   type     AbilityType
-  jobId    Int
-  job      Job          @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  jobs     AbilitiesOnJobs[]
+}
+
+model AbilitiesOnJobs {
+  job       Job     @relation(fields: [jobId], references: [id])
+  jobId     Int
+  ability   Ability @relation(fields: [abilityId], references: [id])
+  abilityId Int
+  @@id([jobId, abilityId])
 }
 
 model Mechanic {
@@ -154,6 +161,8 @@ enum PlayerTarget {
   SELF
   ALLY
   RAID
+  GROUND
+  ENEMY
 }
 
 enum JobRole {

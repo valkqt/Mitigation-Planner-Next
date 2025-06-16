@@ -19,7 +19,7 @@ export function UserTimeline({ jobs, encounter }: UserTimelineProps) {
   useEffect(() => {
     let skills: PlayerSkill[] = [];
     jobs.forEach((job) => {
-      skills = skills.concat(job.skills);
+      job.skills.forEach((skill) => skills.push(skill.ability));
     });
     setAbilities(skills);
   }, []);
@@ -30,7 +30,7 @@ export function UserTimeline({ jobs, encounter }: UserTimelineProps) {
       !jobs.some(
         (job) =>
           preset.flags.jobs[job.id] &&
-          job.skills.some((a) => a.id == ability.id)
+          job.skills.some((a) => a.ability.id == ability.id)
       ) ||
       !preset.flags.target[ability.target] ||
       !preset.flags.skillType[ability.type] ||

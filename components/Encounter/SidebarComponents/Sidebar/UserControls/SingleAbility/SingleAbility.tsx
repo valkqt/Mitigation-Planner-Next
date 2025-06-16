@@ -1,4 +1,3 @@
-import { useActivationFlagsContext } from "@/contexts/index";
 import { abilityMap } from "@/resources/index";
 import { AbilityStyle, PlayerSkill } from "@/resources/index";
 import css from "./SingleAbility.module.css";
@@ -18,6 +17,7 @@ export default function SingleAbility({ ability }: SingleAbilityProps) {
   }
 
   const style: AbilityStyle = abilityMap[ability.id];
+  
   return (
     <div className={css.container} onClick={() => toggleAbility(ability.id)}>
       <img src={style.icon} className={"smallAbilityIcon"} alt="" />

@@ -21,7 +21,13 @@ export default function BossMechanic({ node }: BossMechanicRowProps) {
         }}
         onMouseOver={() => setIsHover(true)}
       >
-        {node.mechanic.name}
+        <div className={css.mechanicLabel}>{node.mechanic.name}</div>
+        {node.mechanic.castTime > 0 && (
+          <div
+            className={css.castbar}
+            style={{ width: node.mechanic.castTime * gridSize + "px" }}
+          ></div>
+        )}
       </div>
       <div
         className={classNames({ toggleDisplay: !isHover }, css.tooltip)}
