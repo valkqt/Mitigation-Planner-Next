@@ -5,7 +5,6 @@ import css from "./home.module.css";
 
 export default function Page({ session }) {
   return (
-    // <QueryClientProvider client={queryClient}>
     <main className={css.homeContainer}>
       <div className={css.subcontainer}>
         <h1>Mitigation Planner</h1>
@@ -36,6 +35,5 @@ export default function Page({ session }) {
         </Link>
       </div>
     </main>
-    // </QueryClientProvider>
   );
 }

@@ -11,6 +11,9 @@ import { useQueries } from "@tanstack/react-query";
 import { encounterQueryOptions } from "@/resources/query/encounter";
 import { jobsQueryOptions } from "@/resources/query/jobs";
 import { usePresetStore } from "@/resources/store/presetStore";
+import { useModal } from "@/contexts/ModalContext/ModalContext";
+import { LoadingComponent } from "../LoadingComponent";
+import { useEffect } from "react";
 interface EncounterProps {
   encounterId: string;
   presetId: string;
@@ -44,7 +47,7 @@ export function Encounter({ encounterId, presetId }: EncounterProps) {
   });
 
   if (!encounterQuery.data || jobsQuery?.data?.length < 1) {
-    return <div>Loading...</div>;
+    return <LoadingComponent encounterId={encounterId} />;
   }
 
   return (
@@ -56,6 +59,7 @@ export function Encounter({ encounterId, presetId }: EncounterProps) {
       <Timeline encounter={encounterQuery.data} />
       <UserTimeline jobs={jobsQuery.data} encounter={encounterQuery.data} />
       <SidebarComponent jobs={jobsQuery.data} />
+      <div className={css.filler}></div>
     </div>
   );
 }

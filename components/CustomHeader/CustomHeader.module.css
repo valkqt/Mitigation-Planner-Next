@@ -9,7 +9,7 @@
 
 .EncounterInfo {
   position: relative;
-  z-index: 100;
+  /* z-index: 100; */
   display: flex;
   align-items: center;
   top: 0;

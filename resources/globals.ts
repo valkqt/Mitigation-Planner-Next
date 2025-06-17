@@ -20,6 +20,13 @@ export const snapToGridModifier = createSnapModifier(gridSize);
 export const tempUrl = "tempUrl=";
 export const defaultUser = "guest";
 
+export const encounterMap = {
+  1: "/encounters/m5s.png",
+  2: "/encounters/m6s.png",
+  3: "/encounters/m7s.png",
+  4: "/encounters/m8s.png",
+};
+
 export const currentRaids = [
   { label: "Dancing Green", link: "/encounters/1/presets/new" },
   { label: "Sugar Riot", link: "/encounters/1/presets/new" },

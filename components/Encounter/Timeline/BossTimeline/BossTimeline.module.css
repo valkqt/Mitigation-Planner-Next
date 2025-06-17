@@ -2,8 +2,9 @@
   background-color: var(--bg-darker);
   min-height: 24px;
   padding-left: 64px;
-  position: relative;
-  z-index: 100;
+  position: sticky;
+  top: 49px;
+  z-index: 5;
   margin-top: 144px;
 }
 

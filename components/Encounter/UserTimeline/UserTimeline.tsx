@@ -2,6 +2,7 @@ import { Row } from "@/components";
 import { usePresetStore } from "@/resources/store/presetStore";
 import { Encounter, Job, PlayerSkill } from "@/resources/types";
 import { useEffect, useState } from "react";
+import css from "./UserTimeline.module.css";
 
 interface UserTimelineProps {
   jobs: Job[];
@@ -38,7 +39,7 @@ export function UserTimeline({ jobs, encounter }: UserTimelineProps) {
     );
   }
   return (
-    <>
+    <div className={css.container}>
       {abilities.map((ability) => {
         return (
           <Row
@@ -49,6 +50,6 @@ export function UserTimeline({ jobs, encounter }: UserTimelineProps) {
           />
         );
       })}
-    </>
+    </div>
   );
 }
