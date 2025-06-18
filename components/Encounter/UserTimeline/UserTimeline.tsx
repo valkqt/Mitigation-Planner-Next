@@ -10,9 +10,6 @@ interface UserTimelineProps {
 }
 
 export function UserTimeline({ jobs, encounter }: UserTimelineProps) {
-  const [abilities, setAbilities] = useState<PlayerSkill[]>([]);
-  const preset = usePresetStore().preset;
-
   if (!jobs) {
     return;
   }
@@ -24,6 +21,9 @@ export function UserTimeline({ jobs, encounter }: UserTimelineProps) {
     });
     setAbilities(skills);
   }, []);
+
+  const [abilities, setAbilities] = useState<PlayerSkill[]>([]);
+  const preset = usePresetStore().preset;
 
   function isActive(ability: PlayerSkill): boolean {
     return (

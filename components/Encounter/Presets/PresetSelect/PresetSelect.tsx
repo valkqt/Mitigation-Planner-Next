@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import css from "./PresetSelect.module.css";
 import classNames from "classnames";
 import { api, Preset } from "@/resources";
@@ -10,6 +10,8 @@ import { useSession } from "next-auth/react";
 import useClickOutside from "@/hooks/useClickOutside";
 import { useModal } from "@/contexts/ModalContext/ModalContext";
 import { PresetModal } from "./PresetModal/";
+import { createPortal } from "react-dom";
+import { PresetDropdown } from "./PresetDropdown";
 
 interface PresetSelectProps {
   collection: Preset[];
@@ -18,46 +20,41 @@ interface PresetSelectProps {
 
 export function PresetSelect({ collection, encounterId }: PresetSelectProps) {
   const [open, setOpen] = useState(false);
-  const [_, setShow, __, setModal] = useModal();
   const { data: session, status } = useSession();
   const preset = usePresetStore().preset;
-  const router = useRouter();
 
   function handleClickOutside(): void {
     setOpen(false);
   }
 
-  const ref = useClickOutside<HTMLDivElement>(handleClickOutside);
+  const ref = useRef<any>(null);
+
+  function getPosition() {
+    if (!ref.current) {
+      return {};
+    }
+    const position = ref.current.getBoundingClientRect();
+
+    return {
+      top: position.top,
+      left: position.left,
+    };
+  }
 
   return (
-    <div
-      onClick={() => setOpen(true)}
-      className={classNames(css.menu)}
-      ref={ref}
-    >
-      <div className={css.label}>{preset?.name}</div>
-      <div className={classNames({ toggleDisplay: !open }, css.dropdown)}>
-        {collection.map((item) => (
-          <div
-            key={item.id}
-            className={css.dropdownItem}
-            onClick={() => {
-              router.push(`/encounters/${encounterId}/presets/${item.id}`);
-            }}
-          >
-            <div>{item.name}</div>
-          </div>
-        ))}
-        <div
-          className={classNames(css.newItem, css.dropdownItem)}
-          onClick={() => {
-            setShow(true);
-            setOpen(false);
-            setModal(<PresetModal encounterId={encounterId} />);
-          }}
-        >
-          + New Preset
-        </div>
+    <div ref={ref}>
+      <div onClick={() => setOpen(true)} className={classNames(css.menu)}>
+        <div className={css.label}>{preset?.name}</div>
+        {open &&
+          createPortal(
+            <PresetDropdown
+              encounterId={encounterId}
+              setOpen={setOpen}
+              collection={collection}
+              style={getPosition()}
+            />,
+            document.body
+          )}
       </div>
     </div>
   );

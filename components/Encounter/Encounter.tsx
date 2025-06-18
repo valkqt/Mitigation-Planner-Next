@@ -51,15 +51,17 @@ export function Encounter({ encounterId, presetId }: EncounterProps) {
   }
 
   return (
-    <div className={css.container}>
+    <>
       <div className={css.headerFiller}>
         <CustomHeader content={encounterQuery.data.name} />
         <Presets encounterId={encounterQuery.data.id} />
       </div>
-      <Timeline encounter={encounterQuery.data} />
-      <UserTimeline jobs={jobsQuery.data} encounter={encounterQuery.data} />
-      <SidebarComponent jobs={jobsQuery.data} />
-      <div className={css.filler}></div>
-    </div>
+      <div className={css.container}>
+        <Timeline encounter={encounterQuery.data} />
+        <UserTimeline jobs={jobsQuery.data} encounter={encounterQuery.data} />
+        <SidebarComponent jobs={jobsQuery.data} />
+        <div className={css.filler}></div>
+      </div>
+    </>
   );
 }

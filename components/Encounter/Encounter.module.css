@@ -8,14 +8,10 @@
   top: 49px;
   background-color: var(--bg-secondary);
   z-index: 1;
+  color: white;
 }
 
 .filler {
   height: 73px;
   margin-top: -1px;
-}
-
-.mrow {
-  position: relative;
-  width: 100vw;
 }

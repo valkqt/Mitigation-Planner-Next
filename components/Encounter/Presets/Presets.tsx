@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { usePresetStore } from "@/resources/store/presetStore";
 import { PresetSelect } from "./PresetSelect";
 import { PresetMenu } from "./PresetMenu";
+import { createPortal } from "react-dom";
 
 interface PresetProps {
   encounterId: number;
