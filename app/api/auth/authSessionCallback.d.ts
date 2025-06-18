@@ -5,6 +5,5 @@ declare module "next-auth" {
   interface Session extends DefaultSession {
     token: JWT;
     userId: string;
-    // pepe: any;
   }
 }

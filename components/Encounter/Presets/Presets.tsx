@@ -5,14 +5,13 @@ import { useQuery } from "@tanstack/react-query";
 import { usePresetStore } from "@/resources/store/presetStore";
 import { PresetSelect } from "./PresetSelect";
 import { PresetMenu } from "./PresetMenu";
-import { createPortal } from "react-dom";
 
 interface PresetProps {
   encounterId: number;
 }
 
 export function Presets({ encounterId }: PresetProps) {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const presetStore = usePresetStore();
   const preset = presetStore.preset;
 
@@ -20,11 +19,7 @@ export function Presets({ encounterId }: PresetProps) {
 
   const defaultUser = session?.userId ?? "guest";
 
-  const {
-    data: userPresets,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data: userPresets } = useQuery({
     queryKey: ["userPresets", defaultUser],
     queryFn: async () => {
       if (!session?.userId) {

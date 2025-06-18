@@ -4,7 +4,6 @@ import classNames from "classnames";
 import { jobMap } from "@/resources/index";
 import { usePresetStore } from "@/resources/store/presetStore";
 import { FlagsHelper } from "@/resources/store/presetStoreHelpers";
-import useClickOutside from "@/hooks/useClickOutside";
 
 interface JobSelectionProps {
   jobs: Job[];

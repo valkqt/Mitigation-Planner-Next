@@ -15,12 +15,12 @@ export function UserTimeline({ jobs, encounter }: UserTimelineProps) {
       return;
     }
 
-    let skills: PlayerSkill[] = [];
+    const skills: PlayerSkill[] = [];
     jobs.forEach((job) => {
       job.skills.forEach((skill) => skills.push(skill.ability));
     });
     setAbilities(skills);
-  }, []);
+  }, [jobs]);
 
   const [abilities, setAbilities] = useState<PlayerSkill[]>([]);
   const preset = usePresetStore().preset;

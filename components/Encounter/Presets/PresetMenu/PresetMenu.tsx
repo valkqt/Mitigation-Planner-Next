@@ -21,7 +21,7 @@ export function PresetMenu({ encounterId }: PresetMenuProps) {
   const presetStore = usePresetStore();
   const preset = presetStore.preset;
   const queryClient = useQueryClient();
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const options: MenuAction[] = [
     { name: "Save", action: save },
     { name: "Delete", action: deletePreset },
@@ -45,7 +45,7 @@ export function PresetMenu({ encounterId }: PresetMenuProps) {
     onSuccess: (res) => {
       console.log(res);
     },
-  });  
+  });
 
   const deleteMutation = useMutation({
     mutationFn: () => {

@@ -10,15 +10,8 @@ import {
 } from "@/resources";
 import { useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
-import {
-  ChangeEvent,
-  Dispatch,
-  FormEvent,
-  SetStateAction,
-  useState,
-} from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import useClickOutside from "@/hooks/useClickOutside";
-import { useRouter } from "next/navigation";
 
 interface PresetModalProps {
   encounterId: number;
@@ -27,18 +20,12 @@ interface PresetModalProps {
 export function PresetModal({ encounterId }: PresetModalProps) {
   const queryClient = useQueryClient();
   const presetStore = usePresetStore();
-  const preset = presetStore.preset;
-  const { data: session, status } = useSession();
-  const [_, setShow] = useModal();
+  const { data: session } = useSession();
+  const [, setShow] = useModal();
   const [name, setName] = useState<string>();
   const ref = useClickOutside<HTMLDivElement>(handleClickOutside);
-  const router = useRouter();
 
   function createPreset(name: string) {
-    // if (!session?.userId) {
-    //   return;
-    // }
-
     const user = session?.userId ?? defaultUser;
 
     const newPreset = {
