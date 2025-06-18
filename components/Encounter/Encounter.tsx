@@ -1,7 +1,6 @@
 import { api } from "@/resources/index";
 import css from "./Encounter.module.css";
 
-import { useSession } from "next-auth/react";
 import { Presets } from "./Presets/Presets";
 import { SidebarComponent } from "./SidebarComponents/SidebarComponent";
 import { Timeline } from "./Timeline/Timeline";
@@ -11,16 +10,13 @@ import { useQueries } from "@tanstack/react-query";
 import { encounterQueryOptions } from "@/resources/query/encounter";
 import { jobsQueryOptions } from "@/resources/query/jobs";
 import { usePresetStore } from "@/resources/store/presetStore";
-import { useModal } from "@/contexts/ModalContext/ModalContext";
 import { LoadingComponent } from "../LoadingComponent";
-import { useEffect } from "react";
 interface EncounterProps {
   encounterId: string;
   presetId: string;
 }
 
 export function Encounter({ encounterId, presetId }: EncounterProps) {
-  const { data: session, status } = useSession();
   const presetStore = usePresetStore();
 
   const [encounterQuery, jobsQuery] = useQueries({
@@ -45,6 +41,8 @@ export function Encounter({ encounterId, presetId }: EncounterProps) {
       },
     ],
   });
+
+  console.log(jobsQuery.data);
 
   if (!encounterQuery.data || jobsQuery?.data?.length < 1) {
     return <LoadingComponent encounterId={encounterId} />;

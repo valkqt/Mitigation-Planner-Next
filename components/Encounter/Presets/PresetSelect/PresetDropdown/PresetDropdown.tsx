@@ -7,11 +7,18 @@ import { Dispatch, SetStateAction } from "react";
 import { Preset } from "@/resources/types";
 import useClickOutside from "@/hooks/useClickOutside";
 
+type PositionStyle = {
+  top?: number;
+  left?: number;
+  right?: number;
+  bottom?: number;
+};
+
 interface PresetDropdownProps {
   collection: Preset[];
   encounterId: number;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  style: any;
+  style: PositionStyle;
 }
 
 export function PresetDropdown({
@@ -20,7 +27,7 @@ export function PresetDropdown({
   setOpen,
   style,
 }: PresetDropdownProps) {
-  const [_, setShow, __, setModal] = useModal();
+  const [, setShow, , setModal] = useModal();
 
   function handleClickOutside() {
     setOpen(false);

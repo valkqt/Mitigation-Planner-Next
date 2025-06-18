@@ -3,13 +3,8 @@
 import { useRef, useState } from "react";
 import css from "./PresetSelect.module.css";
 import classNames from "classnames";
-import { api, Preset } from "@/resources";
-import { useRouter } from "next/navigation";
+import { Preset } from "@/resources";
 import { usePresetStore } from "@/resources/store/presetStore";
-import { useSession } from "next-auth/react";
-import useClickOutside from "@/hooks/useClickOutside";
-import { useModal } from "@/contexts/ModalContext/ModalContext";
-import { PresetModal } from "./PresetModal/";
 import { createPortal } from "react-dom";
 import { PresetDropdown } from "./PresetDropdown";
 
@@ -20,14 +15,9 @@ interface PresetSelectProps {
 
 export function PresetSelect({ collection, encounterId }: PresetSelectProps) {
   const [open, setOpen] = useState(false);
-  const { data: session, status } = useSession();
   const preset = usePresetStore().preset;
 
-  function handleClickOutside(): void {
-    setOpen(false);
-  }
-
-  const ref = useRef<any>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   function getPosition() {
     if (!ref.current) {

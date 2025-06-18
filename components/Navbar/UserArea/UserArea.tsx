@@ -3,7 +3,7 @@ import { LoginComponent } from "./LoginComponent";
 import { LogoutComponent } from "./LogoutComponent";
 
 export function UserArea() {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   return session ? <LogoutComponent /> : <LoginComponent />;
 }

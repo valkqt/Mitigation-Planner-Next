@@ -26,8 +26,11 @@ export function Select<TItem extends Item>({
 
   const selectedItem = externalState ? externalState : selected;
 
-  function setSelectedItem(item: any): void {
-    externalStateSetter ? externalStateSetter(item) : setSelected(item);
+  function setSelectedItem(item: TItem): void {
+    if (externalStateSetter) {
+      externalStateSetter(item);
+    }
+    setSelected(item);
   }
 
   function handleClickOutside() {

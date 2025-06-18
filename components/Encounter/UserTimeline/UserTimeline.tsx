@@ -1,6 +1,11 @@
 import { Row } from "@/components";
 import { usePresetStore } from "@/resources/store/presetStore";
-import { Encounter, Job, PlayerSkill } from "@/resources/types";
+import {
+  AbilitiesOnJobs,
+  Encounter,
+  Job,
+  PlayerSkill,
+} from "@/resources/types";
 import { useEffect, useState } from "react";
 import css from "./UserTimeline.module.css";
 
@@ -15,14 +20,18 @@ export function UserTimeline({ jobs, encounter }: UserTimelineProps) {
       return;
     }
 
-    let skills: PlayerSkill[] = [];
+    const skills: AbilitiesOnJobs[] = [];
     jobs.forEach((job) => {
-      job.skills.forEach((skill) => skills.push(skill.ability));
+      job.skills.forEach((skill) => {
+        if (!skills.find((s) => s.ability.id === skill.ability.id)) {
+          skills.push(skill);
+        }
+      });
     });
     setAbilities(skills);
-  }, []);
+  }, [jobs]);
 
-  const [abilities, setAbilities] = useState<PlayerSkill[]>([]);
+  const [abilities, setAbilities] = useState<AbilitiesOnJobs[]>([]);
   const preset = usePresetStore().preset;
 
   function isActive(ability: PlayerSkill): boolean {
@@ -41,11 +50,14 @@ export function UserTimeline({ jobs, encounter }: UserTimelineProps) {
   return (
     <div className={css.container}>
       {abilities.map((ability) => {
+        if (ability.abilityId === 36) return;
         return (
           <Row
-            key={ability.id}
-            ability={ability}
-            isActive={isActive(ability)}
+            key={
+              ability.abilityId.toString() + ability.jobId.toString() + "mrow"
+            }
+            ability={ability.ability}
+            isActive={isActive(ability.ability)}
             encounter={encounter}
           />
         );

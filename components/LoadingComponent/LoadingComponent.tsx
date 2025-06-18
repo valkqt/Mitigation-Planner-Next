@@ -11,7 +11,7 @@ export function LoadingComponent({ encounterId }: LoadingComponentProps) {
     <div className={css.backdrop}>
       <div className={css.container}>
         <div className={css.imgContainer}>
-          <img src={encounterMap[encounterId]} className={css.image} />
+          <img src={encounterMap[encounterId]} className={css.image} alt="" />
         </div>
         <div>Mitigation Planner is initializing...</div>
         <div className={css.spinner}>

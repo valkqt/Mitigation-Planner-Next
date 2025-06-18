@@ -2,7 +2,6 @@ import { Timeline } from "@/resources/index";
 import css from "./BossMechanic.module.css";
 
 import { gridSize } from "@/resources/index";
-import { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 
 interface BossMechanicRowProps {
@@ -10,22 +9,6 @@ interface BossMechanicRowProps {
 }
 
 export default function BossMechanic({ node }: BossMechanicRowProps) {
-  const [isHover, setIsHover] = useState(false);
-  const ref = useRef<any>(null);
-  const ref2 = useRef<any>(null);
-
-  function checkHover(e) {
-    if (ref.current) {
-      const mouseOver = ref.current.contains(e.target);
-      if (!isHover && mouseOver) {
-        setIsHover(true);
-      }
-
-      if (isHover && !mouseOver) {
-        setIsHover(!isHover);
-      }
-    }
-  }
   return (
     <>
       <div

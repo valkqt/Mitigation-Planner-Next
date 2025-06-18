@@ -39,8 +39,8 @@ export default function AbilityFilter({ jobs }: AbilityFilterProps) {
           </div>
         </div>
       </div>
-      {selectedJob.skills.map((ability) => (
-        <SingleAbility ability={ability.ability} key={ability.ability.id} />
+      {selectedJob.skills.map((i) => (
+        <SingleAbility ability={i.ability} key={i.abilityId} />
       ))}
     </div>
   );

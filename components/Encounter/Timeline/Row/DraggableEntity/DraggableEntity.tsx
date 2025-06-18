@@ -23,7 +23,7 @@ export default function DraggableEntity({ ability }: DraggableEntityProps) {
         <div className={css.IconContainer}>
           <img src={style.icon} className={css.AbilityIcon} alt="" />
         </div>
-        <div>{ability.name}</div>
+        <div className={css.label}>{ability.name}</div>
       </div>
       <div
         style={{

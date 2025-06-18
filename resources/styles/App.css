@@ -44,8 +44,10 @@
 :root {
   --healer: #346624;
   --healer-hover: #3ba318;
-  --tank: "";
-  --tank-hover: "";
+  --tank: #2133ad;
+  --tank-hover: #2742f1;
+  --dps: #9e1a16;
+  --dps-hover: #eb413b;
   --inactive: rgb(70, 70, 70);
   --inactive-hover: rgb(90, 90, 90);
   --bg-primary: hsl(0, 0%, 15%);

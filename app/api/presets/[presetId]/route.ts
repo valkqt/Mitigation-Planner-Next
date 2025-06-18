@@ -6,7 +6,7 @@ import { NextRequest } from "next/server";
 
 export async function GET(
   request: Request,
-  { params }: { params: { presetId: string } }
+  { params }: { params: Promise<{ presetId: string }> }
 ) {
   const { presetId } = await params;
 
@@ -38,8 +38,9 @@ export async function PUT(req: NextRequest) {
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { presetId: string } }
+  { params }: { params: Promise<{ presetId: string }> }
 ) {
-  await deletePreset(params.presetId);
+  const id = (await params).presetId;
+  await deletePreset(await id);
   return Response.json({ status: 204, message: "" });
 }
