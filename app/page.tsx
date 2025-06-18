@@ -9,10 +9,11 @@ export default function Page({ session }) {
       <div className={css.subcontainer}>
         <h1>Mitigation Planner</h1>
         <p>
-          meow meow mrrow mrrp meow mrrow mrrp meow mrrow mrrp meow mrrow mrrp{" "}
-          meow mrrow mrrp meow mrrow mrrp meow mrrow mrrp meow mrrow mrrp meow
-          mrrow mrrp meow mrrow mrrp meow mrrow mrrp meow mrrow mrrp meow mrrow
-          mrrp meow mrrow mrrp meow mrrow mrrp meow mrrow mrrp{" "}
+          Mitigation Planner is a tool for organizing raid mitigation with a
+          more straightforward UI compared to traditional spreadsheets. It is
+          especially recommended for individual mitigations in party finder and
+          intended to be a repository of community plans such as the ones for
+          ultimate raids.
         </p>
       </div>
       <div className={css.subcontainer}>

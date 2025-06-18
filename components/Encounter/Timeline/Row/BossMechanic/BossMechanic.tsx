@@ -2,7 +2,7 @@ import { Timeline } from "@/resources/index";
 import css from "./BossMechanic.module.css";
 
 import { gridSize } from "@/resources/index";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 
 interface BossMechanicRowProps {
@@ -11,6 +11,21 @@ interface BossMechanicRowProps {
 
 export default function BossMechanic({ node }: BossMechanicRowProps) {
   const [isHover, setIsHover] = useState(false);
+  const ref = useRef<any>(null);
+  const ref2 = useRef<any>(null);
+
+  function checkHover(e) {
+    if (ref.current) {
+      const mouseOver = ref.current.contains(e.target);
+      if (!isHover && mouseOver) {
+        setIsHover(true);
+      }
+
+      if (isHover && !mouseOver) {
+        setIsHover(!isHover);
+      }
+    }
+  }
   return (
     <>
       <div
@@ -19,7 +34,6 @@ export default function BossMechanic({ node }: BossMechanicRowProps) {
           left: 64 + node.timestamp * gridSize,
           zIndex: node.id,
         }}
-        onMouseOver={() => setIsHover(true)}
       >
         <div className={css.mechanicLabel}>{node.mechanic.name}</div>
         {node.mechanic.castTime > 0 && (
@@ -30,11 +44,11 @@ export default function BossMechanic({ node }: BossMechanicRowProps) {
         )}
       </div>
       <div
-        className={classNames({ toggleDisplay: !isHover }, css.tooltip)}
+        className={classNames(css.tooltip)}
         style={{
-          left: 64 + node.timestamp * gridSize,
+          left: 64 + node.timestamp * gridSize + 4,
+          top: 28,
         }}
-        onMouseOut={() => setIsHover(false)}
       >
         {node.mechanic.name}
       </div>

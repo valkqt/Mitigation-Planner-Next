@@ -10,11 +10,11 @@ interface UserTimelineProps {
 }
 
 export function UserTimeline({ jobs, encounter }: UserTimelineProps) {
-  if (!jobs) {
-    return;
-  }
-
   useEffect(() => {
+    if (!jobs) {
+      return;
+    }
+
     let skills: PlayerSkill[] = [];
     jobs.forEach((job) => {
       job.skills.forEach((skill) => skills.push(skill.ability));
