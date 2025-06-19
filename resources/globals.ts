@@ -36,9 +36,13 @@ export const currentRaids = [
 
 export const jobMap = {
   1: "/transparent_icons/sage.png",
-  2: "/transparent_icons/whitemage.png",
+  2: "/transparent_icons/astrologian.png",
   3: "/transparent_icons/scholar.png",
-  4: "/transparent_icons/astrologian.png",
+  4: "/transparent_icons/whitemage.png",
+  5: "/transparent_icons/paladin.png",
+  6: "/transparent_icons/warrior.png",
+  7: "/transparent_icons/darkknight.png",
+  8: "/transparent_icons/gunbreaker.png",
 };
 
 export const abilityMap = {
@@ -75,13 +79,13 @@ export const abilityMap = {
   11: { icon: "/icons/SGE/soteria.png", color1: "white", color2: "white" },
   12: {
     icon: "/icons/SGE/eukrasian_prognosis.png",
-    color1: "white",
-    color2: "white",
+    color1: "#60cdb2",
+    color2: "#08453f",
   },
   13: {
     icon: "/icons/AST_collective_unconscious.png",
-    color1: "white",
-    color2: "white",
+    color1: "#60cdb2",
+    color2: "#08453f",
   },
 };
 

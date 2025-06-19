@@ -11,6 +11,7 @@ export interface Job {
   id: number;
   name: string;
   skills: any[];
+  role: Role;
 }
 
 export interface Segment {
@@ -24,6 +25,12 @@ export enum Source {
   Ally,
   Boss,
   Enemy,
+}
+
+export enum Role {
+  DPS = "DPS",
+  TANK = "TANK",
+  HEALER = "HEALER",
 }
 
 export interface AbilityStyle {
