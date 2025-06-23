@@ -18,6 +18,8 @@ export function Row({ ability, isActive, encounter }: RowProps) {
   const presetStore = usePresetStore();
   const preset = presetStore.preset;
 
+  console.log(preset);
+
   const activeSegments = preset.segments[ability.id];
 
   function GenerateRandomString(): string {

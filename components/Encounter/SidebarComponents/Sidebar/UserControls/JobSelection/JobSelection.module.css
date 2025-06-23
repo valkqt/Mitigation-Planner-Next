@@ -27,12 +27,31 @@
   padding-right: 8px;
 }
 
-.active {
+.tank {
+  background-color: var(--tank);
+}
+
+.tank:hover {
+  background-color: var(--tank-hover);
+}
+
+.dps {
+  background-color: var(--dps);
+}
+
+.dps:hover {
+  background-color: var(--dps-hover);
+}
+
+.healer {
   background-color: var(--healer);
 }
 
-.active:hover {
+.healer:hover {
   background-color: var(--healer-hover);
+}
+
+.active:hover {
   transition: background-color 0.15s;
 }
 
