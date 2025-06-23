@@ -376,7 +376,7 @@ export const abilityMap = {
     color2: colors.cooldown,
   },
   56: {
-    icon: "/icons/WAR/Shake_it_Off.png",
+    icon: "/icons/WAR/Shake_It_Off.png",
     color1: colors.war,
     color2: colors.cooldown,
   },
