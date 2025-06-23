@@ -1,4 +1,4 @@
-import { Expansion } from "@prisma/client";
+import { Ability, Expansion } from "@prisma/client";
 import {
   DamageType,
   EnemySkillTarget,
@@ -10,8 +10,9 @@ import {
 export interface Job {
   id: number;
   name: string;
-  skills: any[];
+  skills: Ability[];
   role: Role;
+  abilities: AbilitiesOnJobs;
 }
 
 export interface Segment {
@@ -58,6 +59,14 @@ export interface PlayerSkill {
   duration: number;
   target: SkillTarget;
   type: PlayerSkillType;
+  jobs: AbilitiesOnJobs;
+}
+
+export interface AbilitiesOnJobs {
+  abilityId: number;
+  jobId: number;
+  job: Job;
+  ability: PlayerSkill;
 }
 
 export interface Timeline {

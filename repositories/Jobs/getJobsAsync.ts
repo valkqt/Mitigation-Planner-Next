@@ -4,7 +4,7 @@ import { Job } from "@prisma/client";
 export default async function getJobsAsync(): Promise<Job[] | null> {
   const jobs = await prisma.job.findMany({
     include: {
-      skills: { include: { ability: true } },
+      skills: { include: { ability: true, job: true } },
     },
   });
   return jobs;

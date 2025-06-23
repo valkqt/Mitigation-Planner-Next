@@ -9,11 +9,12 @@
   background-color: var(--bg-secondary);
   border-left: 1px solid black;
   color: white;
-  padding: 0.5rem 0.5rem 0.5rem 0;
+  padding: 0.5rem 0.5rem 0 0;
   transition: left 0.15s linear;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 0.5rem;
+  overflow: scroll;
 }
 
 .navbarClosed {

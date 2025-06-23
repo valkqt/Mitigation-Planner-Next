@@ -11,9 +11,9 @@ export function SidebarComponent({ jobs }: SidebarProps) {
   const [showSidebar, setShowSidebar] = useState(false);
 
   return (
-    <div>
+    <>
       <SidebarControl show={showSidebar} setShow={setShowSidebar} />
       <Sidebar jobs={jobs} show={showSidebar} setShow={setShowSidebar} />
-    </div>
+    </>
   );
 }

@@ -24,6 +24,8 @@
   margin-top: 8px;
   border-radius: 0.25rem;
   animation: dropdown-slide 0.3s linear;
+  overflow: scroll;
+  max-height: 180px;
 }
 
 .dropdownItem {
