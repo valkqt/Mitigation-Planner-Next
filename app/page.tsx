@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import css from "./home.module.css";
-import { api } from "@/resources";
 
 export default function Page() {
   return (
