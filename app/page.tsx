@@ -16,13 +16,6 @@ export default function Page() {
           intended to be a repository of community plans such as the ones for
           ultimate raids.
         </p>
-        <button
-          onClick={() => {
-            api.post("/dev");
-          }}
-        >
-          execute sql
-        </button>
       </div>
       <div className={css.subcontainer}>
         <h2 style={{ flexBasis: "100%" }}>Current Savage</h2>
