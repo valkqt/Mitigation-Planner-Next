@@ -10,9 +10,8 @@ import {
 export interface Job {
   id: number;
   name: string;
-  skills: Ability[];
+  skills: AbilitiesOnJobs[];
   role: Role;
-  abilities: AbilitiesOnJobs;
 }
 
 export interface Segment {
