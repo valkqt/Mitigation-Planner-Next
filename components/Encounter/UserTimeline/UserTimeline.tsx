@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import css from "./UserTimeline.module.css";
 
 interface UserTimelineProps {
-  jobs: any[];
+  jobs: Job[];
   encounter: Encounter;
 }
 
