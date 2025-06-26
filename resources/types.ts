@@ -71,6 +71,8 @@ export interface AbilitiesOnJobs {
 export interface Timeline {
   id: number;
   timestamp: number;
+  hasCast: boolean;
+  castTime: number;
   mechanic: EnemySkill;
 }
 
