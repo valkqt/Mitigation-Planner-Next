@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://mit-planner.vercel.app/api",
+  baseURL: process.env.AXIOS_BASEURL,
   timeout: 5000,
   headers: {},
 });

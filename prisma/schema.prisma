@@ -39,7 +39,6 @@ model Mechanic {
   id           Int           @id @default(autoincrement())
   name         String
   sources      Source[]
-  castTime     Int @default(0)
   targets      EnemyTarget[]
   mechanicType MechanicType
   damageType   DamageType
@@ -50,6 +49,7 @@ model Mechanic {
 model Node {
   id          Int       @id @default(autoincrement())
   timestamp   Int
+  castTime    Int       @default(0)
   mechanicId  Int
   encounterId Int
   encounter   Encounter @relation(fields: [encounterId], references: [id], onDelete: Cascade)

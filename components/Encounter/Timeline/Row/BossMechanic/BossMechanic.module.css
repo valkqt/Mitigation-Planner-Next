@@ -26,12 +26,13 @@
 }
 
 .tooltip {
-  position: absolute;
-  display: none;
+  position: fixed;
+  display: block;
   background-color: rgb(17, 17, 17);
   border-radius: 0.25rem;
   padding: 8px;
   z-index: 1000;
+  color: white;
   animation: fadeIn 0.1s linear;
 }
 
@@ -44,7 +45,7 @@
   }
 }
 
-.container:hover + .tooltip {
+/* .container:hover + .tooltip {
   z-index: 10;
   display: block;
-}
+} */

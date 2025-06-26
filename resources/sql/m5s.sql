@@ -1,124 +1,122 @@
-INSERT INTO "Mechanic" (name, sources, "castTime", targets, "mechanicType", "damageType", description)
-     VALUES    ('Deep Cut', `{"BOSS"}`, 5, '{"MAIN_THREAT", "SECONDARY_THREAT"}', 'DAMAGE', 'PHYSICAL', ''),
-               ('Flip to A/B-side', `{"BOSS"}`, 4, '{"SELF"}', 'SETUP', 'NONE', ''),
-               ('2-4-snap Twist', `{"BOSS"}`, 5, '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
-               ('Play A/B-side', `{"BOSS"}`, 0, '{"ROLE"}', 'DAMAGE', 'MAGICAL', ''),
-               ('Celebrate Good Times', `{"BOSS"}`, 5, '{"RAID"}', 'DAMAGE', 'MAGICAL', ''),
-               ('Disco Infernal', `{"BOSS"}`, 4, '{"RAID"}', 'DAMAGE', 'MAGICAL', ''),
-               ('Funky Floor', `{"BOSS"}`, 2, '{"MAIN_THREAT"}', 'SETUP', 'NONE', ''),
-               ('Inside Out / Outside In', '{"BOSS"}', 5, '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
-               ('Burn Baby Burn', '{"BOSS"}', 0, '{"ROLE"}', 'DAMAGE', 'MAGICAL', ''),
-               ('Ensemble Assemble', '{"BOSS"}', 3, '{"SELF"}', 'SETUP', 'MAGICAL', ''),
-               ('Arcady Night Fever', '{"BOSS"}', 5, '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
-               ('Get Down! ', '{"BOSS"}', 0, '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
-               ('Let''s Dance', '{"ENEMY"}', 6, '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
+INSERT INTO "Mechanic" (name, sources,  targets, "mechanicType", "damageType", description)
+     VALUES    ('Deep Cut', '{"BOSS"}', '{"MAIN_THREAT", "SECONDARY_THREAT"}', 'DAMAGE', 'PHYSICAL', ''),
+               ('Flip to A/B-side', '{"BOSS"}','{"SELF"}', 'SETUP', 'NONE', ''),
+               ('2-4-snap Twist', '{"BOSS"}', '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Play A/B-side', '{"BOSS"}', '{"ROLE"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Celebrate Good Times', '{"BOSS"}', '{"RAID"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Disco Infernal', '{"BOSS"}', '{"RAID"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Funky Floor', '{"BOSS"}', '{"MAIN_THREAT"}', 'SETUP', 'NONE', ''),
+               ('Inside Out / Outside In', '{"BOSS"}', '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Burn Baby Burn', '{"BOSS"}', '{"ROLE"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Ensemble Assemble', '{"BOSS"}', '{"SELF"}', 'SETUP', 'MAGICAL', ''),
+               ('Arcady Night Fever', '{"BOSS"}', '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Get Down! ', '{"BOSS"}', '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Let''s Dance', '{"ENEMY"}', '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
 
-               ('Let''s Dance + Freak Out', '{"BOSS"}', 0, '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
-               ('Let''Pose', '{"BOSS"}', 5, '{"RAID"}', 'DAMAGE', 'MAGICAL', ''),
-               ('Ride The Waves', '{"BOSS"}', 4, '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
-               ('Eighth/Quarter Beats', '{"BOSS"}', 4, '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
-               ('Frogtourage', '{"BOSS"}', 4, '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
-               ('Back-up Dance', '{"BOSS"}', 0, '{"ROLE"}', 'DAMAGE', 'MAGICAL', ''),
-               ('Let''s Dance Remix', '{"BOSS"}', 6, '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Let''s Dance + Freak Out', '{"BOSS"}', '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Let''Pose', '{"BOSS"}', '{"RAID"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Ride The Waves', '{"BOSS"}', '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Eighth/Quarter Beats', '{"BOSS"}', '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Frogtourage', '{"BOSS"}', '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Back-up Dance', '{"BOSS"}', '{"ROLE"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Let''s Dance Remix', '{"BOSS"}', '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
 
-               ('Do the Hustle', '{"BOSS"}', 4, '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
-               ('Moonburn + Back-up Dance', 'ENEMY', 0, '{"ROLE"}', 'DAMAGE', 'MAGICAL', ''),
-               ('Frogtourage Finale', '{"BOSS"}', 4, '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
-               ('Hi-NRG Fever', '{"BOSS"}', 4, '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Do the Hustle', '{"BOSS"}', '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Moonburn + Back-up Dance', '{"ENEMY"}', '{"ROLE"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Frogtourage Finale', '{"BOSS"}', '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
+               ('Hi-NRG Fever', '{"BOSS"}', '{"GROUND"}', 'DAMAGE', 'MAGICAL', '');
 
-               ('Let''s Dance', '{"ENEMY"}', 0, '{"GROUND"}', 'DAMAGE', 'MAGICAL', ''),
-               ('Let''s Dance Remix', '{"BOSS"}', 0, '{"GROUND"}', 'DAMAGE', 'MAGICAL', '');
 
-INSERT INTO "Node" (timestamp, "mechanicId", "encounterId") VALUES 
-                    (9, 1, 1),
-                    (23, 2, 1),
-                    (29, 3, 1),
-                    (39, 4, 1),
-                    (42, 2, 1),
-                    (48, 3, 1),
-                    (58, 4, 1),
-                    (59, 5, 1),
-                    (73, 6, 1),
-                    (79, 7, 1),
-                    (85, 8, 1),
-                    (95, 2, 1),
-                    (101, 9, 1),
-                    (109, 9, 1),
-                    (112, 3, 1),
-                    (122, 4, 1),
-                    (123, 5, 1),
-                    (130, 1, 1),
-                    (144, 10, 1),
-                    (150, 11, 1),
-                    (155, 12, 1),
-                    (157, 12, 1),
-                    (160, 12, 1),
-                    (162, 12, 1),
-                    (165, 12, 1),
-                    (167, 12, 1),
-                    (170, 12, 1),
-                    (172, 12, 1),
-                    (177, 13, 1),
-                    (186, 14, 1),
-                    (188, 25, 1),
-                    (191, 14, 1),
-                    (193, 25, 1),
-                    (196, 14, 1),
-                    (198, 25, 1),
-                    (201, 14, 1),
-                    (204, 15, 1),
-                    (223, 2, 1),
-                    (229, 16, 1),
-                    (238, 17, 1),
-                    (246, 17, 1),
-                    (257, 8, 1),
-                    (267, 3, 1),
-                    (277, 4, 1),
-                    (279, 1, 1),
-                    (286, 5, 1),
-                    (299, 18, 1),
-                    (312, 17, 1),
-                    (321, 6, 1),
-                    (335, 9, 1),
-                    (337, 19, 1),
-                    (342, 2, 1),
-                    (345, 9, 1),
-                    (347, 19, 1),
-                    (348, 3, 1),
-                    (358, 4, 1),
-                    (359, 5, 1),
-                    (373, 10, 1),
-                    (379, 11, 1),
-                    (385, 12, 1),
-                    (387, 12, 1),
-                    (390, 12, 1),
-                    (392, 12, 1),
-                    (395, 12, 1),
-                    (397, 12, 1),
-                    (400, 12, 1),
-                    (402, 12, 1),
-                    (406, 20, 1),
-                    (414, 26, 1),
-                    (416, 26, 1),
-                    (417, 26, 1),
-                    (419, 26, 1),
-                    (420, 26, 1),
-                    (421, 26, 1),
-                    (423, 26, 1),
-                    (425, 15, 1),
-                    (447, 18, 1),
-                    (451, 21, 1),
-                    (455, 21, 1),
-                    (459, 21, 1),
-                    (482, 22, 1),
-                    (498, 22, 1),
-                    (502, 21, 1),
-                    (509, 1, 1),
-                    (523, 7, 1),
-                    (528, 17, 1),
-                    (537, 8, 1),
-                    (549, 17, 1),
-                    (556, 5, 1),
-                    (566, 5, 1),
-                    (588, 23, 1),
-                    (594, 24, 1);
+INSERT INTO "Node" (timestamp,  "castTime", "mechanicId", "encounterId") VALUES 
+                    (9, 5, 1, 1),       -- Deep Cut
+                    (23, 4, 2, 1),      -- Flip to A/B Side
+                    (29, 5, 3, 1),      -- 2-4 Snap Twist
+                    (39, 0, 4, 1),      -- Play A/B Side
+                    (42, 4, 2, 1),      -- Flip to A/B Side
+                    (48, 5, 3, 1),      -- 2-4 Snap Twist
+                    (58, 0, 4, 1),      -- Play A/B Side
+                    (59, 5, 5, 1),      -- Celebrate Good Times
+                    (73, 4, 6, 1),      -- Disco Infernal
+                    (79, 2, 7, 1),      -- Funky Floor
+                    (85, 5, 8, 1),      -- Inside Out / Outside In
+                    (95, 4, 2, 1),      -- Flip to A/B Side
+                    (101, 0, 9, 1),     -- Burn Baby Burn
+                    (109,  0, 9, 1),    -- Burn Baby Burn
+                    (112,  5, 3, 1),    -- 2-4 Snap Twist
+                    (122,  0, 4, 1),    -- Play A/B Side
+                    (123,  5, 5, 1),    -- Celebrate Good Times
+                    (130,  5, 1, 1),    -- Deep Cut
+                    (144,  3, 10, 1),   -- Ensemble Assemble
+                    (150,  5, 11, 1),   -- Arcady Night Fever
+                    (155,  0, 12, 1),   -- Get Down!
+                    (157,  0, 12, 1),   -- Get Down!
+                    (160,  0, 12, 1),   -- Get Down!
+                    (162,  0, 12, 1),   -- Get Down!
+                    (165,  0, 12, 1),   -- Get Down!
+                    (167,  0, 12, 1),   -- Get Down!
+                    (170,  0, 12, 1),   -- Get Down!
+                    (172,  0, 12, 1),   -- Get Down!
+                    (177,  6, 13, 1),   -- Let's Dance
+                    (186,  0, 14, 1),   -- Let's Dance + Freak Out
+                    (188,  0, 13, 1),   -- Let's Dance
+                    (191,  0, 14, 1),   -- Let's Dance + Freak Out
+                    (193,  0, 13, 1),   -- Let's Dance
+                    (196,  0, 14, 1),   -- Let's Dance + Freak Out
+                    (198,  0, 13, 1),   -- Let's Dance
+                    (201,  0, 14, 1),   -- Let's Dance + Freak Out
+                    (204,  5, 15, 1),   -- Let's Pose
+                    (223,  4, 2, 1),    -- Flip to A/B Side
+                    (229,  4, 16, 1),   -- Ride The Waves
+                    (238,  5, 17, 1),   -- Quarter/Eight Beats
+                    (246,  5, 17, 1),   -- Quarter/Eight Beats
+                    (257,  5, 8, 1),    -- Inside Out / Outside In
+                    (267,  5, 3, 1),    -- 2-4 Snap Twist
+                    (277,  0, 4, 1),    -- Play A/B Side
+                    (279,  5, 1, 1),    -- Deep Cut
+                    (286,  5, 5, 1),    -- Celebrate Good Times
+                    (299,  3, 18, 1),   -- Frogtourage
+                    (312, 5, 17, 1),    -- Moonburn + Eighth/Quarter Beats
+                    (321,  4, 6, 1),    -- Disco Infernal
+                    (335,  0, 9, 1),    -- Burn Baby Burn
+                    (337,  0, 19, 1),   -- Backup Dance
+                    (342,  4, 2, 1),    -- Flip to A/B Side
+                    (345,  0, 9, 1),    -- Burn Baby Burn
+                    (347,  0, 19, 1),   -- Backup Dance
+                    (348,  5, 3, 1),    -- 2-4 Snap Twist
+                    (358,  0, 4, 1),    -- Play A/B Side
+                    (359,  5, 5, 1),    -- Celebrate Good Times
+                    (373,  3, 10, 1),   -- Ensemble Assemble
+                    (379,  5, 11, 1),   -- Arcady Night Fever
+                    (385,  0, 12, 1),   -- Get Down!
+                    (387,  0, 12, 1),   -- Get Down!
+                    (390,  0, 12, 1),   -- Get Down!
+                    (392,  0, 12, 1),   -- Get Down!
+                    (395,  0, 12, 1),   -- Get Down!
+                    (397, 0, 12, 1),    -- Get Down!
+                    (400,  0, 12, 1),   -- Get Down!
+                    (402,  0, 12, 1),   -- Get Down!
+                    (406,  6, 20, 1),   -- Let's Dance Remix
+                    (414,  0, 20, 1),   -- Let's Dance Remix
+                    (416,  0, 20, 1),   -- Let's Dance Remix
+                    (417,  0, 20, 1),   -- Let's Dance Remix
+                    (419,  0, 20, 1),   -- Let's Dance Remix
+                    (420,  0, 20, 1),   -- Let's Dance Remix
+                    (421,  0, 20, 1),   -- Let's Dance Remix
+                    (423,  0, 20, 1),   -- Let's Dance Remix
+                    (425,  5, 15, 1),   -- Let's Pose
+                    (447,  3, 18, 1),   -- Frogtourage
+                    (451,  5, 21, 1),   -- Do The Hustle (Tour)
+                    (455,  5, 21, 1),   -- Do The Hustle (Tour)
+                    (459,  5, 21, 1),   -- Do The Hustle (Boss)
+                    (482,  0, 22, 1),   -- Moonburn + Backup Dance
+                    (498,  0, 22, 1),   -- Moonburn + Backup Dance
+                    (502,  5, 21, 1),   -- Do The Hustle (Boss + Tour)
+                    (509,  5, 1, 1),    -- Deep Cut
+                    (523,  2, 7, 1),    -- Funky Floor
+                    (528,  5, 17, 1),   -- Quarter/Eighth Beats
+                    (537,  5, 8, 1),    -- Inside Out / Outside In
+                    (549,  5, 17, 1),   -- Quarter/Eighth Beats
+                    (556,  5, 5, 1),    -- Celebrate Good Times
+                    (566,  5, 5, 1),    -- Celebrate Good Times
+                    (588,  3, 23, 1),   -- Frogtourage Finale
+                    (594,  12, 24, 1);   -- Hi-NRG Fever (Enrage)
