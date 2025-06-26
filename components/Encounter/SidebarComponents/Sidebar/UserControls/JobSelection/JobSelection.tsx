@@ -11,7 +11,6 @@ interface JobSelectionProps {
 
 export default function JobSelection({ jobs }: JobSelectionProps) {
   const presetStore = usePresetStore();
-  console.log(jobs);
 
   function toggleJob(jobId: number) {
     presetStore.setFlags(FlagsHelper.jobs(jobId, presetStore.preset.flags));

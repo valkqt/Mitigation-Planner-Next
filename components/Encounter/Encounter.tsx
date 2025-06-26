@@ -42,8 +42,6 @@ export function Encounter({ encounterId, presetId }: EncounterProps) {
     ],
   });
 
-  console.log(jobsQuery.data);
-
   if (!encounterQuery.data || jobsQuery?.data?.length < 1) {
     return <LoadingComponent encounterId={encounterId} />;
   }

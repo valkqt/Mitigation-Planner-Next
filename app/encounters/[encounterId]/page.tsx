@@ -8,7 +8,7 @@ export default function Page() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace(`/encounters/${params.encounterId}/presets/new`);
+    router.replace(`/encounters/${params.encounterId}`);
   }, []);
   return <div>Loading...</div>;
 }
