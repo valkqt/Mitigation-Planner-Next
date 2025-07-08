@@ -5,6 +5,7 @@ import { useState } from "react";
 import classNames from "classnames";
 import { jobMap } from "@/resources/index";
 import { Select } from "@/components/CustomSelect/CustomSelect";
+import Image from "next/image";
 
 interface AbilityFilterProps {
   jobs: Job[];
@@ -32,7 +33,13 @@ export default function AbilityFilter({ jobs }: AbilityFilterProps) {
                 className={css.dropdownItem}
                 onClick={() => setSelectedJob(job)}
               >
-                <img src={jobMap[job.id]} className="miniIcon" alt="" />
+                <Image
+                  src={jobMap[job.id]}
+                  className="miniIcon"
+                  alt=""
+                  width={20}
+                  height={20}
+                />
                 <div>{job.name}</div>
               </div>
             ))}

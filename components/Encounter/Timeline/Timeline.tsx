@@ -9,8 +9,8 @@ interface TimelineProps {
 export function Timeline({ encounter }: TimelineProps) {
   return (
     <>
-      <BossTimeline encounter={encounter} />
       <BossRow encounter={encounter} />
+      <BossTimeline encounter={encounter} />
     </>
   );
 }

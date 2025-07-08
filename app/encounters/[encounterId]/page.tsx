@@ -10,6 +10,6 @@ export default function Page() {
 
   useEffect(() => {
     router.replace(`/encounters/${params.encounterId}/presets/new`);
-  }, []);
+  }, [params.encounterId]);
   return <LoadingComponent encounterId={params.encounterId} />;
 }

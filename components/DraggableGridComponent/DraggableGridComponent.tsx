@@ -173,9 +173,12 @@ export function DraggableGridComponent({
 
   return (
     <DndContext
+      onDragStart={() => {
+        setIsDragging(true);
+      }}
       onDragMove={({ delta }) => {
         handleDragMove(delta);
-        setIsDragging(true);
+        // setIsDragging(true);
       }}
       onDragEnd={handleDragEnd}
       onDragCancel={() => {

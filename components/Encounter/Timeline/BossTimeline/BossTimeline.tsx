@@ -7,10 +7,6 @@ interface TimeDisplayProps {
 }
 
 export function BossTimeline({ encounter }: TimeDisplayProps) {
-  function getBaseLog(x, y) {
-    return Math.log(y) / Math.log(x);
-  }
-
   function computeSecond(first) {
     const L = 10; // Approximate plateau value, adjust as needed
     let offsetK;

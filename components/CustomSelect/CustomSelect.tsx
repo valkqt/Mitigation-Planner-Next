@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import css from "./CustomSelect.module.css";
 import classNames from "classnames";
 import useClickOutside from "@/hooks/useClickOutside";
+import Image from "next/image";
 
 interface Item {
   name: string;
@@ -47,10 +48,12 @@ export function Select<TItem extends Item>({
     >
       <div className={css.label}>
         {iconMap && (
-          <img
+          <Image
             src={iconMap[selectedItem.id]}
             className="miniIcon"
             alt={selectedItem.name + "icon"}
+            width={20}
+            height={20}
           />
         )}
         {selectedItem.name}
@@ -65,10 +68,12 @@ export function Select<TItem extends Item>({
             }}
           >
             {iconMap && (
-              <img
+              <Image
                 src={iconMap[item.id]}
                 className="miniIcon"
                 alt={item.name + "icon"}
+                width={20}
+                height={20}
               />
             )}
             <div>{item.name}</div>

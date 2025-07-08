@@ -3,9 +3,9 @@
   min-height: 24px;
   padding-left: 64px;
   position: sticky;
-  top: 49px;
+  /* top: 49px; */
   z-index: 5;
-  margin-top: 144px;
+  /* margin-top: 144px; */
 }
 
 .timelineNumbers {

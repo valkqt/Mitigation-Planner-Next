@@ -1,6 +1,7 @@
 import { abilityMap, gridSize } from "@/resources/index";
 import { AbilityStyle, PlayerSkill } from "@/resources/types";
 import css from "./DraggableEntity.module.css";
+import Image from "next/image";
 
 interface DraggableEntityProps {
   ability: PlayerSkill;
@@ -21,7 +22,13 @@ export default function DraggableEntity({ ability }: DraggableEntityProps) {
         }}
       >
         <div className={css.IconContainer}>
-          <img src={style.icon} className={css.AbilityIcon} alt="" />
+          <Image
+            src={style.icon}
+            className={css.AbilityIcon}
+            alt=""
+            width={48}
+            height={48}
+          />
         </div>
         <div className={css.label}>{ability.name}</div>
       </div>
