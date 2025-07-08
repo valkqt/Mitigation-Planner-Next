@@ -6,7 +6,7 @@ import {
   Job,
   PlayerSkill,
 } from "@/resources/types";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import css from "./UserTimeline.module.css";
 
 interface UserTimelineProps {

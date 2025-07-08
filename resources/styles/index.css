@@ -4,6 +4,7 @@ html {
 
 body {
   margin: 0;
+  overflow: scroll;
 }
 
 @font-face {
@@ -25,4 +26,5 @@ ul {
   background-color: var(--bg-primary);
   min-height: 100vh;
   height: 100%;
+  overflow: scroll;
 }
