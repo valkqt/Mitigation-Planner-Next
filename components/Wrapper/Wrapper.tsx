@@ -11,7 +11,17 @@ export function Wrapper({ children }: PropsWithChildren) {
       return;
     }
 
-    const handleWheel = (event) => {
+    const handleWheel = (event: WheelEvent) => {
+      const sidePanel = document.getElementById("sidePanel");
+      const presetDropdown = document.getElementById("dropdown");
+      const children: EventTarget[] = Array.from(
+        sidePanel?.querySelectorAll("*") ?? []
+      ).concat(Array.from(presetDropdown?.querySelectorAll("*") ?? []));
+
+      if (event.target !== null && children.includes(event.target)) {
+        console.log(event.target);
+        return;
+      }
       if (event.deltaY !== 0) {
         event.preventDefault();
         window.scroll({
