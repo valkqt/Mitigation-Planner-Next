@@ -5,13 +5,14 @@
   align-items: center;
   position: relative;
   overflow: visible;
+  z-index: 1;
 }
 
 .BossLane {
   padding-left: 64px;
   position: sticky;
   display: block;
-  z-index: 5;
+  z-index: 3;
   top: 87px;
 }
 

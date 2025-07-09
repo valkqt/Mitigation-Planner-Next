@@ -1,13 +1,15 @@
 .container {
   color: white;
   height: 100%;
+  position: relative;
+  margin-top: 193px;
 }
 
 .headerFiller {
   position: fixed;
   top: 49px;
   background-color: var(--bg-secondary);
-  z-index: 1;
+  z-index: 2;
   color: white;
 }
 

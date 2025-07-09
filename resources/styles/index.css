@@ -1,7 +1,3 @@
-html {
-  width: min-content;
-}
-
 body {
   margin: 0;
 }
@@ -9,6 +5,7 @@ body {
 @font-face {
   font-family: "Kumbh Sans";
   src: url("/fonts/kumbh_sans/KumbhSans-VariableFont_YOPQ,wght.ttf");
+  font-display: swap;
 }
 
 * {
@@ -25,4 +22,6 @@ ul {
   background-color: var(--bg-primary);
   min-height: 100vh;
   height: 100%;
+  overflow: scroll;
+  width: min-content;
 }

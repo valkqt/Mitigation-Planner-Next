@@ -13,7 +13,10 @@ interface SidebarProps {
 
 export default function Sidebar({ jobs, show, setShow }: SidebarProps) {
   return (
-    <div className={classNames(css.navbar, !show ? css.navbarClosed : "")}>
+    <div
+      className={classNames(css.navbar, !show ? css.navbarClosed : "")}
+      id="sidePanel"
+    >
       {show && <UserControls jobs={jobs} setShow={setShow} />}
     </div>
   );

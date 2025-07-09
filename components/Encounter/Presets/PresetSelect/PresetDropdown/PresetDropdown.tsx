@@ -40,6 +40,7 @@ export function PresetDropdown({
       className={classNames({ toggleDisplay: !open }, css.dropdown)}
       style={style}
       ref={ref}
+      id="dropdown"
     >
       {collection.map((item) => (
         <div

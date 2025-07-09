@@ -7,10 +7,10 @@
   display: flex;
   justify-content: space-between;
   font-size: 110%;
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 10;
 }
 
 .leftNav {
@@ -29,7 +29,6 @@
   color: white;
 }
 
-
 .navTitle {
   padding: 0 1rem;
 }
@@ -45,4 +44,3 @@
   position: relative;
   cursor: pointer;
 }
-

@@ -4,6 +4,7 @@ import css from "./SingleAbility.module.css";
 import classNames from "classnames";
 import { usePresetStore } from "@/resources/store/presetStore";
 import { FlagsHelper } from "@/resources/store/presetStoreHelpers";
+import Image from "next/image";
 
 interface SingleAbilityProps {
   ability: PlayerSkill;
@@ -17,10 +18,16 @@ export default function SingleAbility({ ability }: SingleAbilityProps) {
   }
 
   const style: AbilityStyle = abilityMap[ability.id];
-  
+
   return (
     <div className={css.container} onClick={() => toggleAbility(ability.id)}>
-      <img src={style.icon} className={"smallAbilityIcon"} alt="" />
+      <Image
+        src={style.icon}
+        className={"smallAbilityIcon"}
+        alt=""
+        width={32}
+        height={32}
+      />
 
       <div
         className={classNames(

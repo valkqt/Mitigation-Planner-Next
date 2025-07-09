@@ -4,6 +4,7 @@ import classNames from "classnames";
 import { jobMap, Role } from "@/resources/index";
 import { usePresetStore } from "@/resources/store/presetStore";
 import { FlagsHelper } from "@/resources/store/presetStoreHelpers";
+import Image from "next/image";
 
 interface JobSelectionProps {
   jobs: Job[];
@@ -39,7 +40,13 @@ export default function JobSelection({ jobs }: JobSelectionProps) {
             key={index}
             onClick={() => toggleJob(job.id)}
           >
-            <img src={jobMap[job.id]} className={css.transparentIcon} alt="" />
+            <Image
+              src={jobMap[job.id]}
+              className={css.transparentIcon}
+              alt=""
+              width={20}
+              height={20}
+            />
             <div className={css.JobName}>{job.name}</div>
           </div>
         );
