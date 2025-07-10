@@ -1,0 +1,16 @@
+.sublane {
+  position: relative;
+  display: flex;
+  height: 32px;
+  width: 100%;
+}
+
+.Lane {
+  border: 1px solid grey;
+  background-color: rgb(38, 38, 38);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: visible;
+  z-index: 1;
+}

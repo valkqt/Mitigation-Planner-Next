@@ -1,10 +1,12 @@
 import { useState } from "react";
 import css from "./PresetMenu.module.css";
 import classNames from "classnames";
-import useClickOutside from "@/hooks/useClickOutside";
+import useClickOutside from "@/src/hooks/useClickOutside";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { api, Preset, tempUrl } from "@/resources";
-import { usePresetStore } from "@/resources/store/presetStore";
+import { tempUrl } from "@/src/domain/globals";
+import { api } from "@/src/services/client/axios/";
+import { Preset } from "@/src/domain/types";
+import { usePresetStore } from "@/src/services/client/store/presetStore";
 import { useSession } from "next-auth/react";
 
 interface PresetMenuProps {

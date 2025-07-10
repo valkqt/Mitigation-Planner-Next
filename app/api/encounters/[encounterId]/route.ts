@@ -1,4 +1,4 @@
-import getEncounterById from "@/repositories/Encounters/getEncounterById";
+import getEncounterById from "@/src/services/server/repositories/encounter";
 import { notFound } from "next/navigation";
 
 // GET /api/encounters/:id

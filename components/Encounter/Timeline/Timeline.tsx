@@ -1,6 +1,6 @@
-import { Encounter } from "@/resources";
-import { BossTimeline } from "./BossTimeline/BossTimeline";
-import { BossRow } from "./Row/BossRow";
+import { Encounter } from "@/src/domain/types";
+import { BossTimeline } from "./BossTimeline";
+import { BossRow } from "./BossTimeline/BossRow";
 
 interface TimelineProps {
   encounter: Encounter;

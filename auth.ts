@@ -2,8 +2,8 @@ import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import prisma from "@/lib/prisma";
-import { signInSchema } from "@/lib/zod";
+import prisma from "@/src/lib/prisma";
+import { signInSchema } from "@/src/lib/zod";
 import { randomBytes, randomUUID } from "crypto";
 
 type SecureAccount = {

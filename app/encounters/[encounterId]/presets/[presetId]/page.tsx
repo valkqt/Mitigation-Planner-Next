@@ -1,8 +1,8 @@
 "use client";
 
 import { Encounter } from "@/components/Encounter/";
-import { MouseContextProvider } from "@/contexts";
-import { ModalContextProvider } from "@/contexts/ModalContext/ModalContextProvider";
+import { MouseContextProvider } from "@/src/contexts/MouseContext";
+import { ModalContextProvider } from "@/src/contexts/ModalContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 

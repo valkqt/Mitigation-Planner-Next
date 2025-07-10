@@ -1,7 +1,8 @@
 import css from "./BossTimeline.module.css";
 import Timestamp from "./Timestamp/Timestamp";
 import classNames from "classnames";
-import { Encounter, gridSize } from "@/resources";
+import { gridSize } from "@/src/domain/globals";
+import { Encounter } from "@/src/domain/types";
 interface TimeDisplayProps {
   encounter: Encounter;
 }

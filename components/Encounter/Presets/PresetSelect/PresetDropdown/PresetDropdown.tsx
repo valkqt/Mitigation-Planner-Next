@@ -2,10 +2,10 @@ import classNames from "classnames";
 import router from "next/router";
 import css from "./PresetDropdown.module.css";
 import { PresetModal } from "../PresetModal";
-import { useModal } from "@/contexts/ModalContext/ModalContext";
+import { useModal } from "@/src/contexts/ModalContext/ModalContext";
 import { Dispatch, SetStateAction } from "react";
-import { Preset } from "@/resources/types";
-import useClickOutside from "@/hooks/useClickOutside";
+import { Preset } from "@/src/domain/types";
+import useClickOutside from "@/src/hooks/useClickOutside";
 
 type PositionStyle = {
   top?: number;

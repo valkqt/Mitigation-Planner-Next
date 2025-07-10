@@ -1,17 +1,17 @@
-import { usePresetStore } from "@/resources/store/presetStore";
+import { usePresetStore } from "@/src/services/client/store/presetStore";;
 import css from "./PresetModal.module.css";
-import { useModal } from "@/contexts/ModalContext/ModalContext";
+import { useModal } from "@/src/contexts/ModalContext/ModalContext";
 import {
   defaultFlags,
   defaultSegments,
   defaultUser,
-  Preset,
   tempUrl,
-} from "@/resources";
+} from "@/src/domain/globals";
+import { Preset } from "@/src/domain/types";
 import { useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { ChangeEvent, FormEvent, useState } from "react";
-import useClickOutside from "@/hooks/useClickOutside";
+import useClickOutside from "@/src/hooks/useClickOutside";
 
 interface PresetModalProps {
   encounterId: number;

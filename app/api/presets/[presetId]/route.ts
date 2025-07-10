@@ -1,5 +1,8 @@
-import getPresetById from "@/repositories/Presets/getPresetById";
-import { deletePreset, editPreset } from "@/repositories/Users/savePreset";
+import { getPresetById } from "@/src/services/server/repositories/preset";
+import {
+  deletePreset,
+  editPreset,
+} from "@/src/services/server/repositories/user";
 import { Prisma } from "@prisma/client";
 import { notFound } from "next/navigation";
 import { NextRequest } from "next/server";

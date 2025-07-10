@@ -3,8 +3,8 @@
 import { useRef, useState } from "react";
 import css from "./PresetSelect.module.css";
 import classNames from "classnames";
-import { Preset } from "@/resources";
-import { usePresetStore } from "@/resources/store/presetStore";
+import { Preset } from "@/src/domain/types";
+import { usePresetStore } from "@/src/services/client/store/presetStore";
 import { createPortal } from "react-dom";
 import { PresetDropdown } from "./PresetDropdown";
 

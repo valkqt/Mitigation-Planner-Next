@@ -1,11 +1,11 @@
-import { Row } from "@/components";
-import { usePresetStore } from "@/resources/store/presetStore";
+import { Row } from "@/components/Encounter/UserTimeline/Row";
+import { usePresetStore } from "@/src/services/client/store/presetStore";
 import {
   AbilitiesOnJobs,
   Encounter,
   Job,
   PlayerSkill,
-} from "@/resources/types";
+} from "@/src/domain/types";
 import { useEffect, useState } from "react";
 import css from "./UserTimeline.module.css";
 

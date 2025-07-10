@@ -1,4 +1,4 @@
-import getPresetsByUser from "@/repositories/Presets/getPresetsByUser";
+import { getPresetsByUser } from "@/src/services/server/repositories/preset";
 
 export async function GET(
   request: Request,

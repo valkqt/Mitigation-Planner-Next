@@ -1,4 +1,4 @@
-import getJobsAsync from "@/repositories/Jobs/getJobsAsync";
+import getJobsAsync from "@/src/services/server/repositories/jobs";
 
 // GET /api/encounters/:id
 export async function GET() {

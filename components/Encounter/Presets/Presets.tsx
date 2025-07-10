@@ -1,8 +1,8 @@
 import css from "./Presets.module.css";
-import { api } from "@/resources";
+import { api } from "@/src/services/client/axios";
 import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
-import { usePresetStore } from "@/resources/store/presetStore";
+import { usePresetStore } from "@/src/services/client/store/presetStore";
 import { PresetSelect } from "./PresetSelect";
 import { PresetMenu } from "./PresetMenu";
 

@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 import { SessionProvider } from "next-auth/react";
-import "@/resources/styles/App.css";
-import "@/resources/styles/index.css";
-import Navbar from "@/components/Navbar/Navbar";
-import { Wrapper } from "@/components/Wrapper/";
+import "@/src/domain/styles/App.css";
+import "@/src/domain/styles/index.css";
+import Navbar from "@/components/Layout/Navbar/Navbar";
+import { Wrapper } from "@/components/Layout/Wrapper";
 
 type LayoutProps = {
   children: ReactNode;

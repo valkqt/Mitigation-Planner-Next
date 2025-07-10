@@ -1,8 +1,7 @@
-import saltAndHashPassword from "@/resources/serverActions/saltAndHashPassword";
-import prisma from "@/lib/prisma";
+import saltAndHashPassword from "@/src/services/server/auth/saltAndHashPassword";
+import prisma from "@/src/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "node:crypto";
-
 
 export async function POST(req: NextRequest) {
   const { email, password } = await req.json();
